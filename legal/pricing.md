@@ -1,7 +1,9 @@
 ---
-layout: page
-title: Premium Pricing
-permalink: /pricing/
+layout: default
+title: Pricing
+parent: Legal
+nav_order: 3
+permalink: /legal/pricing/
 ---
 
 # Alphapy Premium Features & Pricing

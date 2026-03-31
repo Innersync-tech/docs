@@ -1,3 +1,10 @@
+---
+layout: default
+title: Migrations
+parent: Alphapy
+nav_order: 6
+---
+
 # Database Migrations Guide
 
 This project uses [Alembic](https://alembic.sqlalchemy.org/) for database schema migrations.

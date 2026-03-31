@@ -1,3 +1,10 @@
+---
+layout: default
+title: Commands
+parent: Alphapy
+nav_order: 2
+---
+
 # Command Reference
 
 Complete reference for all Discord slash commands available in the Alphapy bot.

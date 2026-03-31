@@ -1,3 +1,10 @@
+---
+layout: default
+title: API Reference
+parent: Alphapy
+nav_order: 3
+---
+
 # API Reference
 
 Complete API documentation for the Alphapy Discord Bot FastAPI server.

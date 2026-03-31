@@ -1,3 +1,10 @@
+---
+layout: default
+title: Operational Playbook
+parent: Alphapy
+nav_order: 8
+---
+
 # Operational Playbook
 
 Quick checklist and verification steps after adding the bot to a new server.

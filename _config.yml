@@ -1,4 +1,28 @@
 title: Innersync Documentation
 description: Central documentation hub for all Innersync services.
-theme: minima
+remote_theme: just-the-docs/just-the-docs@v0.10.1
 markdown: kramdown
+
+url: "https://innersync-tech.github.io"
+baseurl: "/docs"
+
+# Just the Docs configuration
+search_enabled: true
+search_tokenizer_separator: /[\s/]+/
+
+aux_links:
+  "GitHub":
+    - "https://github.com/innersync-tech/docs"
+
+aux_links_new_tab: true
+
+footer_content: "&copy; 2025 Innersync. All rights reserved."
+
+color_scheme: dark
+
+# Navigation order
+nav_sort: order
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
