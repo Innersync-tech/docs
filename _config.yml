@@ -3,8 +3,8 @@ description: Central documentation hub for all Innersync services.
 remote_theme: just-the-docs/just-the-docs@v0.10.1
 markdown: kramdown
 
-url: "https://innersync-tech.github.io"
-baseurl: "/docs"
+url: "https://docs.innersync.tech"
+baseurl: ""
 
 # Just the Docs configuration
 search_enabled: true
