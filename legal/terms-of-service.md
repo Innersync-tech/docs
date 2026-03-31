@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: default
 title: Terms of Service
-permalink: /terms-of-service/
+parent: Legal
+nav_order: 1
+permalink: /legal/terms-of-service/
 ---
 
 # Innersync • Alphapy Bot Terms of Service

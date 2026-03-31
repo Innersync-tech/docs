@@ -1,6 +1,8 @@
 ---
-layout: page
-title: Legal Information
+layout: default
+title: Legal
+nav_order: 3
+has_children: true
 permalink: /legal/
 ---
 

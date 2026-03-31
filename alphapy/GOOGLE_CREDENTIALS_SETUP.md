@@ -1,3 +1,10 @@
+---
+layout: default
+title: Google Credentials Setup
+parent: Alphapy
+nav_order: 10
+---
+
 # Google Cloud Credentials Setup Guide
 
 Step-by-step guide for creating Google Cloud service account credentials for Alphapy.

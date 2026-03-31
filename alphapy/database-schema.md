@@ -1,3 +1,10 @@
+---
+layout: default
+title: Database Schema
+parent: Alphapy
+nav_order: 5
+---
+
 # Database Schema Reference
 
 Complete reference for all database tables used by the Alphapy Discord Bot.

@@ -1,3 +1,10 @@
+---
+layout: default
+title: Authentication
+parent: Alphapy
+nav_order: 7
+---
+
 # Alphapy API Authentication Guide
 
 ## Overview

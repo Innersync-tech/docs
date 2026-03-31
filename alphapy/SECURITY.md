@@ -1,3 +1,10 @@
+---
+layout: default
+title: Security
+parent: Alphapy
+nav_order: 9
+---
+
 # Google Cloud Security Best Practices
 
 This document describes security best practices for Google Cloud credentials and API keys within the Alphapy project, in line with Google Cloud Security recommendations.

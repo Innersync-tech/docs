@@ -1,3 +1,10 @@
+---
+layout: default
+title: Railway Secret Manager
+parent: Alphapy
+nav_order: 11
+---
+
 # Railway Secret Manager Setup Guide
 
 Step-by-step guide for configuring Google Cloud Secret Manager on Railway.

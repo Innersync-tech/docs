@@ -1,7 +1,9 @@
 ---
-layout: page
+layout: default
 title: Privacy Policy
-permalink: /privacy-policy/
+parent: Legal
+nav_order: 2
+permalink: /legal/privacy-policy/
 ---
 
 # Innersync • Alphapy Bot Privacy Policy
