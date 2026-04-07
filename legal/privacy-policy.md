@@ -8,7 +8,7 @@ permalink: /legal/privacy-policy/
 
 # Innersync • Alphapy Bot Privacy Policy
 
-_Last updated: 2026-03-02_
+_Last updated: 2026-04-07_
 
 This Privacy Policy explains how the Innersync • Alphapy Discord Bot (“**Innersync • Alphapy**”, “**Bot**”, “**we**”, “**us**”) collects, uses, and protects information when it operates on your Discord server and when you use our pricing and information website. By installing or interacting with the Bot, or by visiting our websites, you consent to the practices described here. If you do not agree with this Policy, do not use the Bot or our websites.
 

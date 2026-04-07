@@ -8,7 +8,7 @@ permalink: /legal/terms-of-service/
 
 # Innersync • Alphapy Bot Terms of Service
 
-_Last updated: 2026-03-02_
+_Last updated: 2026-04-07_
 
 Thank you for using the Innersync • Alphapy Discord Bot (“**Innersync • Alphapy**”, “**Bot**”, “**we**”, “**us**”, “**our**”). These Terms of Service (“**Terms**”) set out the rules that govern how you access and use the Bot and its related functionality, including our pricing and information website at **pricing.alphapy.innersync.tech** (the "**Pricing Site**"). By inviting the Bot to a Discord server, configuring it, interacting with any of its commands, or visiting or using the Pricing Site, you agree to be bound by these Terms. If you do not agree, do not use the Bot or the Pricing Site.
 
