@@ -40,8 +40,8 @@ Certain features of the Bot require a premium subscription ("Premium Services").
 
 ### 3.2 Pricing and Billing
 - Monthly subscription: €4.99/month
-- Yearly subscription: €29/year (early bird pricing)
-- Lifetime access: €49 one-time (first 50 members: €20 early bird)
+- Annual subscription: €59.99/year (early bird: €29 with code EARLYBIRD50 for the first 50 founders)
+- Lifetime access: €99.99 one-time (early bird: €49 with code EARLYBIRD50 for the first 50 founders)
 
 All prices are in Euros and exclude applicable taxes. Prices may change with 30 days notice.
 
