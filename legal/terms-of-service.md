@@ -36,7 +36,7 @@ We may update, add, or remove features without prior notice. Some functionality 
 ## 3. Premium Services and Billing
 
 ### 3.1 Subscription Services
-Certain features of the Bot require a premium subscription ("Premium Services"). Premium subscriptions are billed through our payment processor (Lemon Squeezy) and provide access to enhanced features across all servers where the subscribing user is a member.
+Certain features of the Bot require a premium subscription ("Premium Services"). Premium subscriptions are billed through our payment processor (Mollie B.V.) and provide access to enhanced features across all servers where the subscribing user is a member.
 
 ### 3.2 Pricing and Billing
 - Monthly subscription: €4.99/month
@@ -46,7 +46,7 @@ Certain features of the Bot require a premium subscription ("Premium Services").
 All prices are in Euros and exclude applicable taxes. Prices may change with 30 days notice.
 
 ### 3.3 Payment Processing
-Payments are processed securely through Lemon Squeezy. We do not store credit card information. Billing disputes should be directed to your payment provider or Lemon Squeezy support.
+Payments are processed securely through Mollie B.V.. We do not store credit card information. Billing disputes should be directed to your payment provider or Mollie B.V. support.
 
 ### 3.4 Subscription Management
 - Subscriptions auto-renew unless cancelled

@@ -34,7 +34,7 @@ Depending on the features you enable, the Bot may process the following categori
 - **Ticketing data**: Ticket channel IDs, message excerpts, AI summaries, user and staff actions, and status updates.
 - **Logging and audit events**: Internal logs for errors, status updates, and admin actions posted to designated log channels.
 - **Support communications**: Emails or GitHub issues you send us about the Bot.
-- **Premium subscription data**: For paying users, we store subscription tier, status, activation date, and guild assignment. Payment information (credit card details, billing addresses) is processed exclusively by our payment provider (Lemon Squeezy) and never stored on our systems.
+- **Premium subscription data**: For paying users, we store subscription tier, status, activation date, and guild assignment. Payment information (credit card details, billing addresses) is processed exclusively by our payment provider (Mollie B.V.) and never stored on our systems.
 
 **Data related to the Pricing Site (pricing.alphapy.innersync.tech):**
 
@@ -81,7 +81,7 @@ We do not sell or rent your data. We may share data with:
 - **Hosting and infrastructure providers** that store databases, logs, or backups;
 - **Legal authorities** if required to comply with applicable laws, court orders, or government requests.
 
-**Payments.** Premium subscriptions for the Bot are processed by our payment provider **Lemon Squeezy**. We share with them only the data necessary to complete the transaction (e.g. email, account identifiers, subscription tier). Payment details (card numbers, billing address) are handled directly by Lemon Squeezy and are not stored by us. Lemon Squeezy’s privacy policy applies to that processing: [Lemon Squeezy Privacy Policy](https://www.lemonsqueezy.com/privacy). If we introduce a payment or checkout flow on the Pricing Site in the future, we will name the payment provider here, state which data we share with them (e.g. payment details, email, name), for what purpose (performance of the payment), and where their privacy policy can be found.
+**Payments.** Premium subscriptions for the Bot are processed by our payment provider **Mollie B.V.**. We share with them only the data necessary to complete the transaction (e.g. email, account identifiers, subscription tier). Payment details (card numbers, billing address) are handled directly by Mollie B.V. and are not stored by us. Mollie B.V.’s privacy policy applies to that processing: [Mollie B.V. Privacy Policy](https://www.mollie.com/en/privacy). If we introduce a payment or checkout flow on the Pricing Site in the future, we will name the payment provider here, state which data we share with them (e.g. payment details, email, name), for what purpose (performance of the payment), and where their privacy policy can be found.
 
 Each provider processes data under their own terms and policies. We aim to choose partners that meet GDPR adequacy standards or enter into appropriate transfer agreements.
 
