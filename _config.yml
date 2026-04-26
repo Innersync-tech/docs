@@ -5,6 +5,8 @@ markdown: kramdown
 
 url: "https://docs.innersync.tech"
 baseurl: ""
+exclude:
+  - CLAUDE.md
 
 # Just the Docs configuration
 search_enabled: true
