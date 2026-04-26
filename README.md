@@ -2,31 +2,29 @@
 
 Central documentation for all Innersync services.
 
-This repository is powered by **MkDocs** with **Material for MkDocs**.
-Documentation source files live in `docs/`.
+This repository is powered by **Astro** with **Starlight**.
+Documentation source files live in `src/content/docs/`.
 
 ## Local development
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-mkdocs serve
+npm install
+npm run dev
 ```
 
-The site runs at `http://127.0.0.1:8000`.
+The site runs at `http://localhost:4321`.
 
 ## Services
 
-- [Alphapy](docs/alphapy/) — Discord bot for the Innersync • Alphapips community
-- [App](docs/app/) — Dashboard and web interface *(coming soon)*
-- [Core](docs/core/) — Core API and backend services *(coming soon)*
+- [Alphapy](src/content/docs/alphapy/) — Discord bot for the Innersync • Alphapips community
+- [App](src/content/docs/app/) — Dashboard and web interface *(coming soon)*
+- [Core](src/content/docs/core/) — Core API and backend services *(coming soon)*
 
 ## Legal
 
-- [Legal Information](docs/legal/legal.md) — Company details, enterprise number, registered office
-- [Terms of Service](docs/legal/terms-of-service.md)
-- [Privacy Policy](docs/legal/privacy-policy.md)
+- [Legal Information](src/content/docs/legal/legal.md) — Company details, enterprise number, registered office
+- [Terms of Service](src/content/docs/legal/terms-of-service.md)
+- [Privacy Policy](src/content/docs/legal/privacy-policy.md)
 
 ---
 
