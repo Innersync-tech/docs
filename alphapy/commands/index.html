@@ -1,0 +1,3866 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central documentation hub for all Innersync services.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.innersync.tech/alphapy/commands/">
+      
+      
+        <link rel="prev" href="../configuration/">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Commands - Innersync Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#command-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Innersync Documentation" class="md-header__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Innersync Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Innersync Documentation" class="md-nav__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Innersync Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alphapy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alphapy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#command-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sendto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /sendto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /embed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reminders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /add_reminder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_live_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /add_live_session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminder_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reminder_list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminder_edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reminder_edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminder_delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reminder_delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tickets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tickets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_panel_post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket_panel_post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Engagement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challenges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge end
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-cancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge cancel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Badges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Badges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#badge-give" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /badge give
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badge-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /badge list
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#og-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OG Claims
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OG Claims">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#og-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /og setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#og-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /og status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weekly-awards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Weekly Awards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Weekly Awards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#weekly-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /weekly compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System — /system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed-watcher-embedwatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed Watcher — /embedwatcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminders-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders — /reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticketbot-ticketbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TicketBot — /ticketbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-ai-gpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok / AI — /gpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invites-invites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invites — /invites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDPR — /gdpr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onboarding — /onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification — /verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-moderation-automod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-moderation — /automod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growth-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Growth — /growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fyi-fyi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FYI — /fyi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cc-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc add
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc view
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-toggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc toggle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faq-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq view
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq add
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AI Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#growthcheckin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /growthcheckin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growthhistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /growthhistory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learn_topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /learn_topic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_caption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /create_caption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lotquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /lotquiz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leaderhelp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /leaderhelp
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#innersync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /innersync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gptstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /gptstatus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /command_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /migrate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /migrate_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export_onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export_faq
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteleaderboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /inviteleaderboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setinvites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /setinvites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetinvites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /resetinvites
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verification_panel_post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification_panel_post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification_close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification_close
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-set_reviewer_role-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification set_reviewer_role [@role]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-set_max_payment_age-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification set_max_payment_age [days]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approve-reject-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approve / Reject buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_parse_embed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /debug_parse_embed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permission-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../premium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Premium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ALPHAPY_AUTHENTICATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OPERATIONAL_PLAYBOOK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Playbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GOOGLE_CREDENTIALS_SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Credentials Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAILWAY_SECRET_MANAGER_SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Railway Secret Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/legal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal Information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/terms-of-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/pricing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pricing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#command-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Utilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core Utilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sendto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /sendto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /embed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reminders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add_reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /add_reminder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add_live_session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /add_live_session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminder_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reminder_list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminder_edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reminder_edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminder_delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reminder_delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tickets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tickets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_panel_post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket_panel_post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /ticket_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Engagement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challenges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge end
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-cancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge cancel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenge-edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /challenge edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Badges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Badges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#badge-give" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /badge give
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badge-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /badge list
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#og-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OG Claims
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OG Claims">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#og-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /og setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#og-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /og status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weekly-awards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Weekly Awards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Weekly Awards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#weekly-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /weekly compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System — /system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed-watcher-embedwatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed Watcher — /embedwatcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminders-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders — /reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticketbot-ticketbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TicketBot — /ticketbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-ai-gpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok / AI — /gpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invites-invites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invites — /invites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDPR — /gdpr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onboarding — /onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification — /verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-moderation-automod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-moderation — /automod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growth-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Growth — /growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fyi-fyi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FYI — /fyi
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cc-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc add
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc view
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc-toggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /cc toggle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FAQ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faq-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq view
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq add
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-edit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq edit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /faq reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AI Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#growthcheckin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /growthcheckin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growthhistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /growthhistory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learn_topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /learn_topic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_caption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /create_caption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lotquiz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /lotquiz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leaderhelp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /leaderhelp
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#innersync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /innersync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gptstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /gptstatus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /command_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Admin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /migrate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /migrate_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export_onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /export_faq
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteleaderboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /inviteleaderboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setinvites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /setinvites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resetinvites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /resetinvites
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verification_panel_post" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification_panel_post
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification_close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification_close
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-set_reviewer_role-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification set_reviewer_role [@role]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-set_max_payment_age-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /verification set_max_payment_age [days]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approve-reject-buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approve / Reject buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug_parse_embed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /debug_parse_embed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permission-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permission Levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="command-reference">Command Reference<a class="headerlink" href="#command-reference" title="Permanent link">&para;</a></h1>
+<p>Complete reference for all Discord slash commands available in the Alphapy bot.</p>
+<h2 id="command-categories">Command Categories<a class="headerlink" href="#command-categories" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#core-utilities">Core Utilities</a></li>
+<li><a href="#reminders">Reminders</a></li>
+<li><a href="#tickets">Tickets</a></li>
+<li><a href="#verification">Verification</a></li>
+<li><a href="#engagement">Engagement</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#ai-features">AI Features</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#system">System</a></li>
+<li><a href="#admin">Admin</a></li>
+</ul>
+<hr />
+<h2 id="core-utilities">Core Utilities<a class="headerlink" href="#core-utilities" title="Permanent link">&para;</a></h2>
+<h3 id="sendto"><code>/sendto</code><a class="headerlink" href="#sendto" title="Permanent link">&para;</a></h3>
+<p>Send a message to a specific channel with support for newlines.</p>
+<p><strong>Parameters:</strong>
+- <code>channel</code> (required): The channel where the message should be sent
+- <code>message</code> (required): The message to send. Use <code>\n</code> for a new line.</p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/sendto channel:#general message:&quot;Hello\ncommunity!&quot;
+</code></pre></div></p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="embed"><code>/embed</code><a class="headerlink" href="#embed" title="Permanent link">&para;</a></h3>
+<p>Create and send a simple embed to a channel.</p>
+<p><strong>Parameters:</strong>
+- <code>channel</code> (required): The channel where the embed should be sent</p>
+<p><strong>Behavior:</strong> Opens a modal to create the embed with title, description, footer, and color fields.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="clean"><code>/clean</code><a class="headerlink" href="#clean" title="Permanent link">&para;</a></h3>
+<p>Delete messages from a channel.</p>
+<p><strong>Parameters:</strong>
+- <code>limit</code> (required): Number of messages to delete (max 100)</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h2 id="reminders">Reminders<a class="headerlink" href="#reminders" title="Permanent link">&para;</a></h2>
+<h3 id="add_reminder"><code>/add_reminder</code><a class="headerlink" href="#add_reminder" title="Permanent link">&para;</a></h3>
+<p>Schedule a recurring or one-off reminder via form or message link.</p>
+<p><strong>Parameters:</strong>
+- <code>name</code> (required): Name of the reminder
+- <code>channel</code> (optional): Channel where reminder should be sent (uses default if not set)
+- <code>time</code> (required): Time in HH:MM format
+- <code>days</code> (optional): Days of the week (e.g., "Monday, Wednesday, Friday")
+- <code>message</code> (optional): Reminder message content
+- <code>location</code> (optional): Event location
+- <code>message_link</code> (optional): Link to a message/embed to parse details from</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/add_reminder name:&quot;Weekly Standup&quot; time:&quot;09:00&quot; days:&quot;Monday, Wednesday, Friday&quot; message:&quot;Daily standup meeting&quot;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/add_reminder name:&quot;Event&quot; time:&quot;19:30&quot; message_link:&quot;https://discord.com/channels/...&quot;
+</code></pre></div></p>
+<h3 id="add_live_session"><code>/add_live_session</code><a class="headerlink" href="#add_live_session" title="Permanent link">&para;</a></h3>
+<p>Create a recurring "live session" reminder with a fixed message ("Live session starting now!"). Optional image (Premium required for images).</p>
+<p><strong>Parameters:</strong>
+- <code>days</code> (required): Days of the week (e.g. "mon,wed,fri")
+- <code>time</code> (required): Time in HH:MM format
+- <code>channel</code> (optional): Channel for the reminder (uses default if not set)
+- <code>image_url</code> (optional): Image URL for the reminder (Premium)
+- <code>image</code> (optional): Image attachment (Premium; same rate limit as image reminders)</p>
+<hr />
+<h3 id="reminder_list"><code>/reminder_list</code><a class="headerlink" href="#reminder_list" title="Permanent link">&para;</a></h3>
+<p>View your active reminders.</p>
+<p><strong>Parameters:</strong>
+- <code>user</code> (optional): View reminders for a specific user (admin only)</p>
+<p><strong>Response:</strong> Lists all active reminders with ID, name, time, days, and channel.</p>
+<hr />
+<h3 id="reminder_edit"><code>/reminder_edit</code><a class="headerlink" href="#reminder_edit" title="Permanent link">&para;</a></h3>
+<p>Edit an existing reminder.</p>
+<p><strong>Parameters:</strong>
+- <code>reminder_id</code> (required): ID of the reminder to edit</p>
+<p><strong>Behavior:</strong> Opens a modal with pre-filled fields (name, time, days, message, channel_id) that can be edited.</p>
+<p><strong>Permissions:</strong> Owner/Admin or reminder creator</p>
+<hr />
+<h3 id="reminder_delete"><code>/reminder_delete</code><a class="headerlink" href="#reminder_delete" title="Permanent link">&para;</a></h3>
+<p>Delete a reminder by ID.</p>
+<p><strong>Parameters:</strong>
+- <code>reminder_id</code> (required): ID of the reminder to delete</p>
+<p><strong>Permissions:</strong> Owner/Admin or reminder creator</p>
+<hr />
+<h2 id="tickets">Tickets<a class="headerlink" href="#tickets" title="Permanent link">&para;</a></h2>
+<h3 id="ticket"><code>/ticket</code><a class="headerlink" href="#ticket" title="Permanent link">&para;</a></h3>
+<p>Create a support ticket (private channel per ticket).</p>
+<p><strong>Parameters:</strong>
+- <code>description</code> (required): Short description of your issue</p>
+<p><strong>Behavior:</strong> Creates a private channel under the configured ticket category with restricted access (requester + staff role). In the ticket channel, staff can use <strong>Claim</strong> and <strong>Close</strong> buttons (not slash commands) to manage the ticket.</p>
+<hr />
+<h3 id="ticket_panel_post"><code>/ticket_panel_post</code><a class="headerlink" href="#ticket_panel_post" title="Permanent link">&para;</a></h3>
+<p>Post a persistent "Create ticket" panel (admins only).</p>
+<p><strong>Behavior:</strong> Posts an embed with a "Create ticket" button that users can click to create tickets.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="ticket_stats"><code>/ticket_stats</code><a class="headerlink" href="#ticket_stats" title="Permanent link">&para;</a></h3>
+<p>Show ticket statistics (admins only).</p>
+<p><strong>Behavior:</strong> Shows interactive buttons to view stats for 7 days, 30 days, or all time.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="ticket_status"><code>/ticket_status</code><a class="headerlink" href="#ticket_status" title="Permanent link">&para;</a></h3>
+<p>Update a ticket status (admins only).</p>
+<p><strong>Parameters:</strong>
+- <code>ticket_id</code> (required): ID of the ticket
+- <code>status</code> (required): New status (open, claimed, waiting_for_user, escalated, closed, archived)</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h2 id="engagement">Engagement<a class="headerlink" href="#engagement" title="Permanent link">&para;</a></h2>
+<p>Community gamification features. Each feature is independently enabled per guild via <code>/engagement toggle</code>. All features are <strong>off by default</strong>.</p>
+<h3 id="challenges">Challenges<a class="headerlink" href="#challenges" title="Permanent link">&para;</a></h3>
+<h4 id="challenge-start"><code>/challenge start</code><a class="headerlink" href="#challenge-start" title="Permanent link">&para;</a></h4>
+<p>Start a timed message-count contest in a channel.</p>
+<p><strong>Parameters:</strong>
+- <code>duration</code> (optional): e.g. <code>10d</code>, <code>3h30m</code>, <code>900</code> (seconds) — default 24h
+- <code>mode</code> (optional): <code>leaderboard</code> (most messages wins) or <code>random</code> (random draw) — default leaderboard
+- <code>title</code> (optional): Display title for the challenge
+- <code>channel</code> (optional): Channel to count messages in — defaults to current channel</p>
+<p><strong>Permissions:</strong> Manage Server</p>
+<hr />
+<h4 id="challenge-end"><code>/challenge end</code><a class="headerlink" href="#challenge-end" title="Permanent link">&para;</a></h4>
+<p>End the active challenge immediately and announce the winner.</p>
+<p><strong>Parameters:</strong>
+- <code>challenge_id</code> (optional): Specific challenge ID (defaults to most recent)</p>
+<p><strong>Permissions:</strong> Manage Server</p>
+<hr />
+<h4 id="challenge-cancel"><code>/challenge cancel</code><a class="headerlink" href="#challenge-cancel" title="Permanent link">&para;</a></h4>
+<p>Cancel the active challenge without determining a winner.</p>
+<p><strong>Parameters:</strong>
+- <code>challenge_id</code> (optional): Specific challenge ID</p>
+<p><strong>Permissions:</strong> Manage Server</p>
+<hr />
+<h4 id="challenge-status"><code>/challenge status</code><a class="headerlink" href="#challenge-status" title="Permanent link">&para;</a></h4>
+<p>Show remaining time, participant count, progress bar and top 5 leaderboard.</p>
+<hr />
+<h4 id="challenge-edit"><code>/challenge edit</code><a class="headerlink" href="#challenge-edit" title="Permanent link">&para;</a></h4>
+<p>Edit an active challenge (mode, duration, title, participants, message counts).</p>
+<p><strong>Parameters:</strong>
+- <code>field</code> (required): <code>mode</code> / <code>duration</code> / <code>title</code> / <code>add_participant</code> / <code>remove_participant</code> / <code>set_count</code>
+- <code>mode</code> (optional): New mode
+- <code>duration</code> (optional): New duration
+- <code>member</code> (optional): Member to add/remove or set count for
+- <code>set_count</code> (optional): New message count (leaderboard only)
+- <code>title</code> (optional): New title
+- <code>challenge_id</code> (optional): Specific challenge ID</p>
+<p><strong>Permissions:</strong> Manage Server</p>
+<hr />
+<h3 id="badges">Badges<a class="headerlink" href="#badges" title="Permanent link">&para;</a></h3>
+<h4 id="badge-give"><code>/badge give</code><a class="headerlink" href="#badge-give" title="Permanent link">&para;</a></h4>
+<p>Grant a badge (and optional linked role) to a member.</p>
+<p><strong>Parameters:</strong>
+- <code>member</code> (required): Member to award
+- <code>badge_key</code> (required): Badge key e.g. <code>winner</code>, <code>og</code>, <code>motivator</code></p>
+<p><strong>Permissions:</strong> Manage Roles</p>
+<hr />
+<h4 id="badge-list"><code>/badge list</code><a class="headerlink" href="#badge-list" title="Permanent link">&para;</a></h4>
+<p>List all badges a member has earned in this server.</p>
+<p><strong>Parameters:</strong>
+- <code>member</code> (optional): Member to look up — defaults to yourself</p>
+<hr />
+<h3 id="og-claims">OG Claims<a class="headerlink" href="#og-claims" title="Permanent link">&para;</a></h3>
+<h4 id="og-setup"><code>/og setup</code><a class="headerlink" href="#og-setup" title="Permanent link">&para;</a></h4>
+<p>Post the OG claim message in a channel. Members react with ⚜ to claim their spot.</p>
+<p><strong>Parameters:</strong>
+- <code>channel</code> (optional): Channel to post in — defaults to current channel</p>
+<p><strong>Permissions:</strong> Manage Server</p>
+<hr />
+<h4 id="og-status"><code>/og status</code><a class="headerlink" href="#og-status" title="Permanent link">&para;</a></h4>
+<p>Show current OG claim count and remaining spots.</p>
+<hr />
+<h3 id="weekly-awards">Weekly Awards<a class="headerlink" href="#weekly-awards" title="Permanent link">&para;</a></h3>
+<h4 id="weekly-compute"><code>/weekly compute</code><a class="headerlink" href="#weekly-compute" title="Permanent link">&para;</a></h4>
+<p>Manually compute and announce weekly awards for the configured award channel.</p>
+<p><strong>Permissions:</strong> Manage Server</p>
+<hr />
+<h3 id="engagement-configuration">Engagement Configuration<a class="headerlink" href="#engagement-configuration" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>All <code>/engagement</code> commands require Administrator.</p>
+</blockquote>
+<ul>
+<li><code>/engagement show</code> — Show all engagement settings for this server</li>
+<li><code>/engagement toggle &lt;feature&gt; &lt;true|false&gt;</code> — Enable/disable a feature (<code>challenges</code>, <code>weekly</code>, <code>badges</code>, <code>streaks</code>, <code>og_claims</code>)</li>
+<li><code>/engagement set_challenge_winner_role [@role]</code> — Role assigned to challenge winners; leave empty to clear</li>
+<li><code>/engagement set_weekly_channel [#channel]</code> — Channel for weekly award announcements; leave empty to clear</li>
+<li><code>/engagement set_food_channels [ids]</code> — Comma-separated channel IDs counted as food channels for weekly awards</li>
+<li><code>/engagement set_weekly_awards &lt;json&gt;</code> — Configure award categories as JSON (key, label, subtitle, filter: <code>non_food</code>/<code>food</code>/<code>image</code>/<code>reactions</code>)</li>
+<li><code>/engagement set_badge_role &lt;badge_key&gt; [@role]</code> — Link a Discord role to a badge key; leave empty to clear</li>
+<li><code>/engagement set_og_cap &lt;number&gt;</code> — Maximum OG claim spots (default: 50)</li>
+<li><code>/engagement set_og_text [text]</code> — Message text for the OG claim post; leave empty to reset to default</li>
+<li><code>/engagement set_streaks_nicknames &lt;true|false&gt;</code> — Toggle nickname suffixes for streaks (<code>Name | 🔥 week 2</code>)</li>
+</ul>
+<hr />
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="config"><code>/config</code><a class="headerlink" href="#config" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>/config start</code></strong> — Interactive server setup wizard. Guides you step-by-step through the main settings (log channel, rules channel, onboarding, embed watcher, invites, GDPR, ticket category, staff role). Choose from a dropdown or click <strong>Skip</strong>.</li>
+<li><strong><code>/config scopes</code></strong> — List all registered setting scopes.</li>
+</ul>
+<blockquote>
+<p>Each feature area has its own top-level command group (e.g. <code>/automod</code>, <code>/onboarding</code>, <code>/verification</code>). All require Administrator.</p>
+</blockquote>
+<hr />
+<h3 id="system-system">System — <code>/system</code><a class="headerlink" href="#system-system" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/system show</code> — Show current system settings</li>
+<li><code>/system set_log_channel [#channel]</code> — Set log channel; leave empty to reset</li>
+<li><code>/system set_rules_channel [#channel]</code> — Set rules/onboarding channel; leave empty to reset</li>
+<li><code>/system set_log_level [level]</code> — Set log verbosity (<code>verbose</code>/<code>normal</code>/<code>critical</code>)</li>
+</ul>
+<hr />
+<h3 id="embed-watcher-embedwatcher">Embed Watcher — <code>/embedwatcher</code><a class="headerlink" href="#embed-watcher-embedwatcher" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/embedwatcher show</code> — Show current settings</li>
+<li><code>/embedwatcher set_announcements [#channel]</code> — Channel to monitor for auto-reminder embeds</li>
+<li><code>/embedwatcher set_offset [minutes]</code> — Reminder offset before event (0–4320 min)</li>
+<li><code>/embedwatcher set_non_embed [true|false]</code> — Enable parsing of plain-text messages</li>
+<li><code>/embedwatcher set_process_bot_messages [true|false]</code> — Process embeds sent by the bot itself</li>
+</ul>
+<hr />
+<h3 id="reminders-reminders">Reminders — <code>/reminders</code><a class="headerlink" href="#reminders-reminders" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/reminders show</code> — Show current settings</li>
+<li><code>/reminders toggle &lt;true|false&gt;</code> — Enable or disable reminders</li>
+<li><code>/reminders set_default_channel [#channel]</code> — Default channel for new reminders</li>
+<li><code>/reminders set_everyone &lt;true|false&gt;</code> — Allow @everyone mentions in reminders</li>
+</ul>
+<hr />
+<h3 id="ticketbot-ticketbot">TicketBot — <code>/ticketbot</code><a class="headerlink" href="#ticketbot-ticketbot" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/ticketbot show</code> — Show current settings</li>
+<li><code>/ticketbot set_category [#category]</code> — Category for ticket channels</li>
+<li><code>/ticketbot set_staff_role [@role]</code> — Staff role with ticket access</li>
+<li><code>/ticketbot set_escalation_role [@role]</code> — Role for ticket escalation</li>
+</ul>
+<hr />
+<h3 id="grok-ai-gpt">Grok / AI — <code>/gpt</code><a class="headerlink" href="#grok-ai-gpt" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/gpt show</code> — Show current settings</li>
+<li><code>/gpt set_model [model]</code> — AI model (e.g. <code>grok-3</code>) — bot owner only</li>
+<li><code>/gpt set_temperature [0.0–2.0]</code> — AI creativity level</li>
+</ul>
+<hr />
+<h3 id="invites-invites">Invites — <code>/invites</code><a class="headerlink" href="#invites-invites" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/invites show</code> — Show current settings</li>
+<li><code>/invites toggle &lt;true|false&gt;</code> — Enable or disable invite tracking</li>
+<li><code>/invites set_channel [#channel]</code> — Invite announcement channel</li>
+<li><code>/invites set_template &lt;variant&gt; [template]</code> — Invite message template (variant: <code>with</code>/<code>without</code> inviter)</li>
+</ul>
+<hr />
+<h3 id="gdpr-gdpr">GDPR — <code>/gdpr</code><a class="headerlink" href="#gdpr-gdpr" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/gdpr show</code> — Show current settings</li>
+<li><code>/gdpr toggle &lt;true|false&gt;</code> — Enable or disable GDPR features</li>
+<li><code>/gdpr set_channel [#channel]</code> — GDPR document channel</li>
+<li><code>/gdpr set_acceptance_role [@role]</code> — Role assigned when member clicks "I Agree"</li>
+<li><code>/gdpr post</code> — Post and pin the GDPR agreement embed</li>
+</ul>
+<hr />
+<h3 id="onboarding-onboarding">Onboarding — <code>/onboarding</code><a class="headerlink" href="#onboarding-onboarding" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/onboarding show</code> — Show current onboarding configuration</li>
+<li><code>/onboarding toggle &lt;true|false&gt;</code> — Enable or disable onboarding</li>
+<li><code>/onboarding set_mode &lt;mode&gt;</code> — Mode: <code>Disabled</code> / <code>Rules Only</code> / <code>Rules + Questions</code> / <code>Questions Only</code></li>
+<li><code>/onboarding add_question &lt;step&gt; &lt;question&gt; [type] [required]</code> — Add a question (types: <code>select</code>, <code>multiselect</code>, <code>text</code>, <code>email</code>)</li>
+<li><code>/onboarding delete_question &lt;step&gt;</code> — Delete question at position</li>
+<li><code>/onboarding reset_questions</code> — Clear all questions</li>
+<li><code>/onboarding add_rule &lt;order&gt; &lt;title&gt; &lt;description&gt; [thumbnail_url] [image_url]</code> — Add a rule</li>
+<li><code>/onboarding delete_rule &lt;order&gt;</code> — Delete rule at position</li>
+<li><code>/onboarding reset_rules</code> — Clear all rules</li>
+<li><code>/onboarding set_role [@role]</code> — Completion role</li>
+<li><code>/onboarding set_join_role [@role]</code> — Temporary join role (removed after onboarding/verification)</li>
+<li><code>/onboarding panel_post [#channel]</code> — Post onboarding panel with Start button</li>
+<li><code>/onboarding reorder</code> — Reorder questions via modal</li>
+</ul>
+<hr />
+<h3 id="verification-verification">Verification — <code>/verification</code><a class="headerlink" href="#verification-verification" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/verification show</code> — Show current settings</li>
+<li><code>/verification set_verified_role [@role]</code> — Role assigned after successful verification</li>
+<li><code>/verification set_category [#category]</code> — Category for verification channels</li>
+<li><code>/verification set_vision_model [model]</code> — Vision-capable AI model</li>
+<li><code>/verification set_ai_prompt_context [text]</code> — Extra AI context (what a valid payment looks like)</li>
+<li><code>/verification set_reviewer_role [@role]</code> — Role tagged when manual review is triggered</li>
+<li><code>/verification set_max_payment_age [days]</code> — Max payment screenshot age (1–365, default 35)</li>
+<li><code>/verification set_reference_image &lt;image&gt;</code> — Upload reference payment screenshot for AI comparison</li>
+<li><code>/verification reset_reference_image</code> — Remove reference screenshot</li>
+</ul>
+<hr />
+<h3 id="auto-moderation-automod">Auto-moderation — <code>/automod</code><a class="headerlink" href="#auto-moderation-automod" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/automod status</code> — Current automod status, rule count, premium status</li>
+<li><code>/automod show</code> — Show all automod settings</li>
+<li><code>/automod toggle &lt;true|false&gt;</code> — Enable or disable auto-moderation</li>
+<li><code>/automod set_log_channel [#channel]</code> — Automod violation log channel</li>
+<li><code>/automod rules</code> — List all configured rules</li>
+<li><code>/automod add_spam_rule &lt;name&gt; [max_messages] [window_seconds] [action]</code> — Spam frequency rule</li>
+<li><code>/automod add_badwords_rule &lt;name&gt; &lt;words&gt; [action]</code> — Bad-words rule</li>
+<li><code>/automod add_links_rule &lt;name&gt; [allow_links] [whitelist] [blacklist] [action]</code> — Link filter rule</li>
+<li><code>/automod add_mentions_rule &lt;name&gt; [max_mentions] [action]</code> — Mention spam rule</li>
+<li><code>/automod add_caps_rule &lt;name&gt; [min_length] [max_ratio] [action]</code> — Excessive caps rule</li>
+<li><code>/automod add_duplicate_rule &lt;name&gt; [max_duplicates] [action]</code> — Duplicate message rule</li>
+<li><code>/automod add_regex_rule &lt;name&gt; &lt;patterns&gt; [action]</code> — Regex rule (premium)</li>
+<li><code>/automod add_ai_rule &lt;name&gt; [action]</code> — AI-powered content rule (premium)</li>
+<li><code>/automod edit_rule &lt;rule_id&gt; [fields...]</code> — Edit an existing rule</li>
+<li><code>/automod delete_rule &lt;rule_id&gt;</code> — Delete a rule</li>
+<li><code>/automod set_rule_enabled &lt;rule_id&gt; &lt;true|false&gt;</code> — Enable or disable a rule</li>
+<li><code>/automod set_severity &lt;rule_id&gt; &lt;1–10&gt;</code> — Rule priority (higher = processed first)</li>
+<li><code>/automod logs [limit] [user_id] [rule_id] [action] [days]</code> — Recent automod logs</li>
+</ul>
+<hr />
+<h3 id="growth-growth">Growth — <code>/growth</code><a class="headerlink" href="#growth-growth" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/growth set_channel [#channel]</code> — Channel for shared Growth Check-ins; leave empty to remove</li>
+</ul>
+<hr />
+<h3 id="fyi-fyi">FYI — <code>/fyi</code><a class="headerlink" href="#fyi-fyi" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/fyi reset &lt;key&gt;</code> — Clear an FYI flag so the next natural trigger resends the tip</li>
+<li><code>/fyi send &lt;key&gt;</code> — Force-send the tip to the log channel now</li>
+</ul>
+<p><strong>Permissions:</strong> Administrator (all configuration commands)</p>
+<hr />
+<h2 id="custom-commands">Custom Commands<a class="headerlink" href="#custom-commands" title="Permanent link">&para;</a></h2>
+<p>Guild admins can define automated message responses triggered by specific message patterns. Supports four trigger types and dynamic variable substitution.</p>
+<h3 id="cc-add"><code>/cc add</code><a class="headerlink" href="#cc-add" title="Permanent link">&para;</a></h3>
+<p>Create a new custom command.</p>
+<p><strong>Parameters:</strong>
+- <code>name</code> (required): Unique slug for this command (e.g. <code>hello</code>)
+- <code>trigger_type</code> (required): <code>exact</code> / <code>starts_with</code> / <code>contains</code> / <code>regex</code>
+- <code>trigger</code> (required): The text or regex pattern to match (max 200 chars)
+- <code>response</code> (required): The response to send (max 1900 chars, supports variables)
+- <code>case_sensitive</code> (optional): Match case-sensitively (default: false)
+- <code>delete_trigger</code> (optional): Delete the triggering message (default: false)
+- <code>reply_to_user</code> (optional): Reply to the message instead of a plain send (default: true)</p>
+<p><strong>Response variables:</strong>
+- <code>{user}</code> — mention the member
+- <code>{user.name}</code> — display name
+- <code>{server}</code> — server name
+- <code>{channel}</code> — channel mention
+- <code>{uses}</code> — how many times this command has been triggered
+- <code>{random:a|b|c}</code> — random pick from pipe-delimited options</p>
+<p><strong>Limits:</strong> Max 50 commands per server. Invalid regex is rejected at creation.</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h3 id="cc-edit"><code>/cc edit</code><a class="headerlink" href="#cc-edit" title="Permanent link">&para;</a></h3>
+<p>Edit the trigger and response of an existing command via a Discord Modal.</p>
+<p><strong>Parameters:</strong>
+- <code>name</code> (required): Name of the command to edit</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h3 id="cc-delete"><code>/cc delete</code><a class="headerlink" href="#cc-delete" title="Permanent link">&para;</a></h3>
+<p>Delete a custom command (shows a confirmation button).</p>
+<p><strong>Parameters:</strong>
+- <code>name</code> (required): Name of the command to delete</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h3 id="cc-list"><code>/cc list</code><a class="headerlink" href="#cc-list" title="Permanent link">&para;</a></h3>
+<p>List all custom commands for this server (name, trigger type, trigger preview, use count, enabled status).</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h3 id="cc-view"><code>/cc view</code><a class="headerlink" href="#cc-view" title="Permanent link">&para;</a></h3>
+<p>Show full details of a specific custom command (trigger, response, options, use count).</p>
+<p><strong>Parameters:</strong>
+- <code>name</code> (required): Name of the command to view</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h3 id="cc-toggle"><code>/cc toggle</code><a class="headerlink" href="#cc-toggle" title="Permanent link">&para;</a></h3>
+<p>Enable or disable a custom command.</p>
+<p><strong>Parameters:</strong>
+- <code>name</code> (required): Name of the command to toggle</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<h3 id="faq-list"><code>/faq list</code><a class="headerlink" href="#faq-list" title="Permanent link">&para;</a></h3>
+<p>Show the latest FAQ entries (last 10).</p>
+<p><strong>Parameters:</strong>
+- <code>public</code> (optional): Post in channel instead of ephemeral (default: false)</p>
+<p><strong>Response:</strong> Embed with last 10 FAQ entries (title and summary). Pagination buttons to browse.</p>
+<p><strong>Permissions:</strong> Public</p>
+<hr />
+<h3 id="faq-view"><code>/faq view</code><a class="headerlink" href="#faq-view" title="Permanent link">&para;</a></h3>
+<p>View a single FAQ entry by ID.</p>
+<p><strong>Parameters:</strong>
+- <code>id</code> (required): FAQ entry ID
+- <code>public</code> (optional): Post in channel instead of ephemeral (default: false)</p>
+<p><strong>Permissions:</strong> Public</p>
+<hr />
+<h3 id="faq-search"><code>/faq search</code><a class="headerlink" href="#faq-search" title="Permanent link">&para;</a></h3>
+<p>Search FAQ entries by keywords.</p>
+<p><strong>Parameters:</strong>
+- <code>query</code> (required): Your question or keywords
+- <code>public</code> (optional): Post in channel instead of ephemeral (default: false)</p>
+<p><strong>Response:</strong> Up to 5 matching FAQ entries.</p>
+<p><strong>Permissions:</strong> Public</p>
+<hr />
+<h3 id="faq-add"><code>/faq add</code><a class="headerlink" href="#faq-add" title="Permanent link">&para;</a></h3>
+<p>Add a new FAQ entry (admin only).</p>
+<p><strong>Behavior:</strong> Opens a modal to enter title, summary, and optional keywords.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="faq-edit"><code>/faq edit</code><a class="headerlink" href="#faq-edit" title="Permanent link">&para;</a></h3>
+<p>Edit an existing FAQ entry (admin only).</p>
+<p><strong>Parameters:</strong>
+- <code>id</code> (required): FAQ entry ID</p>
+<p><strong>Behavior:</strong> Opens a modal to edit title, summary, and keywords.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="faq-reload"><code>/faq reload</code><a class="headerlink" href="#faq-reload" title="Permanent link">&para;</a></h3>
+<p>Reload the FAQ index (admin only). Use after bulk changes or imports.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h2 id="ai-features">AI Features<a class="headerlink" href="#ai-features" title="Permanent link">&para;</a></h2>
+<h3 id="growthcheckin"><code>/growthcheckin</code><a class="headerlink" href="#growthcheckin" title="Permanent link">&para;</a></h3>
+<p>Grok-powered check-in for goals, obstacles, and emotions.</p>
+<p><strong>Behavior:</strong> Opens a modal with three fields (goal, obstacle, feeling). Grok responds with coaching feedback. If the user has past reflections, Grok actively references patterns and progress. Premium users receive Mockingbird mode (direct, sharper tone).</p>
+<p>After the response, an optional share prompt appears (ephemeral):
+- <strong>Share anonymously</strong> — posts the check-in + Grok response as an embed in the growth channel, without name or avatar.
+- <strong>Share with my name</strong> — same embed with display name and avatar.
+- <strong>Keep private</strong> — dismisses the prompt.</p>
+<p>The share option only appears if a growth channel has been configured by an admin (<code>/growth set_channel</code>). All sharing is opt-in per interaction.</p>
+<p><strong>Cooldown:</strong> 2 uses per 5 minutes per user per guild.</p>
+<hr />
+<h3 id="growthhistory"><code>/growthhistory</code><a class="headerlink" href="#growthhistory" title="Permanent link">&para;</a></h3>
+<p>View your recent Growth Check-ins.</p>
+<p><strong>Behavior:</strong> Shows your last 15 check-ins in a paginated embed (3 per page). Each entry displays the date, goal, and obstacle. Use the dropdown to open a specific check-in in full detail, including Grok's reflection response. Navigation via Previous/Next buttons. In the detail view, a Delete button allows removing the check-in (with confirmation step).</p>
+<p><strong>Cooldown:</strong> 1 use per 30 seconds per user.</p>
+<hr />
+<h3 id="learn_topic"><code>/learn_topic</code><a class="headerlink" href="#learn_topic" title="Permanent link">&para;</a></h3>
+<p>Hybrid topic search using local knowledge base + Drive content.</p>
+<p><strong>Parameters:</strong>
+- <code>topic</code> (required): Topic to learn about</p>
+<p><strong>Behavior:</strong> Searches local <code>.md</code> files and Google Drive content, then generates a comprehensive explanation using Grok.</p>
+<hr />
+<h3 id="create_caption"><code>/create_caption</code><a class="headerlink" href="#create_caption" title="Permanent link">&para;</a></h3>
+<p>Generate social media captions based on topic and style.</p>
+<p><strong>Parameters:</strong>
+- <code>topic</code> (required): Topic for the caption
+- <code>style</code> (optional): Caption style/tone</p>
+<p><strong>Behavior:</strong> Generates a caption using Grok based on the provided topic and style.</p>
+<hr />
+<h3 id="lotquiz"><code>/lotquiz</code><a class="headerlink" href="#lotquiz" title="Permanent link">&para;</a></h3>
+<p>Test your risk management across 3 forex scenarios.</p>
+<p><strong>Behavior:</strong> Interactive quiz that presents 3 trading scenarios and evaluates risk management decisions.</p>
+<hr />
+<h3 id="leaderhelp"><code>/leaderhelp</code><a class="headerlink" href="#leaderhelp" title="Permanent link">&para;</a></h3>
+<p>AI-powered leadership guidance for challenges, team growth, or doubts.</p>
+<p><strong>Behavior:</strong> Opens a view to choose a challenge type (e.g., disengaged team, burnout, dropoff, self-doubt) or ask a custom question. Responses are generated by Grok.</p>
+<p><strong>Permissions:</strong> Public (with cooldown)</p>
+<hr />
+<h2 id="system">System<a class="headerlink" href="#system" title="Permanent link">&para;</a></h2>
+<h3 id="innersync"><code>/innersync</code><a class="headerlink" href="#innersync" title="Permanent link">&para;</a></h3>
+<p>Show Innersync info and official links.</p>
+<p><strong>Response:</strong> Informational embed with:
+- Brief description of Innersync and Alphapy
+- Links to Core, App, and Pricing platforms
+- Ephemeral response (visible only to the user)</p>
+<p><strong>Permissions:</strong> Public</p>
+<hr />
+<h3 id="gptstatus"><code>/gptstatus</code><a class="headerlink" href="#gptstatus" title="Permanent link">&para;</a></h3>
+<p>Check the status of the Grok/LLM API.</p>
+<p><strong>Response:</strong> Shows API health (derived from own logs), current model, uptime, last success time, rolling average latency, last triggering user, last error type and time, interaction counts (success/error), rate limit hits this session, live retry queue size, and total tokens used this session.</p>
+<hr />
+<h3 id="version"><code>/version</code><a class="headerlink" href="#version" title="Permanent link">&para;</a></h3>
+<p>Show bot version and codename.</p>
+<p><strong>Response:</strong> Current version (e.g., "3.7.0 - Enterprise Ready")</p>
+<hr />
+<h3 id="release"><code>/release</code><a class="headerlink" href="#release" title="Permanent link">&para;</a></h3>
+<p>Show release notes for the current version.</p>
+<p><strong>Response:</strong> Release notes from <code>RELEASES.md</code></p>
+<hr />
+<h3 id="health"><code>/health</code><a class="headerlink" href="#health" title="Permanent link">&para;</a></h3>
+<p>Show system status and configuration.</p>
+<p><strong>Response:</strong> Bot status, database status, guild count, and configuration overview.</p>
+<hr />
+<h3 id="commands"><code>/commands</code><a class="headerlink" href="#commands" title="Permanent link">&para;</a></h3>
+<p>List all available bot commands.</p>
+<p><strong>Parameters:</strong>
+- <code>include_admin</code> (optional, default: False): Include admin-only commands in the list
+- <code>public</code> (optional, default: False): Post in channel instead of ephemeral</p>
+<p><strong>Response:</strong> Nicely formatted embed listing commands by category.</p>
+<hr />
+<h3 id="command_stats"><code>/command_stats</code><a class="headerlink" href="#command_stats" title="Permanent link">&para;</a></h3>
+<p>Show command usage statistics (admin only).</p>
+<p><strong>Parameters:</strong>
+- <code>days</code> (optional, default: 7): Number of days to look back
+- <code>limit</code> (optional, default: 10): Maximum number of commands to show
+- <code>guild_only</code> (optional, default: True): Show stats for current server only, or all servers (owner only)</p>
+<p><strong>Response:</strong> Rich embed showing top commands by usage, total commands executed, period, and scope.</p>
+<p><strong>Permissions:</strong> Administrator (or bot owner for all-server stats)</p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/command_stats days:7 limit:10 guild_only:True
+</code></pre></div></p>
+<hr />
+<h2 id="admin">Admin<a class="headerlink" href="#admin" title="Permanent link">&para;</a></h2>
+<h3 id="migrate"><code>/migrate</code><a class="headerlink" href="#migrate" title="Permanent link">&para;</a></h3>
+<p>Database migration management (admins only).</p>
+<p><strong>Parameters:</strong>
+- <code>action</code> (required): Action to perform (<code>status</code>, <code>upgrade</code>, <code>downgrade</code>, <code>history</code>)</p>
+<p><strong>Examples:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/migrate action:status
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>/migrate action:upgrade
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>/migrate action:history
+</code></pre></div></p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="migrate_status"><code>/migrate_status</code><a class="headerlink" href="#migrate_status" title="Permanent link">&para;</a></h3>
+<p>Check database migration status (alias for <code>/migrate status</code>).</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="reload"><code>/reload</code><a class="headerlink" href="#reload" title="Permanent link">&para;</a></h3>
+<p>Reload a specific extension (owner only).</p>
+<p><strong>Parameters:</strong>
+- <code>extension</code> (required): Name of the extension to reload (e.g., "cogs.reminders")</p>
+<p><strong>Permissions:</strong> Owner only</p>
+<hr />
+<h3 id="export_onboarding"><code>/export_onboarding</code><a class="headerlink" href="#export_onboarding" title="Permanent link">&para;</a></h3>
+<p>Export onboarding data as CSV (owner only).</p>
+<p><strong>Response:</strong> CSV file download with all onboarding responses.</p>
+<p><strong>Permissions:</strong> Owner only</p>
+<hr />
+<h3 id="export_tickets"><code>/export_tickets</code><a class="headerlink" href="#export_tickets" title="Permanent link">&para;</a></h3>
+<p>Export tickets as CSV (admins only).</p>
+<p><strong>Response:</strong> CSV file download with all ticket data.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="export_faq"><code>/export_faq</code><a class="headerlink" href="#export_faq" title="Permanent link">&para;</a></h3>
+<p>Export FAQ entries as CSV (admins only).</p>
+<p><strong>Response:</strong> CSV file download with all FAQ entries.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="inviteleaderboard"><code>/inviteleaderboard</code><a class="headerlink" href="#inviteleaderboard" title="Permanent link">&para;</a></h3>
+<p>Show invite leaderboard.</p>
+<p><strong>Response:</strong> Leaderboard of users with highest invite counts.</p>
+<hr />
+<h3 id="setinvites"><code>/setinvites</code><a class="headerlink" href="#setinvites" title="Permanent link">&para;</a></h3>
+<p>Manually set invite count for a user.</p>
+<p><strong>Parameters:</strong>
+- <code>user</code> (required): User to set invites for
+- <code>count</code> (required): Number of invites</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="resetinvites"><code>/resetinvites</code><a class="headerlink" href="#resetinvites" title="Permanent link">&para;</a></h3>
+<p>Reset invite count for a user to 0.</p>
+<p><strong>Parameters:</strong>
+- <code>user</code> (required): User to reset invites for</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h2 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
+<h3 id="verification_panel_post"><code>/verification_panel_post</code><a class="headerlink" href="#verification_panel_post" title="Permanent link">&para;</a></h3>
+<p>Post a verification panel with a <strong>Start verification</strong> button.</p>
+<p><strong>Behavior:</strong>
+- Posts an embed that explains the verification flow and provides a button.
+- When a user clicks <strong>Start verification</strong>, the bot creates a private <code>verify-*</code> channel in the configured verification category with access for that user and staff.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="verification_close"><code>/verification_close</code><a class="headerlink" href="#verification_close" title="Permanent link">&para;</a></h3>
+<p>Close a verification channel without approving or rejecting (neutral closure).</p>
+<p><strong>Behavior:</strong>
+- Can only be used inside a verification channel (under the configured verification category).
+- Marks the related <code>verification_tickets</code> row as <code>closed_manual</code>, sends a closure embed, and deletes the channel after 5 seconds.
+- Sends a standardised summary to the guild log channel: user, outcome, resolver, timestamp.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h3 id="verification-set_reviewer_role-role"><code>/verification set_reviewer_role [@role]</code><a class="headerlink" href="#verification-set_reviewer_role-role" title="Permanent link">&para;</a></h3>
+<p>Set the role that gets tagged when the AI triggers a manual review. Leave <code>role</code> empty to clear.</p>
+<p><strong>Options:</strong>
+- <code>role</code> — A Discord role. Omit to remove the configured reviewer role.</p>
+<p><strong>Behavior:</strong>
+- When the AI returns <code>needs_manual_review</code>, the bot pings this role in the verification channel alongside the review embed.
+- Falls back to no mention if not configured.</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h3 id="verification-set_max_payment_age-days"><code>/verification set_max_payment_age [days]</code><a class="headerlink" href="#verification-set_max_payment_age-days" title="Permanent link">&para;</a></h3>
+<p>Set the maximum age (in days) a payment screenshot may be. Leave <code>days</code> empty to reset to the default (35 days).</p>
+<p><strong>Options:</strong>
+- <code>days</code> — Integer between 1 and 365. Omit to reset to default.</p>
+<p><strong>Behavior:</strong>
+- The AI prompt is sent today's date and the configured window. The AI must extract the <code>payment_date</code> from the screenshot.
+- A server-side check validates the extracted date independently — if older than the window, the submission is hard-rejected even if the AI said it was valid.
+- If the date is unreadable and the AI was confident, the submission is escalated to manual review instead of auto-approved.</p>
+<p><strong>Permissions:</strong> Administrator</p>
+<hr />
+<h3 id="approve-reject-buttons">Approve / Reject buttons<a class="headerlink" href="#approve-reject-buttons" title="Permanent link">&para;</a></h3>
+<p>When the AI cannot auto-verify a screenshot, it posts a <strong>Manual review required</strong> embed with <strong>Approve</strong> and <strong>Reject</strong> buttons (admin-only).</p>
+<p><strong>Approve:</strong>
+- Assigns the configured verified role to the user.
+- Removes the onboarding join role if configured.
+- Sends an approval embed, deletes the channel after 5 seconds, and logs the outcome.</p>
+<p><strong>Reject:</strong>
+- Opens a modal where the admin can enter an optional rejection reason (shown to the user).
+- Sends a rejection embed, deletes the channel after 5 seconds, and logs the outcome.</p>
+<hr />
+<h3 id="debug_parse_embed"><code>/debug_parse_embed</code><a class="headerlink" href="#debug_parse_embed" title="Permanent link">&para;</a></h3>
+<p>Parse the last embed in the channel for testing.</p>
+<p><strong>Behavior:</strong> Attempts to parse the last embed message in the channel and shows the parsed result.</p>
+<p><strong>Permissions:</strong> Owner/Admin</p>
+<hr />
+<h2 id="permission-levels">Permission Levels<a class="headerlink" href="#permission-levels" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Public</strong>: Available to all users</li>
+<li><strong>Admin</strong>: Requires administrator permissions or admin role</li>
+<li><strong>Owner</strong>: Bot owner only (configured in <code>config.py</code>)</li>
+</ul>
+<p>Most commands respect Discord's permission system and guild-specific admin roles configured via <code>/config</code> commands.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2419 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central documentation hub for all Innersync services.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.innersync.tech/alphapy/configuration/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../commands/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Configuration - Innersync Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#multi-guild-configuration-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Innersync Documentation" class="md-header__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Innersync Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Innersync Documentation" class="md-nav__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Innersync Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alphapy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alphapy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#important-multi-guild-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important: Multi-Guild Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-time-setup-required-for-each-new-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First-Time Setup (Required for each new server)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First-Time Setup (Required for each new server)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-system-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-feature-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Feature-Specific Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Feature-Specific Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embed-watcher-auto-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed Watcher (Auto-Reminders)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invite-tracker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invite Tracker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDPR Compliance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ticket System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-ai-assisted-payment-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification (AI-assisted payment checks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Optional Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Optional Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-ai-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok / AI Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Commands Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Commands Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System — /system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed-watcher-embedwatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed Watcher — /embedwatcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminders-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders — /reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticketbot-ticketbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TicketBot — /ticketbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-ai-gpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok / AI — /gpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invites-invites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invites — /invites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDPR — /gdpr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growth-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Growth — /growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onboarding — /onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fyi-fyi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FYI — /fyi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification — /verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-moderation-automod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-moderation — /automod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement-engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement — /engagement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template Placeholders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-not-configured-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Channel not configured" errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bot-not-responding-to-embedsannouncements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bot not responding to embeds/announcements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-commands-failing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import commands failing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-local-testing-separate-dev-bot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Local testing (separate dev bot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-google-cloud-for-drive-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Google Cloud (for Drive integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-api-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - API &amp; Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-aillm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - AI/LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-core-api-telemetry-operational-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Core API (telemetry / operational events)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-premium-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Premium tier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-app-reflections-core-api-webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - App reflections (Core-API webhooks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-premium-founder-webhooks-core-alphapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Premium / Founder webhooks (Core → Alphapy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-legal-update-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Legal update notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-api-observability-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - API observability and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../premium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Premium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ALPHAPY_AUTHENTICATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OPERATIONAL_PLAYBOOK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Playbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GOOGLE_CREDENTIALS_SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Credentials Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAILWAY_SECRET_MANAGER_SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Railway Secret Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/legal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal Information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/terms-of-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/pricing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pricing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#important-multi-guild-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important: Multi-Guild Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-time-setup-required-for-each-new-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First-Time Setup (Required for each new server)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First-Time Setup (Required for each new server)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-system-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-feature-specific-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Feature-Specific Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Feature-Specific Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embed-watcher-auto-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed Watcher (Auto-Reminders)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invite-tracker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invite Tracker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDPR Compliance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ticket System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-ai-assisted-payment-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification (AI-assisted payment checks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Optional Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Optional Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-ai-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok / AI Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Commands Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Commands Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System — /system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embed-watcher-embedwatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embed Watcher — /embedwatcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminders-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders — /reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticketbot-ticketbot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TicketBot — /ticketbot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-ai-gpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok / AI — /gpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invites-invites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invites — /invites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDPR — /gdpr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growth-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Growth — /growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onboarding — /onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fyi-fyi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FYI — /fyi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification — /verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-moderation-automod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-moderation — /automod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement-engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement — /engagement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#template-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template Placeholders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channel-not-configured-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "Channel not configured" errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bot-not-responding-to-embedsannouncements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bot not responding to embeds/announcements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-commands-failing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import commands failing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-local-testing-separate-dev-bot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Local testing (separate dev bot)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-google-cloud-for-drive-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Google Cloud (for Drive integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-api-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - API &amp; Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-aillm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - AI/LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-core-api-telemetry-operational-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Core API (telemetry / operational events)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-premium-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Premium tier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-app-reflections-core-api-webhooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - App reflections (Core-API webhooks)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-premium-founder-webhooks-core-alphapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Premium / Founder webhooks (Core → Alphapy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-legal-update-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - Legal update notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-api-observability-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - API observability and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional - GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="multi-guild-configuration-guide">Multi-Guild Configuration Guide<a class="headerlink" href="#multi-guild-configuration-guide" title="Permanent link">&para;</a></h1>
+<p>This document explains how to configure the Innersync • Alphapy bot for each Discord server (guild) where it's added.</p>
+<h2 id="important-multi-guild-architecture">Important: Multi-Guild Architecture<a class="headerlink" href="#important-multi-guild-architecture" title="Permanent link">&para;</a></h2>
+<p><strong>The bot is completely multi-guild capable.</strong> Each server must be configured independently - there are no automatic fallbacks to hardcoded values. Every channel, role, and setting must be explicitly configured per server.</p>
+<h2 id="first-time-setup-required-for-each-new-server">First-Time Setup (Required for each new server)<a class="headerlink" href="#first-time-setup-required-for-each-new-server" title="Permanent link">&para;</a></h2>
+<p><strong>Quick start:</strong> Use <strong><code>/config start</code></strong> for an interactive setup. The bot will ask for each important setting (log channel, rules and onboarding channel, embed watcher, invites, GDPR, ticket category, staff role); you choose a channel or role from the dropdown or click <strong>Skip</strong>. All prompts are in English.</p>
+<p>Alternatively, run the following commands in order:</p>
+<h3 id="1-system-configuration">1. System Configuration<a class="headerlink" href="#1-system-configuration" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/system<span class="w"> </span>set_log_channel<span class="w"> </span><span class="c1">#logs</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/system<span class="w"> </span>set_rules_channel<span class="w"> </span><span class="c1">#rules</span>
+</code></pre></div>
+<h3 id="2-feature-specific-configuration">2. Feature-Specific Configuration<a class="headerlink" href="#2-feature-specific-configuration" title="Permanent link">&para;</a></h3>
+<h4 id="embed-watcher-auto-reminders">Embed Watcher (Auto-Reminders)<a class="headerlink" href="#embed-watcher-auto-reminders" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/embedwatcher<span class="w"> </span>set_announcements<span class="w"> </span><span class="c1">#announcements</span>
+</code></pre></div>
+<h4 id="invite-tracker">Invite Tracker<a class="headerlink" href="#invite-tracker" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/invites<span class="w"> </span>set_channel<span class="w"> </span><span class="c1">#invites</span>
+</code></pre></div>
+<h4 id="gdpr-compliance">GDPR Compliance<a class="headerlink" href="#gdpr-compliance" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/gdpr<span class="w"> </span>set_channel<span class="w"> </span><span class="c1">#gdpr</span>
+</code></pre></div>
+<h4 id="ticket-system">Ticket System<a class="headerlink" href="#ticket-system" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/ticketbot<span class="w"> </span>set_category<span class="w"> </span><span class="o">[</span>category<span class="o">]</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/ticketbot<span class="w"> </span>set_staff_role<span class="w"> </span>@Staff
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>/ticketbot<span class="w"> </span>set_escalation_role<span class="w"> </span>@Moderators
+</code></pre></div>
+<h4 id="verification-ai-assisted-payment-checks">Verification (AI-assisted payment checks)<a class="headerlink" href="#verification-ai-assisted-payment-checks" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/verification<span class="w"> </span>set_category<span class="w"> </span><span class="o">[</span>category<span class="o">]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>/verification<span class="w"> </span>set_verified_role<span class="w"> </span>@Verified
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Optional: override vision model</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>/verification<span class="w"> </span>set_vision_model<span class="w"> </span>grok-4
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Optional: tell the AI what valid payments look like</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>/verification<span class="w"> </span>set_ai_prompt_context<span class="w"> </span><span class="s2">&quot;Valid payments come from Stripe for the membership.&quot;</span>
+</code></pre></div>
+<h3 id="3-optional-settings">3. Optional Settings<a class="headerlink" href="#3-optional-settings" title="Permanent link">&para;</a></h3>
+<h4 id="reminders">Reminders<a class="headerlink" href="#reminders" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/reminders<span class="w"> </span>set_everyone<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>/reminders<span class="w"> </span>set_default_channel<span class="w"> </span><span class="c1">#general</span>
+</code></pre></div>
+<h4 id="grok-ai-settings">Grok / AI Settings<a class="headerlink" href="#grok-ai-settings" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>/gpt<span class="w"> </span>set_model<span class="w"> </span>grok-3
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>/gpt<span class="w"> </span>set_temperature<span class="w"> </span><span class="m">0</span>.7
+</code></pre></div>
+<h4 id="engagement">Engagement<a class="headerlink" href="#engagement" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Enable the features you want</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>/engagement<span class="w"> </span>toggle<span class="w"> </span>challenges<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>/engagement<span class="w"> </span>toggle<span class="w"> </span>weekly<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>/engagement<span class="w"> </span>set_weekly_channel<span class="w"> </span><span class="c1">#awards</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>/engagement<span class="w"> </span>set_challenge_winner_role<span class="w"> </span>@Champion
+</code></pre></div>
+<h2 id="configuration-commands-reference">Configuration Commands Reference<a class="headerlink" href="#configuration-commands-reference" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Each feature area has its own top-level command group. All commands require Administrator and are guild-specific.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>/config scopes    — List all registered setting scopes
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>/config start     — Interactive setup wizard
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>/&lt;scope&gt; show     — Show current settings for that scope
+</code></pre></div>
+<h3 id="system-system">System — <code>/system</code><a class="headerlink" href="#system-system" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/system show
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>/system set_log_channel [#channel]
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>/system set_rules_channel [#channel]
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>/system set_log_level [verbose|normal|critical]
+</code></pre></div>
+<h3 id="embed-watcher-embedwatcher">Embed Watcher — <code>/embedwatcher</code><a class="headerlink" href="#embed-watcher-embedwatcher" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/embedwatcher show
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>/embedwatcher set_announcements [#channel]
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>/embedwatcher set_offset [minutes]
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>/embedwatcher set_non_embed [true|false]
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>/embedwatcher set_process_bot_messages [true|false]
+</code></pre></div>
+<h3 id="reminders-reminders">Reminders — <code>/reminders</code><a class="headerlink" href="#reminders-reminders" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>/reminders show
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>/reminders toggle &lt;true|false&gt;
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>/reminders set_default_channel [#channel]
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>/reminders set_everyone &lt;true|false&gt;
+</code></pre></div>
+<h3 id="ticketbot-ticketbot">TicketBot — <code>/ticketbot</code><a class="headerlink" href="#ticketbot-ticketbot" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>/ticketbot show
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>/ticketbot set_category [#category]
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>/ticketbot set_staff_role [@role]
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>/ticketbot set_escalation_role [@role]
+</code></pre></div>
+<h3 id="grok-ai-gpt">Grok / AI — <code>/gpt</code><a class="headerlink" href="#grok-ai-gpt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>/gpt show
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>/gpt set_model [model-name]
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>/gpt set_temperature [0.0–2.0]
+</code></pre></div>
+<h3 id="invites-invites">Invites — <code>/invites</code><a class="headerlink" href="#invites-invites" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>/invites show
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/invites toggle &lt;true|false&gt;
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>/invites set_channel [#channel]
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>/invites set_template &lt;variant&gt; [template]
+</code></pre></div>
+Variant is <code>with inviter</code> or <code>without inviter</code> (dropdown).</p>
+<h3 id="gdpr-gdpr">GDPR — <code>/gdpr</code><a class="headerlink" href="#gdpr-gdpr" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>/gdpr show
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>/gdpr toggle &lt;true|false&gt;
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>/gdpr set_channel [#channel]
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>/gdpr set_acceptance_role [@role]
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>/gdpr post
+</code></pre></div>
+<h3 id="growth-growth">Growth — <code>/growth</code><a class="headerlink" href="#growth-growth" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>/growth set_channel [#channel]   — omit to clear; share option disappears from /growthcheckin
+</code></pre></div>
+<h3 id="onboarding-onboarding">Onboarding — <code>/onboarding</code><a class="headerlink" href="#onboarding-onboarding" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>/onboarding show
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>/onboarding toggle &lt;true|false&gt;
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>/onboarding set_mode &lt;mode&gt;
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>/onboarding add_question &lt;step&gt; &lt;question&gt; [type] [required]
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>/onboarding delete_question &lt;step&gt;
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>/onboarding reset_questions
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>/onboarding add_rule &lt;order&gt; &lt;title&gt; &lt;description&gt; [thumbnail_url] [image_url]
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>/onboarding delete_rule &lt;order&gt;
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>/onboarding reset_rules
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>/onboarding set_role [@role]
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>/onboarding set_join_role [@role]
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>/onboarding panel_post [#channel]
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>/onboarding reorder
+</code></pre></div>
+<p><strong>Onboarding modes:</strong>
+- <strong>Disabled</strong> — No onboarding
+- <strong>Rules Only</strong> — Role assigned when rules are accepted
+- <strong>Rules + Questions</strong> — Role assigned after all questions and personalization steps
+- <strong>Questions Only</strong> — Role assigned after all questions and personalization steps</p>
+<p>When questions are used, users also complete two fixed personalization steps: opt-in for personalized reminders and preferred language (<code>personalized_opt_in</code>, <code>preferred_language</code> in <code>onboarding.responses</code>).</p>
+<p>Rules support optional images: <code>thumbnail_url</code> (shown right) and <code>image_url</code> (shown at bottom).</p>
+<h3 id="fyi-fyi">FYI — <code>/fyi</code><a class="headerlink" href="#fyi-fyi" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>/fyi reset &lt;key&gt;   — Clear the flag so the next trigger will resend the tip
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>/fyi send &lt;key&gt;    — Force-send the tip to the log channel now
+</code></pre></div>
+Key chosen from a dropdown (e.g. <code>first_onboarding_done</code>, <code>first_guild_join</code>).</p>
+<h3 id="verification-verification">Verification — <code>/verification</code><a class="headerlink" href="#verification-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>/verification show
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>/verification set_verified_role [@role]
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>/verification set_category [#category]
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>/verification set_vision_model [model]
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>/verification set_ai_prompt_context [text]
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>/verification set_reviewer_role [@role]
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>/verification set_max_payment_age [days]
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>/verification set_reference_image &lt;image attachment&gt;
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>/verification reset_reference_image
+</code></pre></div>
+<p><strong>Notes:</strong>
+- <code>set_vision_model</code> — specific vision-capable model (e.g. <code>grok-4</code>); defaults to <code>LLM_PROVIDER</code> model if unset.
+- <code>set_ai_prompt_context</code> — extra context appended to every AI screenshot review (max 1000 chars). Describe what a valid payment looks like for your community.
+- <code>set_reference_image</code> — the bot stores the image in the log channel for URL persistence across restarts. The AI compares user screenshots against it. Clear with <code>reset_reference_image</code>.</p>
+<h3 id="auto-moderation-automod">Auto-moderation — <code>/automod</code><a class="headerlink" href="#auto-moderation-automod" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>/automod status
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>/automod show
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>/automod toggle &lt;true|false&gt;
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>/automod set_log_channel [#channel]
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>/automod rules
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>/automod add_spam_rule &lt;name&gt; [max_messages] [window_seconds] [action]
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>/automod add_badwords_rule &lt;name&gt; &lt;words&gt; [action]
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>/automod add_links_rule &lt;name&gt; [allow_links] [whitelist] [blacklist] [action]
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>/automod add_mentions_rule &lt;name&gt; [max_mentions] [action]
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>/automod add_caps_rule &lt;name&gt; [min_length] [max_ratio] [action]
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>/automod add_duplicate_rule &lt;name&gt; [max_duplicates] [action]
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>/automod add_regex_rule &lt;name&gt; &lt;patterns&gt; [action]    — premium
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>/automod add_ai_rule &lt;name&gt; [action]                  — premium
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>/automod edit_rule &lt;rule_id&gt; [fields...]
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>/automod delete_rule &lt;rule_id&gt;
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>/automod set_rule_enabled &lt;rule_id&gt; &lt;true|false&gt;
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>/automod set_severity &lt;rule_id&gt; &lt;1–10&gt;
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>/automod logs [limit] [user_id] [rule_id] [action] [days]
+</code></pre></div>
+<h3 id="engagement-engagement">Engagement — <code>/engagement</code><a class="headerlink" href="#engagement-engagement" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>/engagement show
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>/engagement toggle &lt;feature&gt; &lt;true|false&gt;
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>/engagement set_challenge_winner_role [@role]
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>/engagement set_weekly_channel [#channel]
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>/engagement set_food_channels [ids]
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>/engagement set_weekly_awards &lt;json&gt;
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>/engagement set_badge_role &lt;badge_key&gt; [@role]
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>/engagement set_og_cap &lt;number&gt;
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>/engagement set_og_text [text]
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>/engagement set_streaks_nicknames &lt;true|false&gt;
+</code></pre></div>
+<p>Features for <code>toggle</code>: <code>challenges</code>, <code>weekly</code>, <code>badges</code>, <code>streaks</code>, <code>og_claims</code>.</p>
+<p>Badge keys for <code>set_badge_role</code>: <code>winner</code>, <code>og</code>, <code>motivator</code>, <code>foodfluencer</code>, <code>sharpshooter</code>, <code>star</code>.</p>
+<p><code>set_weekly_awards</code> accepts a JSON list of award category objects:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="p">[</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="p">{</span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;motivator&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;📣 Motivator&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;subtitle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Most non-food messages&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;non_food&quot;</span><span class="p">},</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span><span class="p">{</span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;star&quot;</span><span class="p">,</span><span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;⭐ Star&quot;</span><span class="p">,</span><span class="w">       </span><span class="nt">&quot;subtitle&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Most reactions on a photo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;reactions&quot;</span><span class="p">}</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="p">]</span>
+</code></pre></div>
+Filters: <code>non_food</code>, <code>food</code>, <code>image</code>, <code>reactions</code>. Defaults to 4 awards (Motivator, Foodfluencer, Sharpshooter, Star) if not configured (Foodfluencer only included when food channels are set).</p>
+<h2 id="template-placeholders">Template Placeholders<a class="headerlink" href="#template-placeholders" title="Permanent link">&para;</a></h2>
+<p>For invite templates, you can use:
+- <code>{member}</code> - Mention the new member
+- <code>{member_name}</code> - Name of the new member
+- <code>{inviter}</code> - Mention the inviter
+- <code>{inviter_name}</code> - Name of the inviter
+- <code>{count}</code> - Total invite count</p>
+<p>Example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>/invites set_template &quot;with&quot; &quot;{member} joined! {inviter} now has {count} invites.&quot;
+</code></pre></div></p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="channel-not-configured-errors">"Channel not configured" errors<a class="headerlink" href="#channel-not-configured-errors" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Run the setup commands above for your server</li>
+<li>Check <code>/system show</code> to verify settings</li>
+</ul>
+<h3 id="bot-not-responding-to-embedsannouncements">Bot not responding to embeds/announcements<a class="headerlink" href="#bot-not-responding-to-embedsannouncements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Verify <code>/config embedwatcher set_announcements</code> is set to the correct channel</li>
+<li>Ensure bot has read permissions in that channel</li>
+</ul>
+<h3 id="import-commands-failing">Import commands failing<a class="headerlink" href="#import-commands-failing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Set appropriate channels first (log channel for imports)</li>
+<li>Owner permissions required for import commands</li>
+</ul>
+<h2 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">&para;</a></h2>
+<p>The following environment variables are required/optional for bot operation:</p>
+<h3 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>BOT_TOKEN</code>: Discord bot token</li>
+<li><code>DATABASE_URL</code>: PostgreSQL connection string</li>
+</ul>
+<h3 id="optional-local-testing-separate-dev-bot">Optional - Local testing (separate dev bot)<a class="headerlink" href="#optional-local-testing-separate-dev-bot" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>BOT_TOKEN_TEST</code>: Discord token for a separate test/dev bot. Used only when <code>USE_TEST_BOT=1</code>.</li>
+<li><code>USE_TEST_BOT</code>: Set to <code>1</code> (or any non-empty value) to run the bot with <code>BOT_TOKEN_TEST</code> instead of <code>BOT_TOKEN</code>. Use this for local testing without touching the production bot.</li>
+</ul>
+<h3 id="optional-google-cloud-for-drive-integration">Optional - Google Cloud (for Drive integration)<a class="headerlink" href="#optional-google-cloud-for-drive-integration" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>GOOGLE_PROJECT_ID</code>: GCP project ID for Secret Manager (production)</li>
+<li><code>GOOGLE_SECRET_NAME</code>: Secret name in Secret Manager (default: "alphapy-google-credentials")</li>
+<li><code>GOOGLE_CREDENTIALS_JSON</code>: Service account credentials JSON string (local dev fallback)</li>
+</ul>
+<p><strong>Note</strong>: In production, use Secret Manager (<code>GOOGLE_PROJECT_ID</code>). For local development, <code>GOOGLE_CREDENTIALS_JSON</code> can be used as fallback. See <a href="../SECURITY/">docs/SECURITY.md</a> for security best practices.</p>
+<h3 id="optional-api-authentication">Optional - API &amp; Authentication<a class="headerlink" href="#optional-api-authentication" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>API_KEY</code>: Internal API key for API endpoints</li>
+<li><code>SUPABASE_URL</code>: Supabase project URL</li>
+<li><code>SUPABASE_ANON_KEY</code>: Supabase anonymous key</li>
+<li><code>SUPABASE_SERVICE_ROLE_KEY</code>: Supabase service role key</li>
+<li><code>APP_ENV</code>: Runtime environment (<code>development</code> or <code>production</code>)</li>
+<li><code>STRICT_SECURITY_MODE</code>: Set to <code>1</code> to enforce production security requirements at startup (fails fast when critical auth/webhook secrets are missing in production)</li>
+<li><code>APP_ENV</code>: Runtime environment (<code>development</code> by default). Use <code>production</code> on production deployments.</li>
+<li><code>STRICT_SECURITY_MODE</code>: Set to <code>1</code> to enforce production hardening checks at startup (<code>APP_ENV=production</code> required). Startup fails when auth and webhook secret requirements are not met.</li>
+<li><code>ALLOWED_ORIGINS</code>: Comma-separated CORS origins. If omitted, defaults to trusted application origins from config.</li>
+</ul>
+<h3 id="optional-aillm">Optional - AI/LLM<a class="headerlink" href="#optional-aillm" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>GROK_API_KEY</code>: Grok API key (or <code>OPENAI_API_KEY</code> for OpenAI)</li>
+<li><code>LLM_PROVIDER</code>: "grok" or "openai" (default: "grok")</li>
+</ul>
+<h3 id="optional-core-api-telemetry-operational-events">Optional - Core API (telemetry / operational events)<a class="headerlink" href="#optional-core-api-telemetry-operational-events" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>CORE_API_URL</code>: Base URL of the Core API for centralised telemetry and operational event ingress. When set, operational events and telemetry are sent to Core instead of directly to Supabase.</li>
+<li><code>ALPHAPY_SERVICE_KEY</code>: Service key for authenticating with the Core API.</li>
+</ul>
+<h3 id="optional-premium-tier">Optional - Premium tier<a class="headerlink" href="#optional-premium-tier" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>PREMIUM_CHECKOUT_URL</code>: Checkout page URL for the "Get Premium" button in <code>/premium</code>. If unset, buttons are disabled.</li>
+<li><code>PREMIUM_CACHE_TTL_SECONDS</code>: TTL in seconds for the in-memory premium cache (default: 300). See <a href="../premium/">Premium</a> for guard behaviour and Core-API contract.</li>
+<li><code>CORE_API_PAYMENTS_TOKEN</code>: Value of <code>INNERSYNC_CORE_PAYMENTS_TOKEN</code> from Core-API. Required for early bird availability checks (<code>POST /billing/early-bird/validate</code>). If unset, the embed assumes early bird is available (fail-open).</li>
+<li><code>EARLY_BIRD_CODE</code>: Early bird redemption code to validate against (default: <code>EARLYBIRD50</code>).</li>
+<li><code>EARLY_BIRD_TOTAL_SPOTS</code>: Total early bird spots shown in the embed text (default: <code>50</code>).</li>
+<li><code>PRICE_MONTHLY</code>: Monthly plan price label in the embed (default: <code>€4.99</code>).</li>
+<li><code>PRICE_YEARLY_EARLY_BIRD</code>: Annual plan early bird price label (default: <code>€29</code>).</li>
+<li><code>PRICE_YEARLY_REGULAR</code>: Annual plan regular price label, shown after early bird sells out (default: <code>€59.99</code>).</li>
+<li><code>PRICE_LIFETIME_EARLY_BIRD</code>: Lifetime plan early bird price label (default: <code>€49</code>).</li>
+<li><code>PRICE_LIFETIME_REGULAR</code>: Lifetime plan regular price label, shown after early bird sells out (default: <code>€99.99</code>).</li>
+</ul>
+<h3 id="optional-app-reflections-core-api-webhooks">Optional - App reflections (Core-API webhooks)<a class="headerlink" href="#optional-app-reflections-core-api-webhooks" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>APP_REFLECTIONS_WEBHOOK_SECRET</code>: Secret for HMAC validation of <code>POST /webhooks/app-reflections</code> and <code>POST /webhooks/revoke-reflection</code>. If unset, falls back to <code>WEBHOOK_SECRET</code> or <code>SUPABASE_WEBHOOK_SECRET</code>.</li>
+</ul>
+<h3 id="optional-premium-founder-webhooks-core-alphapy">Optional - Premium / Founder webhooks (Core → Alphapy)<a class="headerlink" href="#optional-premium-founder-webhooks-core-alphapy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>PREMIUM_INVALIDATE_WEBHOOK_SECRET</code>: Secret for <code>POST /webhooks/premium-invalidate</code> (cache invalidation on subscription change). Falls back to <code>APP_REFLECTIONS_WEBHOOK_SECRET</code> / <code>WEBHOOK_SECRET</code>.</li>
+<li><code>FOUNDER_WEBHOOK_SECRET</code>: Secret for <code>POST /webhooks/founder</code> (founder welcome DM). Falls back to <code>APP_REFLECTIONS_WEBHOOK_SECRET</code> / <code>WEBHOOK_SECRET</code>.</li>
+</ul>
+<h3 id="optional-legal-update-notifications">Optional - Legal update notifications<a class="headerlink" href="#optional-legal-update-notifications" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>LEGAL_UPDATE_WEBHOOK_SECRET</code>: Secret for <code>POST /webhooks/legal-update</code> (GitHub Action notifies on PP/ToS change). Falls back to <code>APP_REFLECTIONS_WEBHOOK_SECRET</code> / <code>WEBHOOK_SECRET</code>.</li>
+<li><code>LEGAL_UPDATES_CHANNEL_ID</code>: Channel ID in the main guild where legal update embeds are posted. Falls back to <code>system.log_channel_id</code> for <code>MAIN_GUILD_ID</code> if unset.</li>
+</ul>
+<h3 id="optional-api-observability-and-idempotency">Optional - API observability and idempotency<a class="headerlink" href="#optional-api-observability-and-idempotency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>GET /api/observability</code> (internal endpoint) returns rolling request success-rate and p50/p95/p99 latency for API and webhook traffic.</li>
+<li>Write endpoints under <code>/api/reminders</code> support <code>Idempotency-Key</code> header to prevent duplicate writes during client retries (cached for 10 minutes).</li>
+</ul>
+<h3 id="optional-github">Optional - GitHub<a class="headerlink" href="#optional-github" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>GITHUB_TOKEN</code>: Optional token for GitHub API (e.g. <code>/release</code>, repo links when <code>GITHUB_REPO</code> is set) to avoid rate limits.</li>
+</ul>
+<h2 id="migration-notes">Migration Notes<a class="headerlink" href="#migration-notes" title="Permanent link">&para;</a></h2>
+<p>If upgrading from single-guild to multi-guild:
+1. All old config.py values are now deprecated
+2. Each server needs fresh <code>/config</code> setup
+3. No automatic migration of old settings
+4. Bot automatically detects all joined servers</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

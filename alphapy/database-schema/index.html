@@ -1,0 +1,2646 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central documentation hub for all Innersync services.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.innersync.tech/alphapy/database-schema/">
+      
+      
+        <link rel="prev" href="../premium/">
+      
+      
+        <link rel="next" href="../migrations/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Database Schema - Innersync Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#database-schema-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Innersync Documentation" class="md-header__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Innersync Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Database Schema
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Innersync Documentation" class="md-nav__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Innersync Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alphapy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alphapy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../premium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Premium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bot_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bot_settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings_history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings_history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#premium_subs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        premium_subs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpt_usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gpt_usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms_acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        terms_acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr_acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gdpr_acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app_reflections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app_reflections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guild_onboarding_questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guild_onboarding_questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guild_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guild_rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        support_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        verification_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ticket_summaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ticket_metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq_entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        faq_entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq_search_logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        faq_search_logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit_logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        audit_logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health_check_history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        health_check_history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom_commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        custom_commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-connection-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Connection Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Connection Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-pool-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Pool Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-guild-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Guild Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Indexes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Retention
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Retention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automod_actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_user_history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_user_history
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engagement-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Engagement Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#engagement_badges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_badges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_og_claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_og_claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_og_setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_og_setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_challenges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_participants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_participants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_weekly_messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_weekly_messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_weekly_awards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_weekly_awards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_weekly_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_weekly_results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_streaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_streaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Recommendations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ALPHAPY_AUTHENTICATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OPERATIONAL_PLAYBOOK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Playbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GOOGLE_CREDENTIALS_SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Credentials Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAILWAY_SECRET_MANAGER_SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Railway Secret Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/legal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal Information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/terms-of-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/pricing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pricing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bot_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bot_settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings_history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings_history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reminders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#premium_subs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        premium_subs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpt_usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gpt_usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms_acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        terms_acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdpr_acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gdpr_acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app_reflections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        app_reflections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        onboarding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guild_onboarding_questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guild_onboarding_questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guild_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        guild_rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        support_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verification_tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        verification_tickets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ticket_summaries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ticket_metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ticket_metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq_entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        faq_entries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faq_search_logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        faq_search_logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit_logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        audit_logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health_check_history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        health_check_history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom_commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        custom_commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-connection-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Connection Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Connection Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connection-pool-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection Pool Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schema-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-guild-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Guild Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Indexes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-retention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Retention
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Retention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automod_actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automod_user_history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automod_user_history
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engagement-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engagement Tables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Engagement Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#engagement_badges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_badges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_og_claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_og_claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_og_setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_og_setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_challenges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_participants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_participants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_weekly_messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_weekly_messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_weekly_awards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_weekly_awards
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_weekly_results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_weekly_results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#engagement_streaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        engagement_streaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backup-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backup Recommendations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="database-schema-reference">Database Schema Reference<a class="headerlink" href="#database-schema-reference" title="Permanent link">&para;</a></h1>
+<p>Complete reference for all database tables used by the Alphapy Discord Bot.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The bot uses PostgreSQL for persistent storage. Schema is managed via <a href="../migrations/">Alembic migrations</a>. All tables support multi-guild architecture via <code>guild_id</code> columns.</p>
+<h2 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h2>
+<h3 id="bot_settings"><code>bot_settings</code><a class="headerlink" href="#bot_settings" title="Permanent link">&para;</a></h3>
+<p>Guild-specific bot configuration settings.</p>
+<p><strong>Columns:</strong>
+- <code>guild_id</code> (BIGINT, NOT NULL): Discord guild ID
+- <code>scope</code> (TEXT, NOT NULL): Setting scope (e.g., "system", "reminders", "gpt")
+- <code>key</code> (TEXT, NOT NULL): Setting key
+- <code>value</code> (JSONB, NOT NULL): Setting value (stored as JSON)
+- <code>value_type</code> (TEXT): Type of value (e.g., "channel", "bool", "int")
+- <code>updated_by</code> (BIGINT): User ID who last updated this setting
+- <code>updated_at</code> (TIMESTAMPTZ): Last update timestamp</p>
+<p><strong>Primary Key:</strong> <code>(guild_id, scope, key)</code></p>
+<p><strong>Indexes:</strong> None (primary key provides efficient lookups)</p>
+<hr />
+<h3 id="settings_history"><code>settings_history</code><a class="headerlink" href="#settings_history" title="Permanent link">&para;</a></h3>
+<p>Audit trail for settings changes.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>scope</code> (TEXT, NOT NULL)
+- <code>key</code> (TEXT, NOT NULL)
+- <code>old_value</code> (JSONB): Previous value
+- <code>new_value</code> (JSONB, NOT NULL): New value
+- <code>value_type</code> (TEXT)
+- <code>changed_by</code> (BIGINT): User ID who made the change
+- <code>changed_at</code> (TIMESTAMPTZ): Change timestamp
+- <code>change_type</code> (TEXT, NOT NULL): Type of change (e.g., "created", "updated", "deleted", "rollback")</p>
+<p><strong>Indexes:</strong>
+- <code>idx_settings_history_guild_scope_key</code> on <code>(guild_id, scope, key)</code>
+- <code>idx_settings_history_changed_at</code> on <code>changed_at</code></p>
+<hr />
+<h3 id="reminders"><code>reminders</code><a class="headerlink" href="#reminders" title="Permanent link">&para;</a></h3>
+<p>Scheduled reminders (recurring and one-off events).</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>name</code> (TEXT, NOT NULL): Reminder name
+- <code>channel_id</code> (BIGINT, NOT NULL): Channel to send reminder to
+- <code>time</code> (TIME): Reminder trigger time (T−60 for one-off, reminder time for recurring)
+- <code>call_time</code> (TIME): Event display time (T0, what user sees)
+- <code>days</code> (TEXT[]): Days of week (0=Mon..6=Sun); empty for one-off events
+- <code>message</code> (TEXT): Reminder message content
+- <code>created_by</code> (BIGINT): User ID who created the reminder
+- <code>origin_channel_id</code> (BIGINT): Original channel where embed was detected
+- <code>origin_message_id</code> (BIGINT): Original message ID
+- <code>event_time</code> (TIMESTAMPTZ): One-off event timestamp (NULL for recurring)
+- <code>location</code> (TEXT): Event location
+- <code>last_sent_at</code> (TIMESTAMPTZ): Last send timestamp (for idempotency)
+- <code>image_url</code> (TEXT): Optional image or banner URL (Premium feature)
+- <code>sent_message_id</code> (BIGINT): Discord message ID of the T-60 offset reminder send; used to delete it when the T0 on-time reminder fires</p>
+<p><strong>Indexes:</strong>
+- <code>idx_reminders_time</code> on <code>time</code>
+- <code>idx_reminders_event_time</code> on <code>event_time</code>
+- <strong>Recommendation:</strong> A composite index on <code>(guild_id, id DESC)</code> can speed up listing reminders by guild (e.g. reminder_list, add_live_session default channel resolution).</p>
+<p><strong>Notes:</strong>
+- One-off events: <code>event_time</code> is set, <code>days</code> is empty
+- Recurring events: <code>event_time</code> is NULL, <code>days</code> contains weekday numbers
+- <code>time</code> is the reminder trigger time (T−60), <code>call_time</code> is the event time (T0)
+- Premium: reminders with <code>image_url</code> require an active premium subscription for the creator</p>
+<hr />
+<h3 id="premium_subs"><code>premium_subs</code><a class="headerlink" href="#premium_subs" title="Permanent link">&para;</a></h3>
+<p>Premium subscription status (local fallback when Core-API is unavailable). <strong>One active subscription per user</strong>; it applies to a single guild. Users can move it via <code>/premium_transfer</code> (or dashboard later).</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>user_id</code> (BIGINT, NOT NULL): Discord user ID
+- <code>guild_id</code> (BIGINT, NOT NULL): Guild where Premium is active (can be updated for transfer)
+- <code>tier</code> (TEXT, NOT NULL): <code>monthly</code>, <code>yearly</code>, <code>lifetime</code>
+- <code>status</code> (TEXT, NOT NULL): <code>active</code>, <code>cancelled</code>, <code>expired</code>
+- <code>stripe_subscription_id</code> (TEXT): External subscription ID (for support/cancellation only)
+- <code>expires_at</code> (TIMESTAMPTZ): NULL for lifetime or N/A
+- <code>created_at</code> (TIMESTAMPTZ): When the record was created
+- <code>expiry_warning_sent_at</code> (TIMESTAMPTZ, added migration 015): Timestamp of last 7-day expiry warning DM. NULL = no warning sent yet. Used by the <code>check_expiry_warnings</code> background task to avoid duplicate DMs.</p>
+<p><strong>Indexes:</strong>
+- <code>idx_premium_subs_user_guild</code> on <code>(user_id, guild_id)</code>
+- <code>idx_premium_subs_guild_status</code> on <code>(guild_id, status)</code>
+- <code>idx_premium_subs_one_active_per_user</code>: unique on <code>(user_id)</code> WHERE <code>status = 'active'</code> (enforces one active per user)</p>
+<p><strong>RLS (Supabase):</strong> Row Level Security is enabled (migration 007). No policies are defined for <code>anon</code>/<code>authenticated</code>, so only the backend role (table owner / service role / superuser used by <code>DATABASE_URL</code>) can read or write. Direct Supabase client access with anon or authenticated keys sees no rows.</p>
+<p><strong>GDPR:</strong> This table stores only access-control data (user_id, guild_id, tier, status, optional external ID, expiry). No payment details, email, or other PII are stored here.</p>
+<hr />
+<h3 id="gpt_usage"><code>gpt_usage</code><a class="headerlink" href="#gpt_usage" title="Permanent link">&para;</a></h3>
+<p>Per-user, per-guild daily GPT call tracking for quota enforcement. Added in migration 014.</p>
+<p><strong>Columns:</strong>
+- <code>user_id</code> (BIGINT, NOT NULL): Discord user ID
+- <code>guild_id</code> (BIGINT, NOT NULL): Discord guild ID
+- <code>usage_date</code> (DATE, NOT NULL, DEFAULT CURRENT_DATE): The UTC date of usage
+- <code>call_count</code> (INTEGER, NOT NULL, DEFAULT 0): Number of GPT calls made on this date</p>
+<p><strong>Primary key:</strong> <code>(user_id, guild_id, usage_date)</code></p>
+<p><strong>Indexes:</strong>
+- <code>idx_gpt_usage_date</code> on <code>usage_date</code> (for efficient cleanup of old rows)</p>
+<p><strong>Notes:</strong>
+- <code>check_and_increment_gpt_quota()</code> in <code>utils/premium_guard.py</code> uses an atomic <code>INSERT … ON CONFLICT DO UPDATE</code> so no race conditions
+- Limits per tier: free = 5/day, monthly = 25/day, yearly/lifetime = unlimited (NULL)
+- Only user-initiated GPT calls are counted; ticket summaries and embed watcher calls pass <code>user_id=None</code> and are excluded</p>
+<p><strong>GDPR:</strong> Stores only Discord user ID, guild ID, date, and a counter. No message content or PII beyond the snowflake ID.</p>
+<hr />
+<h3 id="terms_acceptance"><code>terms_acceptance</code><a class="headerlink" href="#terms_acceptance" title="Permanent link">&para;</a></h3>
+<p>Tracks user acceptance of the Terms of Service and Privacy Policy for GDPR compliance.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>user_id</code> (BIGINT, NOT NULL, UNIQUE): Discord user ID
+- <code>accepted_at</code> (TIMESTAMPTZ, NOT NULL, DEFAULT NOW()): When the user accepted the terms
+- <code>version</code> (TEXT, NOT NULL, DEFAULT '2026-03-02'): Legal terms version the user accepted</p>
+<blockquote>
+<p><strong>Note:</strong> The <code>ip_address</code> column was dropped in migration 016. Discord gateway interactions carry no client IP, so the column was always NULL. Re-add it via a new migration only if a web-based consent flow is implemented.</p>
+</blockquote>
+<p><strong>Indexes:</strong>
+- <code>idx_terms_acceptance_user</code> on <code>user_id</code>
+- <code>idx_terms_acceptance_accepted_at</code> on <code>accepted_at</code></p>
+<p><strong>Notes:</strong>
+- Used by the <code>/premium</code> flow: users must accept terms before accessing premium checkout.
+- Stores only minimal consent metadata for legal compliance; no content of the terms is stored here.</p>
+<hr />
+<h3 id="gdpr_acceptance"><code>gdpr_acceptance</code><a class="headerlink" href="#gdpr_acceptance" title="Permanent link">&para;</a></h3>
+<p>Guild GDPR agreement acceptance (the "I Agree" button in the GDPR channel).</p>
+<p><strong>Columns:</strong>
+- <code>user_id</code> (BIGINT, NOT NULL): Discord user ID
+- <code>guild_id</code> (BIGINT, NOT NULL): Discord guild ID — scopes acceptances per server (added migration 018)
+- <code>accepted</code> (INTEGER, NOT NULL, DEFAULT 0): 1 = accepted, 0 = not accepted
+- <code>timestamp</code> (TIMESTAMP, NOT NULL, DEFAULT CURRENT_TIMESTAMP): When the user clicked "I Agree"</p>
+<p><strong>Primary Key:</strong> <code>(user_id, guild_id)</code></p>
+<p><strong>Notes:</strong>
+- Written by <code>cogs/gdpr.py</code> / <code>utils/gdpr_helpers.py</code> when a user clicks the "I Agree" button on the GDPR embed
+- Formalised in Alembic migration 016; <code>guild_id</code> column added in migration 018
+- Deleted as part of GDPR erasure when a user's Supabase account is deleted (<code>webhooks/supabase.py:_purge_railway_data</code>) or when the user runs <code>/delete_my_data</code></p>
+<hr />
+<h3 id="app_reflections"><code>app_reflections</code><a class="headerlink" href="#app_reflections" title="Permanent link">&para;</a></h3>
+<p>Plaintext reflections received from the App via Core-API webhook. Used for Grok context in user-self flows (e.g. <code>/growthcheckin</code> only; not used for ticket "Suggest reply" for privacy). Consent is validated by Core before the webhook is sent; revoke is handled via <code>POST /webhooks/revoke-reflection</code>.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>user_id</code> (BIGINT, NOT NULL): Discord user ID
+- <code>reflection_id</code> (TEXT, NOT NULL): Unique reflection identifier from App/Core
+- <code>plaintext_content</code> (JSONB, NOT NULL): Full reflection payload (e.g. reflection_text, mantra, thoughts, future_message, date)
+- <code>created_at</code> (TIMESTAMPTZ, NOT NULL, DEFAULT NOW())</p>
+<p><strong>Unique constraint:</strong> <code>(user_id, reflection_id)</code> to prevent duplicates (upsert on conflict).</p>
+<p><strong>Indexes:</strong>
+- <code>idx_app_reflections_user_created</code> on <code>(user_id, created_at DESC)</code> for chronological queries (e.g. last 30 days).</p>
+<p><strong>Notes:</strong>
+- Populated by <code>POST /webhooks/app-reflections</code>; deleted by <code>POST /webhooks/revoke-reflection</code>.
+- Context loader (<code>gpt/context_loader.py</code>) reads from this table for user-self flows (e.g. <code>/growthcheckin</code>). Ticket "Suggest reply" does not use reflection context.</p>
+<p><strong>Grok context sources for <code>/growthcheckin</code> (all three are merged, max 5 total):</strong>
+1. Supabase <code>reflections_shared</code> — App reflections the user opted to share (requires <code>bot_sharing_enabled = true</code>)
+2. Supabase <code>reflections</code> — Discord check-ins written by <code>/growthcheckin</code> itself (no opt-in required)
+3. Railway <code>app_reflections</code> — plaintext from Core-API webhook (last 30 days, no opt-in required)</p>
+<hr />
+<h3 id="onboarding"><code>onboarding</code><a class="headerlink" href="#onboarding" title="Permanent link">&para;</a></h3>
+<p>User onboarding responses per guild.</p>
+<p><strong>Columns:</strong>
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>responses</code> (JSONB): User responses (answers by question index, plus personalization keys)
+- <code>timestamp</code> (TIMESTAMP): Response timestamp</p>
+<p><strong>Primary Key:</strong> <code>(guild_id, user_id)</code></p>
+<p><strong>Notes:</strong>
+- Responses stored as JSONB with flexible structure
+- Supports multi-select, text input, email validation, and follow-up questions
+- Fixed personalization keys (synthetic steps after guild questions): <code>personalized_opt_in</code> (<code>"full"</code> | <code>"events_only"</code> | <code>"no"</code>), <code>preferred_language</code> (e.g. <code>"en"</code>, <code>"nl"</code>, or <code>"other: &lt;text&gt;"</code>)</p>
+<hr />
+<h3 id="guild_onboarding_questions"><code>guild_onboarding_questions</code><a class="headerlink" href="#guild_onboarding_questions" title="Permanent link">&para;</a></h3>
+<p>Onboarding question definitions per guild.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>step_order</code> (INTEGER, NOT NULL): Question order
+- <code>question</code> (TEXT, NOT NULL): Question text
+- <code>question_type</code> (TEXT, NOT NULL): Type (select, multiselect, text, email)
+- <code>options</code> (JSONB): Options for select/multiselect questions
+- <code>followup</code> (JSONB): Conditional follow-up questions
+- <code>required</code> (BOOLEAN): Whether question is required
+- <code>enabled</code> (BOOLEAN): Whether question is enabled
+- <code>created_at</code> (TIMESTAMP): Creation timestamp
+- <code>updated_at</code> (TIMESTAMP): Last update timestamp</p>
+<p><strong>Unique Constraint:</strong> <code>(guild_id, step_order)</code></p>
+<hr />
+<h3 id="guild_rules"><code>guild_rules</code><a class="headerlink" href="#guild_rules" title="Permanent link">&para;</a></h3>
+<p>Guild rules for onboarding display.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>rule_order</code> (INTEGER, NOT NULL): Display order
+- <code>title</code> (TEXT, NOT NULL): Rule title
+- <code>description</code> (TEXT, NOT NULL): Rule description
+- <code>thumbnail_url</code> (TEXT, nullable): Image shown right/top in embed (rechts)
+- <code>image_url</code> (TEXT, nullable): Image shown at bottom in embed (onderaan)
+- <code>enabled</code> (BOOLEAN): Whether rule is enabled
+- <code>created_at</code> (TIMESTAMP): Creation timestamp
+- <code>updated_at</code> (TIMESTAMP): Last update timestamp</p>
+<p><strong>Unique Constraint:</strong> <code>(guild_id, rule_order)</code></p>
+<hr />
+<h3 id="support_tickets"><code>support_tickets</code><a class="headerlink" href="#support_tickets" title="Permanent link">&para;</a></h3>
+<p>Support ticket system data.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL): Ticket creator
+- <code>username</code> (TEXT): Username at creation time
+- <code>description</code> (TEXT, NOT NULL): Ticket description
+- <code>status</code> (TEXT): Ticket status (open, claimed, waiting_for_user, escalated, closed, archived)
+- <code>created_at</code> (TIMESTAMPTZ): Creation timestamp
+- <code>channel_id</code> (BIGINT): Private channel ID for this ticket
+- <code>claimed_by</code> (BIGINT): User ID who claimed the ticket
+- <code>claimed_at</code> (TIMESTAMPTZ): Claim timestamp
+- <code>updated_at</code> (TIMESTAMPTZ): Last update timestamp
+- <code>escalated_to</code> (BIGINT): Role ID for escalation
+- <code>archived_at</code> (TIMESTAMPTZ): When the ticket was archived (NULL if not archived)
+- <code>archived_by</code> (BIGINT): User ID who archived the ticket</p>
+<p><strong>Indexes:</strong>
+- <code>idx_support_tickets_user_id</code> on <code>user_id</code>
+- <code>idx_support_tickets_status</code> on <code>status</code>
+- <code>idx_support_tickets_channel_id</code> on <code>channel_id</code></p>
+<hr />
+<h3 id="verification_tickets"><code>verification_tickets</code><a class="headerlink" href="#verification_tickets" title="Permanent link">&para;</a></h3>
+<p>AI-assisted verification ticket metadata for payment/checkout verification.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL): Discord guild ID
+- <code>user_id</code> (BIGINT, NOT NULL): User who started the verification
+- <code>channel_id</code> (BIGINT, NOT NULL): Private verification channel ID
+- <code>status</code> (TEXT, NOT NULL, DEFAULT <code>'pending'</code>): Verification status (<code>pending</code>, <code>verified</code>, <code>manual_review</code>, <code>error</code>, <code>closed_manual</code>)
+- <code>ai_can_verify</code> (BOOLEAN): Whether the AI considered the screenshot sufficient for auto-verification
+- <code>ai_needs_manual_review</code> (BOOLEAN): Whether the AI requested human review
+- <code>ai_reason</code> (TEXT): Short, sanitized explanation of the AI decision (no raw payment details)
+- <code>created_at</code> (TIMESTAMPTZ, DEFAULT NOW()): When the verification was created
+- <code>resolved_at</code> (TIMESTAMPTZ): When the verification was completed (NULL while pending)
+- <code>resolved_by_user_id</code> (BIGINT): Discord ID of the admin who resolved a manual review (NULL if auto-resolved)
+- <code>rejection_reason</code> (TEXT): Reason shown to the user on rejection
+- <code>payment_date</code> (DATE): Date extracted from the payment screenshot by the AI (NULL if unreadable or not yet populated)</p>
+<p><strong>Indexes:</strong>
+- <code>idx_verification_tickets_guild_status</code> on <code>(guild_id, status)</code>
+- <code>idx_verification_tickets_channel_id</code> on <code>channel_id</code></p>
+<h3 id="ticket_summaries"><code>ticket_summaries</code><a class="headerlink" href="#ticket_summaries" title="Permanent link">&para;</a></h3>
+<p>AI-generated summaries of closed tickets (Grok).</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>ticket_id</code> (INTEGER, NOT NULL): Reference to support_tickets.id
+- <code>summary</code> (TEXT, NOT NULL): AI-generated summary (Grok)
+- <code>similarity_key</code> (TEXT): Key for detecting similar tickets
+- <code>created_at</code> (TIMESTAMPTZ): Creation timestamp</p>
+<p><strong>Notes:</strong>
+- Used for FAQ proposal generation when 3+ similar summaries appear</p>
+<hr />
+<h3 id="ticket_metrics"><code>ticket_metrics</code><a class="headerlink" href="#ticket_metrics" title="Permanent link">&para;</a></h3>
+<p>Ticket statistics snapshots.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (BIGSERIAL PRIMARY KEY)
+- <code>snapshot</code> (JSONB): Full snapshot data
+- <code>scope</code> (TEXT): Time scope (7d, 30d, all)
+- <code>counts</code> (JSONB): Status → count mapping
+- <code>average_cycle_time</code> (BIGINT): Average ticket lifecycle in seconds
+- <code>triggered_by</code> (BIGINT): User ID who triggered the snapshot
+- <code>created_at</code> (TIMESTAMPTZ): Snapshot timestamp</p>
+<hr />
+<h3 id="faq_entries"><code>faq_entries</code><a class="headerlink" href="#faq_entries" title="Permanent link">&para;</a></h3>
+<p>FAQ entries for knowledge base.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>title</code> (TEXT): Entry title
+- <code>summary</code> (TEXT): Entry summary/content
+- <code>keywords</code> (TEXT[]): Search keywords
+- <code>created_at</code> (TIMESTAMPTZ): Creation timestamp</p>
+<p><strong>Notes:</strong>
+- Can be created manually or from ticket summaries via "Add to FAQ" button</p>
+<hr />
+<h3 id="faq_search_logs"><code>faq_search_logs</code><a class="headerlink" href="#faq_search_logs" title="Permanent link">&para;</a></h3>
+<p>FAQ search analytics.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>user_id</code> (BIGINT): User who searched
+- <code>query</code> (TEXT): Search query
+- <code>results_count</code> (INTEGER): Number of results returned
+- <code>searched_at</code> (TIMESTAMPTZ): Search timestamp</p>
+<hr />
+<h3 id="audit_logs"><code>audit_logs</code><a class="headerlink" href="#audit_logs" title="Permanent link">&para;</a></h3>
+<p>Command usage analytics (automatically tracked).</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL): Guild where command was executed (0 for DMs)
+- <code>user_id</code> (BIGINT, NOT NULL): User who executed the command
+- <code>command_name</code> (TEXT, NOT NULL): Command name
+- <code>command_type</code> (TEXT, NOT NULL): Type ('slash' or 'text')
+- <code>success</code> (BOOLEAN): Whether command executed successfully
+- <code>error_message</code> (TEXT): Error message if command failed
+- <code>created_at</code> (TIMESTAMPTZ): Execution timestamp</p>
+<p><strong>Indexes:</strong>
+- <code>idx_audit_logs_guild_created</code> on <code>(guild_id, created_at)</code>
+- <code>idx_audit_logs_command</code> on <code>(command_name, created_at)</code></p>
+<p><strong>Notes:</strong>
+- Automatically populated by event handlers in <code>bot.py</code> (<code>on_app_command_completion</code>, <code>on_command_completion</code>, etc.)
+- Uses dedicated database connection pool created in bot's event loop (not FastAPI's loop)
+- Initialized in <code>on_ready()</code> event handler, persists across bot restarts
+- Used for command usage analytics, dashboard metrics, and <code>/command_stats</code> Discord command
+- Tracking is non-blocking and failures don't affect command execution</p>
+<hr />
+<h3 id="health_check_history"><code>health_check_history</code><a class="headerlink" href="#health_check_history" title="Permanent link">&para;</a></h3>
+<p>Historical health check data for trend analysis.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>service</code> (TEXT, NOT NULL): Service name
+- <code>version</code> (TEXT, NOT NULL): Bot version
+- <code>uptime_seconds</code> (INTEGER, NOT NULL): Uptime at check time
+- <code>db_status</code> (TEXT, NOT NULL): Database status
+- <code>guild_count</code> (INTEGER): Number of guilds
+- <code>active_commands_24h</code> (INTEGER): Commands executed in last 24h
+- <code>gpt_status</code> (TEXT): Grok/LLM service status
+- <code>database_pool_size</code> (INTEGER): Database pool size
+- <code>checked_at</code> (TIMESTAMPTZ): Health check timestamp</p>
+<p><strong>Indexes:</strong>
+- <code>idx_health_check_history_checked_at</code> on <code>checked_at DESC</code>
+- <code>idx_health_check_history_service</code> on <code>(service, checked_at DESC)</code></p>
+<p><strong>Notes:</strong>
+- Automatically populated on each <code>/api/health</code> call
+- Startup no longer mutates schema; table is managed via Alembic migration <code>022_api_observability_tables</code>
+- Auto-cleanup: Records older than 30 days are automatically deleted</p>
+<hr />
+<h3 id="custom_commands"><code>custom_commands</code><a class="headerlink" href="#custom_commands" title="Permanent link">&para;</a></h3>
+<p>Guild-defined automated message responses with configurable trigger patterns.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL): Discord guild ID
+- <code>name</code> (TEXT, NOT NULL): Unique slug per guild (e.g. <code>hello</code>)
+- <code>trigger_type</code> (TEXT, NOT NULL): <code>exact</code>, <code>starts_with</code>, <code>contains</code>, or <code>regex</code>
+- <code>trigger_value</code> (TEXT, NOT NULL): The pattern to match (max 200 chars)
+- <code>response</code> (TEXT, NOT NULL): Response template (max 1900 chars, supports dynamic variables)
+- <code>enabled</code> (BOOLEAN, DEFAULT true)
+- <code>case_sensitive</code> (BOOLEAN, DEFAULT false)
+- <code>delete_trigger</code> (BOOLEAN, DEFAULT false): Delete triggering message on match
+- <code>reply_to_user</code> (BOOLEAN, DEFAULT true): Reply vs plain send
+- <code>uses</code> (INTEGER, DEFAULT 0): Total number of times this command has fired
+- <code>created_by</code> (BIGINT): User ID who created the command
+- <code>created_at</code> (TIMESTAMPTZ)
+- <code>updated_at</code> (TIMESTAMPTZ)</p>
+<p><strong>Primary Key:</strong> <code>id</code></p>
+<p><strong>Unique constraint:</strong> <code>(guild_id, name)</code></p>
+<p><strong>Indexes:</strong>
+- <code>idx_custom_commands_guild_enabled</code> on <code>(guild_id, enabled)</code></p>
+<p><strong>Migration:</strong> <code>010_add_custom_commands</code></p>
+<hr />
+<h2 id="database-connection-architecture">Database Connection Architecture<a class="headerlink" href="#database-connection-architecture" title="Permanent link">&para;</a></h2>
+<p>The bot uses <code>asyncpg</code> connection pools for all database operations, providing:
+- <strong>Better concurrency</strong>: Multiple operations can run simultaneously
+- <strong>Connection reuse</strong>: Efficient resource management
+- <strong>Graceful error handling</strong>: Automatic retry and recovery from connection errors
+- <strong>Event loop isolation</strong>: Command tracker uses dedicated pool in bot's event loop</p>
+<h3 id="connection-pool-configuration">Connection Pool Configuration<a class="headerlink" href="#connection-pool-configuration" title="Permanent link">&para;</a></h3>
+<p>Each component manages its own connection pool with appropriate size limits:
+- <strong>FastAPI (<code>api.py</code>)</strong>: Main pool for API endpoints (shared with bot)
+- <strong>Command Tracker</strong>: Dedicated pool in bot's event loop (min_size=1, max_size=5)
+- <strong>Reminders Cog</strong>: Pool for reminder operations (max_size=10)
+- <strong>Ticket Bot</strong>: Pool for ticket operations (max_size=10)
+- <strong>FAQ Cog</strong>: Pool for FAQ operations (max_size=5)
+- <strong>Embed Watcher</strong>: Pool for embed parsing (max_size=10)
+- <strong>Other Cogs</strong>: Individual pools as needed (typically max_size=5)
+ - <strong>Verification Cog</strong>: Pool for verification ticket operations (max_size=10)</p>
+<p>All pools include:
+- Connection timeout handling
+- Graceful shutdown on cog unload
+- Error handling for connection failures
+- Pool status checks before operations</p>
+<h2 id="schema-management">Schema Management<a class="headerlink" href="#schema-management" title="Permanent link">&para;</a></h2>
+<p>All schema changes are managed via Alembic migrations. See <a href="../migrations/">migrations.md</a> for migration workflow.</p>
+<p><strong>Current Migration:</strong> <code>001_initial</code> (baseline)</p>
+<p>To view current schema state:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>alembic<span class="w"> </span>current
+</code></pre></div></p>
+<p>To apply migrations:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+</code></pre></div></p>
+<hr />
+<h2 id="multi-guild-architecture">Multi-Guild Architecture<a class="headerlink" href="#multi-guild-architecture" title="Permanent link">&para;</a></h2>
+<p>All tables that store guild-specific data include a <code>guild_id</code> column:
+- <code>bot_settings</code>
+- <code>settings_history</code>
+- <code>reminders</code>
+- <code>onboarding</code>
+- <code>guild_onboarding_questions</code>
+- <code>guild_rules</code>
+- <code>support_tickets</code>
+- <code>audit_logs</code></p>
+<p>Tables without <code>guild_id</code> are global:
+- <code>ticket_summaries</code> (linked via <code>ticket_id</code> → <code>support_tickets</code> → <code>guild_id</code>)
+- <code>ticket_metrics</code> (scope-based, not guild-specific)
+- <code>faq_entries</code> (global knowledge base)
+- <code>faq_search_logs</code> (analytics)
+- <code>health_check_history</code> (system-wide)</p>
+<hr />
+<h2 id="indexes">Indexes<a class="headerlink" href="#indexes" title="Permanent link">&para;</a></h2>
+<p>All tables have appropriate indexes for common query patterns:
+- Primary keys provide efficient lookups
+- Foreign key columns are indexed where applicable
+- Time-based columns have indexes for range queries
+- Composite indexes support multi-column filters</p>
+<hr />
+<h2 id="data-retention">Data Retention<a class="headerlink" href="#data-retention" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Health check history</strong>: Auto-deletes records older than 30 days</li>
+<li><strong>Audit logs</strong>: No automatic cleanup (can be configured per guild)</li>
+<li><strong>Ticket summaries</strong>: No automatic cleanup</li>
+<li><strong>Other tables</strong>: No automatic cleanup (manual maintenance recommended)</li>
+</ul>
+<hr />
+<h3 id="automod_actions"><code>automod_actions</code><a class="headerlink" href="#automod_actions" title="Permanent link">&para;</a></h3>
+<p>Reusable action definitions for the auto-moderation system. Referenced by rules via FK.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL, PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL): Discord guild ID
+- <code>action_type</code> (TEXT, NOT NULL): <code>delete</code>, <code>warn</code>, <code>mute</code>, <code>timeout</code>, <code>ban</code>
+- <code>severity</code> (INTEGER, DEFAULT 1): Severity level (1–5)
+- <code>config</code> (JSONB, NOT NULL): Action-specific config (e.g. timeout duration)
+- <code>is_premium</code> (BOOLEAN, DEFAULT false): Whether this action requires premium
+- <code>created_by</code> (BIGINT): User ID who created the action
+- <code>created_at</code> (TIMESTAMPTZ, DEFAULT NOW())</p>
+<p><strong>Indexes:</strong> <code>idx_automod_actions_guild</code> on <code>(guild_id)</code></p>
+<p><strong>Notes:</strong> Added in migration 009. Created before <code>automod_rules</code> to satisfy the FK constraint.</p>
+<hr />
+<h3 id="automod_rules"><code>automod_rules</code><a class="headerlink" href="#automod_rules" title="Permanent link">&para;</a></h3>
+<p>Per-guild content moderation rules. Each rule references one action via FK.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL, PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL): Discord guild ID
+- <code>rule_type</code> (TEXT, NOT NULL): <code>spam</code>, <code>content</code>, <code>ai</code>, <code>regex</code>
+- <code>name</code> (TEXT, NOT NULL): Human-readable rule name
+- <code>enabled</code> (BOOLEAN, DEFAULT true)
+- <code>config</code> (JSONB, NOT NULL): Rule-specific config (patterns, thresholds, etc.)
+- <code>action_id</code> (INTEGER, FK → <code>automod_actions.id</code>): Action to take on trigger
+- <code>created_by</code> (BIGINT)
+- <code>created_at</code> (TIMESTAMPTZ, DEFAULT NOW())
+- <code>updated_at</code> (TIMESTAMPTZ, DEFAULT NOW())
+- <code>is_premium</code> (BOOLEAN, DEFAULT false)</p>
+<p><strong>Indexes:</strong>
+- <code>idx_automod_rules_guild_enabled</code> on <code>(guild_id, enabled)</code>
+- <code>idx_automod_rules_type</code> on <code>(rule_type)</code></p>
+<p><strong>Notes:</strong> Managed via <code>/config automod</code> subcommands. Toggle individual rules with <code>/config automod set_rule_enabled</code>.</p>
+<hr />
+<h3 id="automod_logs"><code>automod_logs</code><a class="headerlink" href="#automod_logs" title="Permanent link">&para;</a></h3>
+<p>Audit log of every auto-moderation trigger.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL, PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL): User who triggered the rule
+- <code>message_id</code> (BIGINT): Offending message ID (nullable)
+- <code>channel_id</code> (BIGINT): Channel where the trigger occurred (nullable)
+- <code>rule_id</code> (INTEGER, FK → <code>automod_rules.id</code>)
+- <code>action_taken</code> (TEXT, NOT NULL): Action that was executed
+- <code>message_content</code> (TEXT): Captured message text (nullable)
+- <code>ai_analysis</code> (JSONB): AI analysis result if <code>rule_type = 'ai'</code> (nullable)
+- <code>context</code> (JSONB): Additional context payload (nullable)
+- <code>moderator_id</code> (BIGINT): Set when action was a manual override (nullable)
+- <code>timestamp</code> (TIMESTAMPTZ, DEFAULT NOW())
+- <code>appeal_status</code> (TEXT, DEFAULT <code>'none'</code>): <code>none</code>, <code>pending</code>, <code>approved</code>, <code>denied</code></p>
+<p><strong>Indexes:</strong>
+- <code>idx_automod_logs_guild_user</code> on <code>(guild_id, user_id)</code>
+- <code>idx_automod_logs_timestamp</code> on <code>(timestamp)</code>
+- <code>idx_automod_logs_rule</code> on <code>(rule_id)</code></p>
+<hr />
+<h3 id="automod_stats"><code>automod_stats</code><a class="headerlink" href="#automod_stats" title="Permanent link">&para;</a></h3>
+<p>Daily aggregated statistics per guild per rule, used by <code>/config automod stats</code> and dashboard analytics.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL, PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>rule_id</code> (INTEGER, FK → <code>automod_rules.id</code>)
+- <code>date</code> (DATE, NOT NULL)
+- <code>triggers_count</code> (INTEGER, DEFAULT 0)
+- <code>false_positives</code> (INTEGER, DEFAULT 0)
+- <code>avg_response_time</code> (FLOAT)
+- <code>created_at</code> (TIMESTAMPTZ, DEFAULT NOW())</p>
+<p><strong>Unique constraint:</strong> <code>(guild_id, rule_id, date)</code></p>
+<p><strong>Indexes:</strong> <code>idx_automod_stats_date</code> on <code>(date)</code></p>
+<hr />
+<h3 id="automod_user_history"><code>automod_user_history</code><a class="headerlink" href="#automod_user_history" title="Permanent link">&para;</a></h3>
+<p>Running violation totals per user per rule type. Used for escalating action thresholds.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (SERIAL, PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>rule_type</code> (TEXT, NOT NULL)
+- <code>violation_count</code> (INTEGER, DEFAULT 1)
+- <code>last_violation</code> (TIMESTAMPTZ, DEFAULT NOW())
+- <code>total_points</code> (INTEGER, DEFAULT 0)
+- <code>context</code> (JSONB)
+- <code>updated_at</code> (TIMESTAMPTZ, DEFAULT NOW())</p>
+<p><strong>Unique constraint:</strong> <code>(guild_id, user_id, rule_type)</code></p>
+<p><strong>Indexes:</strong> <code>idx_automod_user_history_guild_user</code> on <code>(guild_id, user_id)</code></p>
+<hr />
+<hr />
+<h2 id="engagement-tables">Engagement Tables<a class="headerlink" href="#engagement-tables" title="Permanent link">&para;</a></h2>
+<p>Added in migration <code>020_engagement_system</code>. All tables are multi-guild scoped via <code>guild_id</code>.</p>
+<h3 id="engagement_badges"><code>engagement_badges</code><a class="headerlink" href="#engagement_badges" title="Permanent link">&para;</a></h3>
+<p>Per-user, per-guild badge history.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (BIGSERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>badge_key</code> (TEXT, NOT NULL): e.g. <code>winner</code>, <code>og</code>, <code>motivator</code>
+- <code>assigned_at</code> (TIMESTAMPTZ, DEFAULT NOW())</p>
+<p><strong>Indexes:</strong> <code>idx_eng_badges_guild_user</code> on <code>(guild_id, user_id)</code></p>
+<hr />
+<h3 id="engagement_og_claims"><code>engagement_og_claims</code><a class="headerlink" href="#engagement_og_claims" title="Permanent link">&para;</a></h3>
+<p>Tracks which users have claimed an OG spot per guild.</p>
+<p><strong>Columns:</strong>
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>claimed_at</code> (TIMESTAMPTZ, DEFAULT NOW())</p>
+<p><strong>Primary Key:</strong> <code>(guild_id, user_id)</code></p>
+<p><strong>Indexes:</strong> <code>idx_eng_og_claims_guild</code> on <code>(guild_id)</code></p>
+<hr />
+<h3 id="engagement_og_setup"><code>engagement_og_setup</code><a class="headerlink" href="#engagement_og_setup" title="Permanent link">&para;</a></h3>
+<p>One row per guild storing the OG claim message location.</p>
+<p><strong>Columns:</strong>
+- <code>guild_id</code> (BIGINT PRIMARY KEY)
+- <code>message_id</code> (BIGINT)
+- <code>channel_id</code> (BIGINT)
+- <code>updated_at</code> (TIMESTAMPTZ, DEFAULT NOW())</p>
+<hr />
+<h3 id="engagement_challenges"><code>engagement_challenges</code><a class="headerlink" href="#engagement_challenges" title="Permanent link">&para;</a></h3>
+<p>Challenge sessions per guild.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (BIGSERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>channel_id</code> (BIGINT): Channel where messages are counted
+- <code>mode</code> (TEXT, DEFAULT <code>'leaderboard'</code>): <code>leaderboard</code> or <code>random</code>
+- <code>title</code> (TEXT)
+- <code>active</code> (BOOLEAN, DEFAULT TRUE)
+- <code>started_at</code> (TIMESTAMPTZ, DEFAULT NOW())
+- <code>ends_at</code> (TIMESTAMPTZ)
+- <code>ended_at</code> (TIMESTAMPTZ)
+- <code>winner_id</code> (BIGINT)
+- <code>messages_count</code> (INT)</p>
+<p><strong>Indexes:</strong> <code>idx_eng_challenges_guild_active</code> on <code>(guild_id, active)</code></p>
+<hr />
+<h3 id="engagement_participants"><code>engagement_participants</code><a class="headerlink" href="#engagement_participants" title="Permanent link">&para;</a></h3>
+<p>Per-challenge participant message counts.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (BIGSERIAL PRIMARY KEY)
+- <code>challenge_id</code> (BIGINT, NOT NULL, FK → <code>engagement_challenges.id</code> ON DELETE CASCADE)
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>message_count</code> (INT, DEFAULT 0)</p>
+<p><strong>Unique:</strong> <code>(challenge_id, user_id)</code></p>
+<p><strong>Indexes:</strong> <code>idx_eng_participants_challenge</code> on <code>(challenge_id)</code></p>
+<hr />
+<h3 id="engagement_weekly_messages"><code>engagement_weekly_messages</code><a class="headerlink" href="#engagement_weekly_messages" title="Permanent link">&para;</a></h3>
+<p>Indexed messages for weekly award computation.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (BIGSERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>message_id</code> (BIGINT, NOT NULL)
+- <code>channel_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>created_at</code> (TIMESTAMPTZ, NOT NULL)
+- <code>has_image</code> (BOOLEAN, DEFAULT FALSE)
+- <code>is_food</code> (BOOLEAN, DEFAULT FALSE)
+- <code>reactions_count</code> (INT, DEFAULT 0)</p>
+<p><strong>Unique:</strong> <code>(guild_id, message_id)</code></p>
+<p><strong>Indexes:</strong> <code>idx_eng_weekly_msgs_guild_created</code> on <code>(guild_id, created_at)</code></p>
+<hr />
+<h3 id="engagement_weekly_awards"><code>engagement_weekly_awards</code><a class="headerlink" href="#engagement_weekly_awards" title="Permanent link">&para;</a></h3>
+<p>Weekly award period bookkeeping per guild.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (BIGSERIAL PRIMARY KEY)
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>week_start</code> (DATE, NOT NULL)
+- <code>week_end</code> (DATE, NOT NULL)</p>
+<p><strong>Unique:</strong> <code>(guild_id, week_start, week_end)</code></p>
+<p><strong>Indexes:</strong> <code>idx_eng_weekly_awards_guild</code> on <code>(guild_id)</code></p>
+<hr />
+<h3 id="engagement_weekly_results"><code>engagement_weekly_results</code><a class="headerlink" href="#engagement_weekly_results" title="Permanent link">&para;</a></h3>
+<p>Per-period winner records.</p>
+<p><strong>Columns:</strong>
+- <code>id</code> (BIGSERIAL PRIMARY KEY)
+- <code>week_id</code> (BIGINT, NOT NULL, FK → <code>engagement_weekly_awards.id</code> ON DELETE CASCADE)
+- <code>award_key</code> (TEXT, NOT NULL): e.g. <code>motivator</code>, <code>star</code>
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>metric</code> (INT): Score used to determine winner
+- <code>message_id</code> (BIGINT): Winning message ID (reactions filter only)</p>
+<p><strong>Unique:</strong> <code>(week_id, award_key)</code></p>
+<hr />
+<h3 id="engagement_streaks"><code>engagement_streaks</code><a class="headerlink" href="#engagement_streaks" title="Permanent link">&para;</a></h3>
+<p>Daily activity streak per user per guild.</p>
+<p><strong>Columns:</strong>
+- <code>guild_id</code> (BIGINT, NOT NULL)
+- <code>user_id</code> (BIGINT, NOT NULL)
+- <code>last_day</code> (DATE): Last date a message was sent
+- <code>current_days</code> (INT, DEFAULT 0): Current streak length
+- <code>base_nickname</code> (TEXT): Stored base nickname (without suffix)</p>
+<p><strong>Primary Key:</strong> <code>(guild_id, user_id)</code></p>
+<p><strong>Indexes:</strong> <code>idx_eng_streaks_guild</code> on <code>(guild_id)</code></p>
+<hr />
+<h2 id="backup-recommendations">Backup Recommendations<a class="headerlink" href="#backup-recommendations" title="Permanent link">&para;</a></h2>
+<p>Regular backups should include:
+- All tables (full database backup recommended)
+- Focus on <code>bot_settings</code>, <code>reminders</code>, <code>support_tickets</code>, <code>onboarding</code> for critical data
+- <code>audit_logs</code> and <code>health_check_history</code> can be excluded from frequent backups (analytics only)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

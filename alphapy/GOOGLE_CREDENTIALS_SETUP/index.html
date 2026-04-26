@@ -1,0 +1,1757 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Central documentation hub for all Innersync services.">
+      
+      
+      
+        <link rel="canonical" href="https://docs.innersync.tech/alphapy/GOOGLE_CREDENTIALS_SETUP/">
+      
+      
+        <link rel="prev" href="../SECURITY/">
+      
+      
+        <link rel="next" href="../RAILWAY_SECRET_MANAGER_SETUP/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Google Credentials Setup - Innersync Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#google-cloud-credentials-setup-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Innersync Documentation" class="md-header__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Innersync Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Google Credentials Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Innersync Documentation" class="md-nav__button md-logo" aria-label="Innersync Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Innersync Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Innersync-tech/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Innersync-tech/docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alphapy
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alphapy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../premium/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Premium
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ALPHAPY_AUTHENTICATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OPERATIONAL_PLAYBOOK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Playbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Credentials Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Credentials Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-google-cloud-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Google Cloud Project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Google Cloud Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-a-project-or-use-existing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Create a project (or use existing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-enable-google-drive-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Enable Google Drive API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-create-service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Service Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-grant-permissions-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Grant Permissions (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-create-json-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Create JSON Key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-grant-drive-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Grant Drive Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: Grant Drive Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-share-drive-folderfile-with-service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Share Drive folder/file with service account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-share-entire-drive-not-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Share entire Drive (not recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-configure-in-alphapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Configure in Alphapy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Configure in Alphapy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-local-development-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For local development (.env)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-production-secret-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For production (Secret Manager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-test-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Test the configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-permission-denied-or-access-denied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Permission denied" or "Access denied"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-invalid-credentials-or-json-decode-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Invalid credentials" or "JSON decode error"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-drive-api-not-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Drive API not enabled"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-service-account-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Service account not found"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Need help?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAILWAY_SECRET_MANAGER_SETUP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Railway Secret Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Legal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/legal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legal Information
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/terms-of-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terms of Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/privacy-policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../legal/pricing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pricing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-google-cloud-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Google Cloud Project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Google Cloud Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-a-project-or-use-existing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Create a project (or use existing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-enable-google-drive-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Enable Google Drive API
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-create-service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Create Service Account
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-grant-permissions-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Grant Permissions (optional)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-create-json-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Create JSON Key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-grant-drive-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Grant Drive Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6: Grant Drive Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-share-drive-folderfile-with-service-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Share Drive folder/file with service account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-share-entire-drive-not-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Share entire Drive (not recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-configure-in-alphapy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Configure in Alphapy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Configure in Alphapy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-local-development-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For local development (.env)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-production-secret-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For production (Secret Manager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-8-test-the-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8: Test the configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-permission-denied-or-access-denied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Permission denied" or "Access denied"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-invalid-credentials-or-json-decode-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Invalid credentials" or "JSON decode error"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-drive-api-not-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Drive API not enabled"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-service-account-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error: "Service account not found"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security best practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#need-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Need help?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="google-cloud-credentials-setup-guide">Google Cloud Credentials Setup Guide<a class="headerlink" href="#google-cloud-credentials-setup-guide" title="Permanent link">&para;</a></h1>
+<p>Step-by-step guide for creating Google Cloud service account credentials for Alphapy.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>You need:
+1. A Google Cloud Project (or create a new one)
+2. A Service Account with Drive API access
+3. A JSON key file for authentication</p>
+<h2 id="step-1-google-cloud-project">Step 1: Google Cloud Project<a class="headerlink" href="#step-1-google-cloud-project" title="Permanent link">&para;</a></h2>
+<h3 id="11-create-a-project-or-use-existing">1.1 Create a project (or use existing)<a class="headerlink" href="#11-create-a-project-or-use-existing" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to <a href="https://console.cloud.google.com/">Google Cloud Console</a></li>
+<li>Click the project dropdown (top, next to "Google Cloud")</li>
+<li>Click <strong>"NEW PROJECT"</strong></li>
+<li>Fill in:</li>
+<li><strong>Project name</strong>: <code>alphapy-drive-integration</code> (or choose your own name)</li>
+<li><strong>Organization</strong>: Leave empty or select your organization</li>
+<li>Click <strong>"CREATE"</strong></li>
+<li>Wait until the project is created</li>
+<li>Select the new project in the dropdown</li>
+</ol>
+<p><strong>Or use an existing project:</strong>
+- Select your existing project from the dropdown</p>
+<p><strong>Note:</strong> Write down your <strong>Project ID</strong> (not the name, but the ID like <code>drive-integration-456012</code>)</p>
+<h2 id="step-2-enable-google-drive-api">Step 2: Enable Google Drive API<a class="headerlink" href="#step-2-enable-google-drive-api" title="Permanent link">&para;</a></h2>
+<ol>
+<li>In Google Cloud Console, go to <strong>"APIs &amp; Services" &gt; "Library"</strong></li>
+<li>Search for <strong>"Google Drive API"</strong></li>
+<li>Click <strong>"Google Drive API"</strong></li>
+<li>Click <strong>"ENABLE"</strong></li>
+<li>Wait until the API is enabled</li>
+</ol>
+<h2 id="step-3-create-service-account">Step 3: Create Service Account<a class="headerlink" href="#step-3-create-service-account" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Go to <strong>"IAM &amp; Admin" &gt; "Service Accounts"</strong></li>
+<li>Click <strong>"+ CREATE SERVICE ACCOUNT"</strong></li>
+<li>Fill in:</li>
+<li><strong>Service account name</strong>: <code>alphapy-drive-reader</code> (or choose your own name)</li>
+<li><strong>Service account ID</strong>: Auto-generated (e.g. <code>alphapy-drive-reader</code>)</li>
+<li><strong>Description</strong>: <code>Service account for Alphapy bot to read PDFs from Google Drive</code></li>
+<li>Click <strong>"CREATE AND CONTINUE"</strong></li>
+</ol>
+<h2 id="step-4-grant-permissions-optional">Step 4: Grant Permissions (optional)<a class="headerlink" href="#step-4-grant-permissions-optional" title="Permanent link">&para;</a></h2>
+<p>For read-only Drive access, no extra IAM role is needed—we use API scopes only.</p>
+<ol>
+<li>Leave <strong>"Grant this service account access to project"</strong> empty (not needed)</li>
+<li>Click <strong>"CONTINUE"</strong></li>
+<li>Click <strong>"DONE"</strong></li>
+</ol>
+<h2 id="step-5-create-json-key">Step 5: Create JSON Key<a class="headerlink" href="#step-5-create-json-key" title="Permanent link">&para;</a></h2>
+<ol>
+<li>In the <strong>Service Accounts</strong> list, click your new service account</li>
+<li>Go to the <strong>"KEYS"</strong> tab</li>
+<li>Click <strong>"ADD KEY" &gt; "Create new key"</strong></li>
+<li>Select <strong>"JSON"</strong></li>
+<li>Click <strong>"CREATE"</strong></li>
+<li>A JSON file will be downloaded automatically</li>
+</ol>
+<p><strong>Important:</strong>
+- Store this file securely—it contains your private key
+- Never add it to git (already in <code>.gitignore</code>)
+- If you lose it, you must create a new key</p>
+<h2 id="step-6-grant-drive-access">Step 6: Grant Drive Access<a class="headerlink" href="#step-6-grant-drive-access" title="Permanent link">&para;</a></h2>
+<p>The service account can access Google Cloud but not yet specific Drive files.</p>
+<h3 id="option-a-share-drive-folderfile-with-service-account">Option A: Share Drive folder/file with service account<a class="headerlink" href="#option-a-share-drive-folderfile-with-service-account" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open Google Drive</li>
+<li>Right-click the folder/file you want to share</li>
+<li>Click <strong>"Share"</strong></li>
+<li>Add the <strong>service account email</strong> (e.g. <code>alphapy-drive-reader@drive-integration-456012.iam.gserviceaccount.com</code>)</li>
+<li>Grant <strong>"Viewer"</strong> permissions (read-only)</li>
+<li>Click <strong>"Send"</strong></li>
+</ol>
+<p><strong>Finding the service account email:</strong>
+- Google Cloud Console &gt; IAM &amp; Admin &gt; Service Accounts
+- Click your service account
+- The email is shown at the top (e.g. <code>alphapy-drive-reader@PROJECT_ID.iam.gserviceaccount.com</code>)</p>
+<h3 id="option-b-share-entire-drive-not-recommended">Option B: Share entire Drive (not recommended)<a class="headerlink" href="#option-b-share-entire-drive-not-recommended" title="Permanent link">&para;</a></h3>
+<p>If you want the service account to read all Drive files:
+1. Share your entire Google Drive with the service account email
+2. Grant "Viewer" permissions</p>
+<p><strong>Note:</strong> This gives access to all files—use only when necessary.</p>
+<h2 id="step-7-configure-in-alphapy">Step 7: Configure in Alphapy<a class="headerlink" href="#step-7-configure-in-alphapy" title="Permanent link">&para;</a></h2>
+<h3 id="for-local-development-env">For local development (.env)<a class="headerlink" href="#for-local-development-env" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open the downloaded JSON file</li>
+<li>Copy the <strong>entire</strong> JSON content</li>
+<li>Open your <code>.env</code> file</li>
+<li>Add (on a single line, without extra quotes):
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">GOOGLE_CREDENTIALS_JSON</span><span class="o">={</span><span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;service_account&quot;</span>,<span class="s2">&quot;project_id&quot;</span>:<span class="s2">&quot;...&quot;</span>,<span class="s2">&quot;private_key_id&quot;</span>:<span class="s2">&quot;...&quot;</span>,<span class="s2">&quot;private_key&quot;</span>:<span class="s2">&quot;...&quot;</span>,<span class="s2">&quot;client_email&quot;</span>:<span class="s2">&quot;...&quot;</span>,<span class="s2">&quot;client_id&quot;</span>:<span class="s2">&quot;...&quot;</span>,<span class="s2">&quot;auth_uri&quot;</span>:<span class="s2">&quot;https://accounts.google.com/o/oauth2/auth&quot;</span>,<span class="s2">&quot;token_uri&quot;</span>:<span class="s2">&quot;https://oauth2.googleapis.com/token&quot;</span>,<span class="s2">&quot;auth_provider_x509_cert_url&quot;</span>:<span class="s2">&quot;https://www.googleapis.com/oauth2/v1/certs&quot;</span>,<span class="s2">&quot;client_x509_cert_url&quot;</span>:<span class="s2">&quot;...&quot;</span><span class="o">}</span>
+</code></pre></div></li>
+</ol>
+<p><strong>Important:</strong>
+- Put the entire JSON on <strong>one line</strong>
+- Do <strong>not</strong> add extra quotes around the JSON (<code>""</code> or <code>''</code>)
+- Or use single quotes: <code>GOOGLE_CREDENTIALS_JSON='{...}'</code></p>
+<p><strong>Example:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">GOOGLE_CREDENTIALS_JSON</span><span class="o">={</span><span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;service_account&quot;</span>,<span class="s2">&quot;project_id&quot;</span>:<span class="s2">&quot;drive-integration-456012&quot;</span>,<span class="s2">&quot;private_key_id&quot;</span>:<span class="s2">&quot;abc123&quot;</span>,<span class="s2">&quot;private_key&quot;</span>:<span class="s2">&quot;-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n&quot;</span>,<span class="s2">&quot;client_email&quot;</span>:<span class="s2">&quot;alphapy-drive-reader@drive-integration-456012.iam.gserviceaccount.com&quot;</span>,<span class="s2">&quot;client_id&quot;</span>:<span class="s2">&quot;123456789&quot;</span>,<span class="s2">&quot;auth_uri&quot;</span>:<span class="s2">&quot;https://accounts.google.com/o/oauth2/auth&quot;</span>,<span class="s2">&quot;token_uri&quot;</span>:<span class="s2">&quot;https://oauth2.googleapis.com/token&quot;</span>,<span class="s2">&quot;auth_provider_x509_cert_url&quot;</span>:<span class="s2">&quot;https://www.googleapis.com/oauth2/v1/certs&quot;</span>,<span class="s2">&quot;client_x509_cert_url&quot;</span>:<span class="s2">&quot;https://www.googleapis.com/robot/v1/metadata/x509/alphapy-drive-reader%40drive-integration-456012.iam.gserviceaccount.com&quot;</span><span class="o">}</span>
+</code></pre></div></p>
+<h3 id="for-production-secret-manager">For production (Secret Manager)<a class="headerlink" href="#for-production-secret-manager" title="Permanent link">&para;</a></h3>
+<p>If you use Secret Manager:</p>
+<ol>
+<li>
+<p><strong>Create secret in Secret Manager:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Via gcloud CLI</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cat<span class="w"> </span>your-service-account-key.json<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>gcloud<span class="w"> </span>secrets<span class="w"> </span>create<span class="w"> </span>alphapy-google-credentials<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--data-file<span class="o">=</span>-<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--project<span class="o">=</span>YOUR_PROJECT_ID
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Or via Google Cloud Console:</strong></p>
+</li>
+<li>Go to <strong>"Security" &gt; "Secret Manager"</strong></li>
+<li>Click <strong>"+ CREATE SECRET"</strong></li>
+<li><strong>Name</strong>: <code>alphapy-google-credentials</code></li>
+<li><strong>Secret value</strong>: Paste the full JSON content</li>
+<li>
+<p>Click <strong>"CREATE SECRET"</strong></p>
+</li>
+<li>
+<p><strong>Grant Railway/service access:</strong></p>
+</li>
+<li>See <a href="../RAILWAY_SECRET_MANAGER_SETUP/">docs/RAILWAY_SECRET_MANAGER_SETUP.md</a></li>
+</ol>
+<h2 id="step-8-test-the-configuration">Step 8: Test the configuration<a class="headerlink" href="#step-8-test-the-configuration" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Restart your bot</li>
+<li>
+<p>Check the logs for:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>🔍 Verifying Google Drive configuration...
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>🔐 Loading Google Service Account credentials from environment variable
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>✅ Google Drive service account authentication successful
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>✅ Google Drive configuration verified and ready
+</code></pre></div></p>
+</li>
+<li>
+<p>Test with <code>/learn_topic</code> command:</p>
+</li>
+<li>Use a topic that has a PDF in Drive</li>
+<li>Verify the bot can read the PDF</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="error-permission-denied-or-access-denied">Error: "Permission denied" or "Access denied"<a class="headerlink" href="#error-permission-denied-or-access-denied" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Solution</strong>: Share the Drive folder/file with the service account email</li>
+<li>Check you are using the correct email (with <code>.iam.gserviceaccount.com</code>)</li>
+</ul>
+<h3 id="error-invalid-credentials-or-json-decode-error">Error: "Invalid credentials" or "JSON decode error"<a class="headerlink" href="#error-invalid-credentials-or-json-decode-error" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Solution</strong>: Verify the JSON is correctly formatted in <code>.env</code></li>
+<li>Ensure the entire JSON is on one line</li>
+<li>Remove extra quotes at the beginning/end</li>
+</ul>
+<h3 id="error-drive-api-not-enabled">Error: "Drive API not enabled"<a class="headerlink" href="#error-drive-api-not-enabled" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Solution</strong>: Enable Google Drive API in Google Cloud Console</li>
+<li>Go to APIs &amp; Services &gt; Library &gt; Google Drive API &gt; ENABLE</li>
+</ul>
+<h3 id="error-service-account-not-found">Error: "Service account not found"<a class="headerlink" href="#error-service-account-not-found" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Solution</strong>: Check you are using the correct project</li>
+<li>Verify the service account exists in the project</li>
+</ul>
+<h2 id="security-best-practices">Security best practices<a class="headerlink" href="#security-best-practices" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Rotate keys regularly</strong> (every 90 days recommended)</li>
+<li><strong>Use Secret Manager in production</strong> (not environment variables)</li>
+<li><strong>Grant minimal permissions</strong> (only "Viewer" on specific folders)</li>
+<li><strong>Monitor access</strong> via Cloud Audit Logs</li>
+<li><strong>Delete old keys</strong> when creating new ones</li>
+</ol>
+<h2 id="summary-checklist">Summary checklist<a class="headerlink" href="#summary-checklist" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[ ] Google Cloud Project created/selected</li>
+<li>[ ] Google Drive API enabled</li>
+<li>[ ] Service Account created</li>
+<li>[ ] JSON key downloaded</li>
+<li>[ ] Drive folder/file shared with service account email</li>
+<li>[ ] JSON added to <code>.env</code> (local) or Secret Manager (production)</li>
+<li>[ ] Bot restarted and logs checked</li>
+<li>[ ] Tested with <code>/learn_topic</code> command</li>
+</ul>
+<h2 id="need-help">Need help?<a class="headerlink" href="#need-help" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://cloud.google.com/iam/docs/service-accounts">Google Cloud Service Accounts Documentation</a></li>
+<li><a href="https://developers.google.com/drive/api">Google Drive API Documentation</a></li>
+<li><a href="../SECURITY/">Alphapy Security Guide</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
