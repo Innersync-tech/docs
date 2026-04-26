@@ -2,7 +2,6 @@
 layout: default
 title: Core
 nav_order: 5
-has_children: true
 permalink: /core/
 ---
 
