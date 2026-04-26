@@ -1,8 +1,7 @@
 ---
-layout: default
-title: Alphapy
-nav_order: 2
-permalink: /alphapy/
+layout: page
+title: Innersync • Alphapy Legal Hub
+permalink: /
 ---
 
 # Innersync • Alphapy Documentation Hub
