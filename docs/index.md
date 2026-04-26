@@ -1,18 +1,12 @@
----
-layout: default
-title: Home
-nav_order: 1
----
-
 # Innersync Documentation Hub
 
 Central documentation for all Innersync services.
 
 ## Services
 
-- [Alphapy](alphapy/) — Discord bot for the Innersync • Alphapips community
-- [App](app/) — Dashboard and web interface *(coming soon)*
-- [Core](core/) — Core API and backend services *(coming soon)*
+- [Alphapy](alphapy/index.md) — Discord bot for the Innersync • Alphapips community
+- [App](app/index.md) — Dashboard and web interface *(coming soon)*
+- [Core](core/index.md) — Core API and backend services *(coming soon)*
 
 ## Legal
 

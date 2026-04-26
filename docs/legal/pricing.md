@@ -1,16 +1,10 @@
----
-layout: page
-title: Premium Pricing
-permalink: /pricing/
----
-
 # Alphapy Premium Features & Pricing
 
-_Last updated: 2026-02-28_
+_Last updated: 2026-04-07_
 
 ## Overview
 
-Alphapy offers premium features to enhance your Discord community's experience with advanced AI coaching, professional support tools, and premium customization options. All premium features are managed through secure subscription billing via [Lemon Squeezy](https://lemonsqueezy.com).
+Alphapy offers premium features to enhance your Discord community's experience with advanced AI coaching, professional support tools, and premium customization options. All premium features are managed through secure subscription billing via Mollie B.V.
 
 ## Subscription Plans
 
@@ -22,18 +16,19 @@ Alphapy offers premium features to enhance your Discord community's experience w
 - No setup fees
 
 ### Annual Plan
-**€29/year** (€2.42/month equivalent)
+**€59.99/year** (€5.00/month equivalent)
 
 - All premium features unlocked
-- 38% savings vs monthly
+- Save vs monthly billing
 - Annual billing
+- Early bird: **€29** with code `EARLYBIRD50` (first 50 founders)
 
 ### Lifetime Plan
-**€49 one-time payment**
+**€99.99 one-time payment**
 
 - All premium features unlocked forever
 - No recurring charges
-- First 50 customers: €20 early bird pricing
+- Early bird: **€49** with code `EARLYBIRD50` (first 50 founders)
 
 ## Premium Features
 
@@ -60,18 +55,18 @@ Alphapy offers premium features to enhance your Discord community's experience w
 
 ## How It Works
 
-1. **Subscribe**: Choose your plan on [Lemon Squeezy](https://lemonsqueezy.com)
+1. **Subscribe**: Choose your plan on [pricing.alphapy.innersync.tech](https://pricing.alphapy.innersync.tech)
 2. **Activate**: Use `/premium` command in your Discord server
 3. **Link**: Associate your subscription with your Discord server
 4. **Enjoy**: All premium features automatically unlock
 
 ## Billing & Payments
 
-- **Payment Processor**: Lemon Squeezy (PCI DSS compliant)
-- **Supported Payment Methods**: Credit cards, PayPal, and more
+- **Payment Processor**: Mollie B.V. (licensed payment institution, GDPR compliant)
+- **Supported Payment Methods**: Credit cards, bank transfers, and more
 - **Currency**: Euro (€)
-- **Taxes**: Included where applicable
-- **Refunds**: 14-day refund policy for technical issues
+- **Taxes**: VAT exempt
+- **Refunds**: 30-day money-back guarantee on first purchase (see [Terms of Service](./terms-of-service.md))
 
 ## Transfer Policy
 
@@ -80,7 +75,7 @@ Premium subscriptions can be transferred between Discord servers using the `/pre
 ## Support
 
 For pricing questions or subscription issues:
-- Email: bryan.dhaen@gmail.com
+- Email: support@innersync.tech
 - Discord: Join our support server
 
 ## Terms & Conditions
@@ -89,4 +84,4 @@ Premium subscriptions are subject to our [Terms of Service](./terms-of-service.m
 
 ---
 
-*Alphapy is developed and maintained by bryan.dhaen@gmail.com. All prices exclude applicable taxes.*
+*Alphapy is developed and maintained by Innersync. All prices are in EUR. VAT exempt.*

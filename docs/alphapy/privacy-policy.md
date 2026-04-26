@@ -1,9 +1,3 @@
----
-layout: page
-title: Privacy Policy
-permalink: /privacy-policy/
----
-
 # Innersync • Alphapy Bot Privacy Policy
 
 _Last updated: 2026-04-13_

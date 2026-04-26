@@ -5,8 +5,8 @@ Quick checklist and verification steps after adding the bot to a new server.
 ## Related docs
 
 - **Multi-guild configuration** (required channels, feature config): [configuration.md](configuration.md)
-- **Reminders** (one-off vs recurring, embed watcher): [AGENTS.md](../AGENTS.md) (EmbedReminderWatcher, ReminderManager)
-- **Ticket system**: [AGENTS.md](../AGENTS.md) and [configuration.md](configuration.md)
+- **Reminders** (one-off vs recurring, embed watcher): [commands.md](commands.md) (EmbedReminderWatcher, ReminderManager)
+- **Ticket system**: [commands.md](commands.md) and [configuration.md](configuration.md)
 
 ## Pre-flight checklist
 
