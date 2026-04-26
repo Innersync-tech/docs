@@ -1,12 +1,6 @@
----
-layout: page
-title: Terms of Service
-permalink: /terms-of-service/
----
-
 # Innersync • Alphapy Bot Terms of Service
 
-_Last updated: 2026-03-02_
+_Last updated: 2026-04-07_
 
 Thank you for using the Innersync • Alphapy Discord Bot (“**Innersync • Alphapy**”, “**Bot**”, “**we**”, “**us**”, “**our**”). These Terms of Service (“**Terms**”) set out the rules that govern how you access and use the Bot and its related functionality, including our pricing and information website at **pricing.alphapy.innersync.tech** (the "**Pricing Site**"). By inviting the Bot to a Discord server, configuring it, interacting with any of its commands, or visiting or using the Pricing Site, you agree to be bound by these Terms. If you do not agree, do not use the Bot or the Pricing Site.
 
@@ -34,17 +28,17 @@ We may update, add, or remove features without prior notice. Some functionality 
 ## 3. Premium Services and Billing
 
 ### 3.1 Subscription Services
-Certain features of the Bot require a premium subscription ("Premium Services"). Premium subscriptions are billed through our payment processor (Lemon Squeezy) and provide access to enhanced features across all servers where the subscribing user is a member.
+Certain features of the Bot require a premium subscription ("Premium Services"). Premium subscriptions are billed through our payment processor (Mollie B.V.) and provide access to enhanced features across all servers where the subscribing user is a member.
 
 ### 3.2 Pricing and Billing
 - Monthly subscription: €4.99/month
-- Yearly subscription: €29/year (early bird pricing)
-- Lifetime access: €49 one-time (first 50 members: €20 early bird)
+- Annual subscription: €59.99/year (early bird: €29 with code EARLYBIRD50 for the first 50 founders)
+- Lifetime access: €99.99 one-time (early bird: €49 with code EARLYBIRD50 for the first 50 founders)
 
 All prices are in Euros and exclude applicable taxes. Prices may change with 30 days notice.
 
 ### 3.3 Payment Processing
-Payments are processed securely through Lemon Squeezy. We do not store credit card information. Billing disputes should be directed to your payment provider or Lemon Squeezy support.
+Payments are processed securely through Mollie B.V.. We do not store credit card information. Billing disputes should be directed to your payment provider or Mollie B.V. support.
 
 ### 3.4 Subscription Management
 - Subscriptions auto-renew unless cancelled

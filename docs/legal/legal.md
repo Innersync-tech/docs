@@ -1,9 +1,3 @@
----
-layout: page
-title: Legal Information
-permalink: /legal/
----
-
 # Legal Information
 
 **Innersync**  

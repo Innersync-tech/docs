@@ -1,11 +1,3 @@
----
-layout: default
-title: Privacy Policy
-parent: Legal
-nav_order: 2
-permalink: /legal/privacy-policy/
----
-
 # Innersync • Alphapy Bot Privacy Policy
 
 _Last updated: 2026-04-07_
