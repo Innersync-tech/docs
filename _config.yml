@@ -5,6 +5,14 @@ markdown: kramdown
 
 url: "https://docs.innersync.tech"
 baseurl: ""
+exclude:
+  - CLAUDE.md
+  - alphapy/legal.md
+  - alphapy/terms-of-service.md
+  - alphapy/privacy-policy.md
+  - alphapy/pricing.md
+  - alphapy/CNAME
+  - alphapy/_config.yml
 
 # Just the Docs configuration
 search_enabled: true
@@ -39,6 +47,34 @@ defaults:
       has_children: true
       nav_order: 2
       permalink: /alphapy/
+  - scope:
+      path: "app"
+      type: "pages"
+    values:
+      layout: default
+      parent: App
+  - scope:
+      path: "app/index.md"
+      type: "pages"
+    values:
+      parent:
+      has_children: true
+      nav_order: 4
+      permalink: /app/
+  - scope:
+      path: "core"
+      type: "pages"
+    values:
+      layout: default
+      parent: Core
+  - scope:
+      path: "core/index.md"
+      type: "pages"
+    values:
+      parent:
+      has_children: true
+      nav_order: 5
+      permalink: /core/
 
 plugins:
   - jekyll-remote-theme

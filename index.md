@@ -11,8 +11,8 @@ Central documentation for all Innersync services.
 ## Services
 
 - [Alphapy](alphapy/) — Discord bot for the Innersync • Alphapips community
+- [App](app/) — Dashboard and web interface *(coming soon)*
 - [Core](core/) — Core API and backend services *(coming soon)*
-- [Mind](mind/) — Dashboard and web interface *(coming soon)*
 
 ## Legal
 
