@@ -1,10 +1,3 @@
----
-layout: default
-title: Premium
-parent: Alphapy
-nav_order: 4
----
-
 # Premium Tier
 
 The Alphapy bot supports a Premium tier for mature users. Premium features are gated via `utils/premium_guard.is_premium(user_id, guild_id)`.

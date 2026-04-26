@@ -1,10 +1,3 @@
----
-layout: default
-title: API Reference
-parent: Alphapy
-nav_order: 3
----
-
 # API Reference
 
 Complete API documentation for the Alphapy Discord Bot FastAPI server.
@@ -28,17 +21,21 @@ All API endpoints are prefixed with `/api` unless otherwise noted.
 - `/api/dashboard/metrics` (or `/api/metrics` alias) for live metrics
 - `/api/health` for health checks
 - Dashboard configuration endpoints for web UI management
+- `/api/observability` for internal/ops observability snapshots (not part of Alphapy dashboard configuration flows)
 
 ## Authentication
 
 Most endpoints require authentication via:
-- **API Key**: Pass in `X-API-Key` header
-- **Supabase JWT**: Pass in `Authorization: Bearer <token>` header for dashboard endpoints
-- **User ID**: Pass in `X-User-Id` header (for user-specific endpoints)
+- **Supabase JWT**: `Authorization: Bearer <token>` (preferred)
+- **API Key**: `X-API-Key` (fallback when JWT is not present/invalid and `API_KEY` is configured)
 
-Example:
+Important:
+- User identity is derived from verified JWT claims (`sub`) only.
+- `X-User-Id` is not trusted for authentication or authorization.
+
+Example (JWT):
 ```bash
-curl -H "X-API-Key: your_api_key" -H "X-User-Id: 123456789" \
+curl -H "Authorization: Bearer <supabase_jwt>" \
   https://your-bot-url/api/reminders/123456789
 ```
 
@@ -60,7 +57,7 @@ Enhanced health check endpoint with detailed metrics.
 ```json
 {
   "service": "alphapy",
-  "version": "2.4.0",
+  "version": "3.6.0",
   "uptime_seconds": 3600,
   "db_status": "ok",
   "timestamp": "2026-01-21T12:00:00Z",
@@ -83,6 +80,35 @@ Simple status check endpoint (legacy, no authentication required).
   "uptime": "60 min"
 }
 ```
+
+#### `GET /api/observability`
+
+Internal observability snapshot endpoint.
+
+This endpoint is intended for Mind/internal monitoring and operations use. It is not a `/api/dashboard/*` configuration endpoint.
+
+Returns rolling in-memory request metrics for API and webhook traffic:
+- success rate
+- latency percentiles (`p50`, `p95`, `p99`)
+- request counts
+
+**Response:**
+```json
+{
+  "api": {
+    "requests": 120,
+    "success_rate": 0.9917,
+    "latency_ms": { "p50": 12.4, "p95": 43.9, "p99": 81.2 }
+  },
+  "webhooks": {
+    "requests": 45,
+    "success_rate": 1.0,
+    "latency_ms": { "p50": 7.1, "p95": 18.0, "p99": 28.3 }
+  }
+}
+```
+
+All responses now include an `X-Request-ID` header for request correlation.
 
 **Fields:**
 - `service`: Service name
@@ -109,7 +135,7 @@ Get historical health check data for trend analysis.
   "history": [
     {
       "service": "alphapy",
-      "version": "2.4.0",
+      "version": "3.6.0",
       "uptime_seconds": 3600,
       "db_status": "ok",
       "guild_count": 2,
@@ -139,7 +165,7 @@ Comprehensive dashboard metrics including bot status, Grok/LLM stats, reminders,
 ```json
 {
   "bot": {
-    "version": "2.4.0",
+    "version": "3.6.0",
     "codename": "Lifecycle Manager",
     "online": true,
     "latency_ms": 45.2,
@@ -150,11 +176,19 @@ Comprehensive dashboard metrics including bot status, Grok/LLM stats, reminders,
   },
   "gpt": {
     "last_success_time": "2026-01-21T12:00:00Z",
+    "last_error_time": "2026-01-21T12:05:00Z",
+    "last_error_type": "RateLimitError: ...",
     "average_latency_ms": 1200,
-    "total_tokens_today": 5000,
+    "total_tokens_session": 5000,
+    "current_model": "grok-3",
+    "last_user_id": 123456789,
     "success_count": 100,
     "error_count": 2,
-    ...
+    "rate_limit_hits": 1,
+    "last_rate_limit_time": "2026-01-21T12:05:00Z",
+    "last_success_latency_ms": 980,
+    "recent_successes": [...],
+    "recent_errors": [...]
   },
   "reminders": {
     "total": 15,
@@ -377,13 +411,7 @@ Save or update an onboarding question.
 
 **Request Body:** Same structure as GET response
 
-#### `PUT /api/dashboard/{guild_id}/onboarding/questions/{question_id}`
 
-Update an onboarding question.
-
-**Authentication:** Required (Supabase JWT token + guild admin access)
-
-**Request Body:** Same structure as GET response (all fields optional except `question_type`)
 
 #### `DELETE /api/dashboard/{guild_id}/onboarding/questions/{question_id}`
 
@@ -417,12 +445,6 @@ Get all onboarding rules for a guild.
 #### `POST /api/dashboard/{guild_id}/onboarding/rules`
 
 Save or update an onboarding rule.
-
-**Authentication:** Required (Supabase JWT token + guild admin access)
-
-#### `PUT /api/dashboard/{guild_id}/onboarding/rules/{rule_id}`
-
-Update an onboarding rule.
 
 **Authentication:** Required (Supabase JWT token + guild admin access)
 
@@ -683,6 +705,22 @@ Update auto-moderation settings.
 }
 ```
 
+#### `GET /api/dashboard/{guild_id}/gdpr`
+
+Get GDPR acceptance statistics for a guild.
+
+**Authentication:** Required (Supabase JWT token + guild admin access)
+
+**Response:**
+```json
+{
+  "guild_id": 123456789,
+  "acceptance_count": 42
+}
+```
+
+---
+
 #### `GET /api/dashboard/logs`
 
 Get operational logs (reconnect, disconnect, etc.) for the Mind dashboard. Requires guild admin access (verified via Supabase profile's Discord ID). Global events (e.g. `BOT_RECONNECT`, `BOT_DISCONNECT`) are included for any guild request.
@@ -724,7 +762,7 @@ Get operational logs (reconnect, disconnect, etc.) for the Mind dashboard. Requi
 
 List reminders for a specific user.
 
-**Authentication:** Required (API key + `X-User-Id` header; `X-User-Id` must match `user_id` in path)
+**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
 
 **Path Parameters:**
 - `user_id` (required): Discord user ID whose reminders to fetch
@@ -751,7 +789,9 @@ List reminders for a specific user.
 
 Create a new reminder.
 
-**Authentication:** Required (API key + `X-User-Id` header)
+**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
+
+Supports optional `Idempotency-Key` header for safe retries (duplicate requests with the same key return the cached success response instead of creating duplicate writes).
 
 **Request Body:**
 ```json
@@ -769,7 +809,9 @@ Create a new reminder.
 
 Update an existing reminder.
 
-**Authentication:** Required (API key + `X-User-Id` header; reminder's `user_id` must match `X-User-Id`)
+**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
+
+Supports optional `Idempotency-Key` header for safe retries.
 
 **Request Body:** Same as POST, include `id` in payload. All fields optional except `id` and `user_id`.
 
@@ -777,7 +819,9 @@ Update an existing reminder.
 
 Delete a reminder.
 
-**Authentication:** Required (API key + `X-User-Id` header; `created_by` must match `X-User-Id`)
+**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
+
+Supports optional `Idempotency-Key` header for safe retries.
 
 **Path Parameters:**
 - `reminder_id` (required): ID of the reminder to delete
@@ -793,7 +837,9 @@ These endpoints receive payloads from Core-API. They do not use API key authenti
 
 ### `POST /webhooks/app-reflections`
 
-Receives plaintext reflection content from the App via Core-API. Payload is stored in `app_reflections` and used for Grok context in user-self flows (e.g. `/growthcheckin` only; not used for ticket "Suggest reply" for privacy).
+Receives plaintext reflection content from the App via Core-API. Payload is stored in `app_reflections` (Railway) and used for Grok context in user-self flows (e.g. `/growthcheckin`; not used for ticket "Suggest reply" for privacy).
+
+**Note:** Grok context for `/growthcheckin` is merged from three sources: Supabase `reflections_shared` (opt-in via `bot_sharing_enabled`), Supabase `reflections` (Discord check-ins, always), and Railway `app_reflections` (this webhook, always). Max 5 reflections total.
 
 **Headers:** `X-Webhook-Signature` (optional if no secret configured)
 
@@ -824,6 +870,64 @@ Deletes a previously stored reflection when the user revokes consent in the App.
 
 **Response:** `200` with `{"status": "deleted", "count": 1}` (or `count: 0` if no row matched).
 
+### `POST /webhooks/legal-update`
+
+Triggered by a GitHub Action when `docs/terms-of-service.md` or `docs/privacy-policy.md` changes on main. Posts a formatted embed in the configured channel of the main guild (`MAIN_GUILD_ID`).
+
+**Headers:** `X-Webhook-Signature` (HMAC-SHA256; secret: `LEGAL_UPDATE_WEBHOOK_SECRET`, falls back to `APP_REFLECTIONS_WEBHOOK_SECRET` / `WEBHOOK_SECRET`)
+
+**Request body:**
+```json
+{
+  "documents": ["tos", "pp"],
+  "tos_version": "2026-03-31",
+  "pp_version": "2026-03-31"
+}
+```
+
+- `documents` (required): array of keys — `"tos"` (Terms of Service) and/or `"pp"` (Privacy Policy)
+- `tos_version` / `pp_version`: effective date string extracted from the document header (format `YYYY-MM-DD`)
+
+**Response:** `200` with `{"status": "acknowledged", "sent": "tos, pp"}`. Returns `{"status": "skipped", "reason": "..."}` if `MAIN_GUILD_ID` is not set or no target channel is configured.
+
+---
+
+### `POST /webhooks/premium-invalidate`
+
+Clears the premium cache for a user so the next check refetches from Core-API/DB. Sent by Core-API on subscription changes (new purchase, cancellation, transfer).
+
+**Headers:** `X-Webhook-Signature` (HMAC-SHA256; secret: `PREMIUM_INVALIDATE_WEBHOOK_SECRET`, falls back to `APP_REFLECTIONS_WEBHOOK_SECRET` / `WEBHOOK_SECRET`)
+
+**Request body:**
+```json
+{
+  "user_id": 123456789,
+  "guild_id": 987654321
+}
+```
+
+- `guild_id` is optional — if omitted, cache is cleared for all guilds for that user.
+
+**Response:** `200` with `{"status": "ok"}`.
+
+---
+
+### `POST /webhooks/founder`
+
+Sends a founder welcome DM to a Discord user. Triggered by Core-API when a founder purchase is confirmed.
+
+**Headers:** `X-Webhook-Signature` (HMAC-SHA256; secret: `FOUNDER_WEBHOOK_SECRET`, falls back to `APP_REFLECTIONS_WEBHOOK_SECRET` / `WEBHOOK_SECRET`)
+
+**Request body:**
+```json
+{
+  "user_id": 123456789,
+  "message": "Optional custom message to include in the DM"
+}
+```
+
+**Response:** `200` with `{"status": "ok"}` or `{"status": "dm_failed"}` if the user has DMs disabled.
+
 ## Error Responses
 
 All endpoints may return standard HTTP error codes:
@@ -842,14 +946,15 @@ Error response format:
 
 ## Rate Limiting
 
-- Health endpoints: No rate limiting
-- Metrics endpoints: Rate limited per authentication token
-- Reminder endpoints: Rate limited per user ID
-- Export endpoints: Rate limited per API key
+In-memory IP-based sliding window limits:
+
+- Health/metrics/status endpoints: **60 req/min**
+- Read requests (`GET`): **30 req/min**
+- Write requests (`POST`, `PUT`, `DELETE`): **10 req/min**
 
 ## Versioning
 
-Current API version: **2.4.0** (Lifecycle Manager)
+Current API version: **3.7.0** (Enterprise Ready)
 
 Version information is included in health check responses and can be queried via `/api/health`.
 
@@ -867,6 +972,8 @@ Version information is included in health check responses and can be queried via
 - **onboarding**: User onboarding flow
 - **ticketbot**: Ticket system configuration
 - **verification**: Payment verification setup
+- **engagement**: Challenges, weekly awards, streaks, badges, OG claims
+- **growth**: Growth Check-in channel
 
 ### Auto-Moderation Rule Types
 

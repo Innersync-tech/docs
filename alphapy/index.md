@@ -1,35 +1,34 @@
 ---
-layout: default
-title: Alphapy
-nav_order: 2
-has_children: true
-permalink: /alphapy/
+layout: page
+title: Innersync • Alphapy Legal Hub
+permalink: /
 ---
 
-# Innersync • Alphapy Documentation
+# Innersync • Alphapy Documentation Hub
 
-Discord bot for the Innersync • Alphapips community.
+Welcome! This documentation hub provides comprehensive guides for the Innersync • Alphapy Discord Bot.
 
-## Getting Started
+## Documentation
 
-- [Configuration Guide](configuration.md) — Multi-guild setup and configuration
-- [API Reference](api.md) — Complete API endpoint documentation
-- [Command Reference](commands.md) — All Discord slash commands
+### Getting Started
+- [Configuration Guide](configuration.md) - Multi-guild setup and configuration
+- [API Reference](api.md) - Complete API endpoint documentation
+- [Command Reference](commands.md) - All Discord slash commands
 
-## Technical Documentation
+### Technical Documentation
+- [Database Schema](database-schema.md) - Complete database table reference
+- [Migrations Guide](migrations.md) - Database migration workflow with Alembic
 
-- [Database Schema](database-schema.md) — Complete database table reference
-- [Migrations Guide](migrations.md) — Database migration workflow with Alembic
-- [Authentication](ALPHAPY_AUTHENTICATION.md) — API authentication for Mind dashboard
-- [Premium](premium.md) — Premium tier features and guard behaviour
+### Legal
+- [Legal Information](legal.md) – Company details, enterprise number, registered office
+- [Terms of Service](terms-of-service.md)
+- [Privacy Policy](privacy-policy.md)
 
-## Operations & Security
+## Quick Links
 
-- [Operational Playbook](OPERATIONAL_PLAYBOOK.md) — Post-deploy checklist and troubleshooting
-- [Security](SECURITY.md) — Google Cloud security best practices
-- [Google Credentials Setup](GOOGLE_CREDENTIALS_SETUP.md) — Drive API service account setup
-- [Railway Secret Manager Setup](RAILWAY_SECRET_MANAGER_SETUP.md) — Secret Manager on Railway
+- **Main README**: [../README.md](../README.md)
+- **Architecture**: [../ARCHITECTURE.md](../ARCHITECTURE.md)
+- **Changelog**: [../changelog.md](../changelog.md)
+- **Releases**: [../RELEASES.md](../RELEASES.md)
 
----
-
-Need help? Reach out via `support@innersync.tech` or open an issue on GitHub.
+Need help or have questions? Reach out via `support@innersync.tech` or open an issue on GitHub.

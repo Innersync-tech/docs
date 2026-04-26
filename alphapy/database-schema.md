@@ -1,10 +1,3 @@
----
-layout: default
-title: Database Schema
-parent: Alphapy
-nav_order: 5
----
-
 # Database Schema Reference
 
 Complete reference for all database tables used by the Alphapy Discord Bot.
@@ -76,6 +69,7 @@ Scheduled reminders (recurring and one-off events).
 - `location` (TEXT): Event location
 - `last_sent_at` (TIMESTAMPTZ): Last send timestamp (for idempotency)
 - `image_url` (TEXT): Optional image or banner URL (Premium feature)
+- `sent_message_id` (BIGINT): Discord message ID of the T-60 offset reminder send; used to delete it when the T0 on-time reminder fires
 
 **Indexes:**
 - `idx_reminders_time` on `time`
@@ -103,6 +97,7 @@ Premium subscription status (local fallback when Core-API is unavailable). **One
 - `stripe_subscription_id` (TEXT): External subscription ID (for support/cancellation only)
 - `expires_at` (TIMESTAMPTZ): NULL for lifetime or N/A
 - `created_at` (TIMESTAMPTZ): When the record was created
+- `expiry_warning_sent_at` (TIMESTAMPTZ, added migration 015): Timestamp of last 7-day expiry warning DM. NULL = no warning sent yet. Used by the `check_expiry_warnings` background task to avoid duplicate DMs.
 
 **Indexes:**
 - `idx_premium_subs_user_guild` on `(user_id, guild_id)`
@@ -115,6 +110,30 @@ Premium subscription status (local fallback when Core-API is unavailable). **One
 
 ---
 
+### `gpt_usage`
+
+Per-user, per-guild daily GPT call tracking for quota enforcement. Added in migration 014.
+
+**Columns:**
+- `user_id` (BIGINT, NOT NULL): Discord user ID
+- `guild_id` (BIGINT, NOT NULL): Discord guild ID
+- `usage_date` (DATE, NOT NULL, DEFAULT CURRENT_DATE): The UTC date of usage
+- `call_count` (INTEGER, NOT NULL, DEFAULT 0): Number of GPT calls made on this date
+
+**Primary key:** `(user_id, guild_id, usage_date)`
+
+**Indexes:**
+- `idx_gpt_usage_date` on `usage_date` (for efficient cleanup of old rows)
+
+**Notes:**
+- `check_and_increment_gpt_quota()` in `utils/premium_guard.py` uses an atomic `INSERT … ON CONFLICT DO UPDATE` so no race conditions
+- Limits per tier: free = 5/day, monthly = 25/day, yearly/lifetime = unlimited (NULL)
+- Only user-initiated GPT calls are counted; ticket summaries and embed watcher calls pass `user_id=None` and are excluded
+
+**GDPR:** Stores only Discord user ID, guild ID, date, and a counter. No message content or PII beyond the snowflake ID.
+
+---
+
 ### `terms_acceptance`
 
 Tracks user acceptance of the Terms of Service and Privacy Policy for GDPR compliance.
@@ -123,8 +142,9 @@ Tracks user acceptance of the Terms of Service and Privacy Policy for GDPR compl
 - `id` (SERIAL PRIMARY KEY)
 - `user_id` (BIGINT, NOT NULL, UNIQUE): Discord user ID
 - `accepted_at` (TIMESTAMPTZ, NOT NULL, DEFAULT NOW()): When the user accepted the terms
-- `version` (TEXT, NOT NULL, DEFAULT '2025-02-27'): Legal terms version the user accepted
-- `ip_address` (INET, NULLABLE): IP address at time of acceptance (optional; may be NULL)
+- `version` (TEXT, NOT NULL, DEFAULT '2026-03-02'): Legal terms version the user accepted
+
+> **Note:** The `ip_address` column was dropped in migration 016. Discord gateway interactions carry no client IP, so the column was always NULL. Re-add it via a new migration only if a web-based consent flow is implemented.
 
 **Indexes:**
 - `idx_terms_acceptance_user` on `user_id`
@@ -133,6 +153,25 @@ Tracks user acceptance of the Terms of Service and Privacy Policy for GDPR compl
 **Notes:**
 - Used by the `/premium` flow: users must accept terms before accessing premium checkout.
 - Stores only minimal consent metadata for legal compliance; no content of the terms is stored here.
+
+---
+
+### `gdpr_acceptance`
+
+Guild GDPR agreement acceptance (the "I Agree" button in the GDPR channel).
+
+**Columns:**
+- `user_id` (BIGINT, NOT NULL): Discord user ID
+- `guild_id` (BIGINT, NOT NULL): Discord guild ID — scopes acceptances per server (added migration 018)
+- `accepted` (INTEGER, NOT NULL, DEFAULT 0): 1 = accepted, 0 = not accepted
+- `timestamp` (TIMESTAMP, NOT NULL, DEFAULT CURRENT_TIMESTAMP): When the user clicked "I Agree"
+
+**Primary Key:** `(user_id, guild_id)`
+
+**Notes:**
+- Written by `cogs/gdpr.py` / `utils/gdpr_helpers.py` when a user clicks the "I Agree" button on the GDPR embed
+- Formalised in Alembic migration 016; `guild_id` column added in migration 018
+- Deleted as part of GDPR erasure when a user's Supabase account is deleted (`webhooks/supabase.py:_purge_railway_data`) or when the user runs `/delete_my_data`
 
 ---
 
@@ -155,6 +194,11 @@ Plaintext reflections received from the App via Core-API webhook. Used for Grok 
 **Notes:**
 - Populated by `POST /webhooks/app-reflections`; deleted by `POST /webhooks/revoke-reflection`.
 - Context loader (`gpt/context_loader.py`) reads from this table for user-self flows (e.g. `/growthcheckin`). Ticket "Suggest reply" does not use reflection context.
+
+**Grok context sources for `/growthcheckin` (all three are merged, max 5 total):**
+1. Supabase `reflections_shared` — App reflections the user opted to share (requires `bot_sharing_enabled = true`)
+2. Supabase `reflections` — Discord check-ins written by `/growthcheckin` itself (no opt-in required)
+3. Railway `app_reflections` — plaintext from Core-API webhook (last 30 days, no opt-in required)
 
 ---
 
@@ -260,6 +304,9 @@ AI-assisted verification ticket metadata for payment/checkout verification.
 - `ai_reason` (TEXT): Short, sanitized explanation of the AI decision (no raw payment details)
 - `created_at` (TIMESTAMPTZ, DEFAULT NOW()): When the verification was created
 - `resolved_at` (TIMESTAMPTZ): When the verification was completed (NULL while pending)
+- `resolved_by_user_id` (BIGINT): Discord ID of the admin who resolved a manual review (NULL if auto-resolved)
+- `rejection_reason` (TEXT): Reason shown to the user on rejection
+- `payment_date` (DATE): Date extracted from the payment screenshot by the AI (NULL if unreadable or not yet populated)
 
 **Indexes:**
 - `idx_verification_tickets_guild_status` on `(guild_id, status)`
@@ -374,6 +421,7 @@ Historical health check data for trend analysis.
 
 **Notes:**
 - Automatically populated on each `/api/health` call
+- Startup no longer mutates schema; table is managed via Alembic migration `022_api_observability_tables`
 - Auto-cleanup: Records older than 30 days are automatically deleted
 
 ---
@@ -490,6 +538,273 @@ All tables have appropriate indexes for common query patterns:
 - **Audit logs**: No automatic cleanup (can be configured per guild)
 - **Ticket summaries**: No automatic cleanup
 - **Other tables**: No automatic cleanup (manual maintenance recommended)
+
+---
+
+### `automod_actions`
+
+Reusable action definitions for the auto-moderation system. Referenced by rules via FK.
+
+**Columns:**
+- `id` (SERIAL, PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL): Discord guild ID
+- `action_type` (TEXT, NOT NULL): `delete`, `warn`, `mute`, `timeout`, `ban`
+- `severity` (INTEGER, DEFAULT 1): Severity level (1–5)
+- `config` (JSONB, NOT NULL): Action-specific config (e.g. timeout duration)
+- `is_premium` (BOOLEAN, DEFAULT false): Whether this action requires premium
+- `created_by` (BIGINT): User ID who created the action
+- `created_at` (TIMESTAMPTZ, DEFAULT NOW())
+
+**Indexes:** `idx_automod_actions_guild` on `(guild_id)`
+
+**Notes:** Added in migration 009. Created before `automod_rules` to satisfy the FK constraint.
+
+---
+
+### `automod_rules`
+
+Per-guild content moderation rules. Each rule references one action via FK.
+
+**Columns:**
+- `id` (SERIAL, PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL): Discord guild ID
+- `rule_type` (TEXT, NOT NULL): `spam`, `content`, `ai`, `regex`
+- `name` (TEXT, NOT NULL): Human-readable rule name
+- `enabled` (BOOLEAN, DEFAULT true)
+- `config` (JSONB, NOT NULL): Rule-specific config (patterns, thresholds, etc.)
+- `action_id` (INTEGER, FK → `automod_actions.id`): Action to take on trigger
+- `created_by` (BIGINT)
+- `created_at` (TIMESTAMPTZ, DEFAULT NOW())
+- `updated_at` (TIMESTAMPTZ, DEFAULT NOW())
+- `is_premium` (BOOLEAN, DEFAULT false)
+
+**Indexes:**
+- `idx_automod_rules_guild_enabled` on `(guild_id, enabled)`
+- `idx_automod_rules_type` on `(rule_type)`
+
+**Notes:** Managed via `/config automod` subcommands. Toggle individual rules with `/config automod set_rule_enabled`.
+
+---
+
+### `automod_logs`
+
+Audit log of every auto-moderation trigger.
+
+**Columns:**
+- `id` (SERIAL, PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL)
+- `user_id` (BIGINT, NOT NULL): User who triggered the rule
+- `message_id` (BIGINT): Offending message ID (nullable)
+- `channel_id` (BIGINT): Channel where the trigger occurred (nullable)
+- `rule_id` (INTEGER, FK → `automod_rules.id`)
+- `action_taken` (TEXT, NOT NULL): Action that was executed
+- `message_content` (TEXT): Captured message text (nullable)
+- `ai_analysis` (JSONB): AI analysis result if `rule_type = 'ai'` (nullable)
+- `context` (JSONB): Additional context payload (nullable)
+- `moderator_id` (BIGINT): Set when action was a manual override (nullable)
+- `timestamp` (TIMESTAMPTZ, DEFAULT NOW())
+- `appeal_status` (TEXT, DEFAULT `'none'`): `none`, `pending`, `approved`, `denied`
+
+**Indexes:**
+- `idx_automod_logs_guild_user` on `(guild_id, user_id)`
+- `idx_automod_logs_timestamp` on `(timestamp)`
+- `idx_automod_logs_rule` on `(rule_id)`
+
+---
+
+### `automod_stats`
+
+Daily aggregated statistics per guild per rule, used by `/config automod stats` and dashboard analytics.
+
+**Columns:**
+- `id` (SERIAL, PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL)
+- `rule_id` (INTEGER, FK → `automod_rules.id`)
+- `date` (DATE, NOT NULL)
+- `triggers_count` (INTEGER, DEFAULT 0)
+- `false_positives` (INTEGER, DEFAULT 0)
+- `avg_response_time` (FLOAT)
+- `created_at` (TIMESTAMPTZ, DEFAULT NOW())
+
+**Unique constraint:** `(guild_id, rule_id, date)`
+
+**Indexes:** `idx_automod_stats_date` on `(date)`
+
+---
+
+### `automod_user_history`
+
+Running violation totals per user per rule type. Used for escalating action thresholds.
+
+**Columns:**
+- `id` (SERIAL, PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL)
+- `user_id` (BIGINT, NOT NULL)
+- `rule_type` (TEXT, NOT NULL)
+- `violation_count` (INTEGER, DEFAULT 1)
+- `last_violation` (TIMESTAMPTZ, DEFAULT NOW())
+- `total_points` (INTEGER, DEFAULT 0)
+- `context` (JSONB)
+- `updated_at` (TIMESTAMPTZ, DEFAULT NOW())
+
+**Unique constraint:** `(guild_id, user_id, rule_type)`
+
+**Indexes:** `idx_automod_user_history_guild_user` on `(guild_id, user_id)`
+
+---
+
+---
+
+## Engagement Tables
+
+Added in migration `020_engagement_system`. All tables are multi-guild scoped via `guild_id`.
+
+### `engagement_badges`
+
+Per-user, per-guild badge history.
+
+**Columns:**
+- `id` (BIGSERIAL PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL)
+- `user_id` (BIGINT, NOT NULL)
+- `badge_key` (TEXT, NOT NULL): e.g. `winner`, `og`, `motivator`
+- `assigned_at` (TIMESTAMPTZ, DEFAULT NOW())
+
+**Indexes:** `idx_eng_badges_guild_user` on `(guild_id, user_id)`
+
+---
+
+### `engagement_og_claims`
+
+Tracks which users have claimed an OG spot per guild.
+
+**Columns:**
+- `guild_id` (BIGINT, NOT NULL)
+- `user_id` (BIGINT, NOT NULL)
+- `claimed_at` (TIMESTAMPTZ, DEFAULT NOW())
+
+**Primary Key:** `(guild_id, user_id)`
+
+**Indexes:** `idx_eng_og_claims_guild` on `(guild_id)`
+
+---
+
+### `engagement_og_setup`
+
+One row per guild storing the OG claim message location.
+
+**Columns:**
+- `guild_id` (BIGINT PRIMARY KEY)
+- `message_id` (BIGINT)
+- `channel_id` (BIGINT)
+- `updated_at` (TIMESTAMPTZ, DEFAULT NOW())
+
+---
+
+### `engagement_challenges`
+
+Challenge sessions per guild.
+
+**Columns:**
+- `id` (BIGSERIAL PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL)
+- `channel_id` (BIGINT): Channel where messages are counted
+- `mode` (TEXT, DEFAULT `'leaderboard'`): `leaderboard` or `random`
+- `title` (TEXT)
+- `active` (BOOLEAN, DEFAULT TRUE)
+- `started_at` (TIMESTAMPTZ, DEFAULT NOW())
+- `ends_at` (TIMESTAMPTZ)
+- `ended_at` (TIMESTAMPTZ)
+- `winner_id` (BIGINT)
+- `messages_count` (INT)
+
+**Indexes:** `idx_eng_challenges_guild_active` on `(guild_id, active)`
+
+---
+
+### `engagement_participants`
+
+Per-challenge participant message counts.
+
+**Columns:**
+- `id` (BIGSERIAL PRIMARY KEY)
+- `challenge_id` (BIGINT, NOT NULL, FK → `engagement_challenges.id` ON DELETE CASCADE)
+- `user_id` (BIGINT, NOT NULL)
+- `message_count` (INT, DEFAULT 0)
+
+**Unique:** `(challenge_id, user_id)`
+
+**Indexes:** `idx_eng_participants_challenge` on `(challenge_id)`
+
+---
+
+### `engagement_weekly_messages`
+
+Indexed messages for weekly award computation.
+
+**Columns:**
+- `id` (BIGSERIAL PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL)
+- `message_id` (BIGINT, NOT NULL)
+- `channel_id` (BIGINT, NOT NULL)
+- `user_id` (BIGINT, NOT NULL)
+- `created_at` (TIMESTAMPTZ, NOT NULL)
+- `has_image` (BOOLEAN, DEFAULT FALSE)
+- `is_food` (BOOLEAN, DEFAULT FALSE)
+- `reactions_count` (INT, DEFAULT 0)
+
+**Unique:** `(guild_id, message_id)`
+
+**Indexes:** `idx_eng_weekly_msgs_guild_created` on `(guild_id, created_at)`
+
+---
+
+### `engagement_weekly_awards`
+
+Weekly award period bookkeeping per guild.
+
+**Columns:**
+- `id` (BIGSERIAL PRIMARY KEY)
+- `guild_id` (BIGINT, NOT NULL)
+- `week_start` (DATE, NOT NULL)
+- `week_end` (DATE, NOT NULL)
+
+**Unique:** `(guild_id, week_start, week_end)`
+
+**Indexes:** `idx_eng_weekly_awards_guild` on `(guild_id)`
+
+---
+
+### `engagement_weekly_results`
+
+Per-period winner records.
+
+**Columns:**
+- `id` (BIGSERIAL PRIMARY KEY)
+- `week_id` (BIGINT, NOT NULL, FK → `engagement_weekly_awards.id` ON DELETE CASCADE)
+- `award_key` (TEXT, NOT NULL): e.g. `motivator`, `star`
+- `user_id` (BIGINT, NOT NULL)
+- `metric` (INT): Score used to determine winner
+- `message_id` (BIGINT): Winning message ID (reactions filter only)
+
+**Unique:** `(week_id, award_key)`
+
+---
+
+### `engagement_streaks`
+
+Daily activity streak per user per guild.
+
+**Columns:**
+- `guild_id` (BIGINT, NOT NULL)
+- `user_id` (BIGINT, NOT NULL)
+- `last_day` (DATE): Last date a message was sent
+- `current_days` (INT, DEFAULT 0): Current streak length
+- `base_nickname` (TEXT): Stored base nickname (without suffix)
+
+**Primary Key:** `(guild_id, user_id)`
+
+**Indexes:** `idx_eng_streaks_guild` on `(guild_id)`
 
 ---
 
