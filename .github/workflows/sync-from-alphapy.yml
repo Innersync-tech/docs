@@ -25,7 +25,7 @@ jobs:
 
       - name: Sync alphapy docs
         run: |
-          rsync -av --delete alphapy/docs/ central-docs/docs/alphapy/ \
+          rsync -av --delete alphapy/docs/ central-docs/src/content/docs/alphapy/ \
             --exclude=terms-of-service.md \
             --exclude=privacy-policy.md \
             --exclude=pricing.md \
@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/alphapy/
+          git add src/content/docs/alphapy/
           git diff --cached --quiet && echo "No changes" && exit 0
           git commit -m "chore: sync alphapy docs from bryntje/alphapy"
           git push
