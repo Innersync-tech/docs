@@ -23,6 +23,7 @@ The site runs at `http://localhost:4321`.
 ## Legal
 
 - [Legal Information](src/content/docs/legal/legal.md) — Company details, enterprise number, registered office
+- [Pricing](src/content/docs/legal/pricing.md)
 - [Terms of Service](src/content/docs/legal/terms-of-service.md)
 - [Privacy Policy](src/content/docs/legal/privacy-policy.md)
 

@@ -15,6 +15,7 @@ Central documentation for all Innersync services.
 ## Legal
 
 - [Legal Information](legal/legal.md) — Company details, enterprise number, registered office
+- [Pricing](legal/pricing.md)
 - [Terms of Service](legal/terms-of-service.md)
 - [Privacy Policy](legal/privacy-policy.md)
 

@@ -1,11 +1,7 @@
 name: Sync Alphapy docs
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'docs/**'
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -15,12 +11,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: innersync-tech/docs
-          token: ${{ secrets.DOCS_SYNC_TOKEN }}
+          token: ${{ secrets.DOCS_SYNC_TOKEN || github.token }}
           path: central-docs
 
       - name: Checkout bryntje/alphapy
         uses: actions/checkout@v4
         with:
+          repository: bryntje/alphapy
           path: alphapy
 
       - name: Sync alphapy docs
