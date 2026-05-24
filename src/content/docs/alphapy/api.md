@@ -1,7 +1,3 @@
----
-title: API Reference
----
-
 # API Reference
 
 Complete API documentation for the Alphapy Discord Bot FastAPI server.
@@ -17,9 +13,9 @@ All API endpoints are prefixed with `/api` unless otherwise noted.
 - **Dashboard Configuration**: Web dashboard endpoints for managing settings, onboarding, auto-moderation (requires Supabase JWT)
 - **Auto-Moderation**: Complete auto-moderation rule management with analytics (`/api/dashboard/{guild_id}/automod/*`)
 - **Onboarding Management**: Questions, rules, and flow configuration (`/api/dashboard/{guild_id}/onboarding/*`)
-- **Reminder Management**: User-facing reminder CRUD operations (requires API key + user ID)
+- **Reminder Management**: User-facing reminder CRUD operations (requires Supabase JWT subject match)
 - **Exports**: CSV export endpoints for tickets and FAQ
-- **Webhooks**: Incoming webhooks from Core-API (app-reflections, revoke-reflection); validated via `X-Webhook-Signature`
+- **Webhooks**: Incoming webhooks from Core-API and GitHub Actions; validated via `X-Webhook-Signature` (includes app-reflections, discord-link, premium-invalidate, founder, legal-update)
 
 **Note for Mind Dashboard**: Mind primarily uses:
 - `/api/dashboard/metrics` (or `/api/metrics` alias) for live metrics
@@ -30,8 +26,8 @@ All API endpoints are prefixed with `/api` unless otherwise noted.
 ## Authentication
 
 Most endpoints require authentication via:
-- **Supabase JWT**: `Authorization: Bearer <token>` (preferred)
-- **API Key**: `X-API-Key` (fallback when JWT is not present/invalid and `API_KEY` is configured)
+- **Supabase JWT**: `Authorization: Bearer <token>` (required for user-scoped and dashboard endpoints)
+- **API Key**: `X-API-Key` (used for internal service endpoints such as `/api/observability`)
 
 Important:
 - User identity is derived from verified JWT claims (`sub`) only.
@@ -40,7 +36,7 @@ Important:
 Example (JWT):
 ```bash
 curl -H "Authorization: Bearer <supabase_jwt>" \
-  https://your-bot-url/api/reminders/123456789
+  https://your-bot-url/api/reminders/<supabase_user_uuid>
 ```
 
 Dashboard endpoints example:
@@ -237,7 +233,10 @@ Comprehensive dashboard metrics including bot status, Grok/LLM stats, reminders,
     "premium_checks_local": 40,
     "premium_cache_hits": 200,
     "premium_transfers_count": 3,
-    "premium_cache_size": 25
+    "premium_cache_size": 25,
+    "premium_guild_cache_size": 8,
+    "premium_guild_cache_hits": 90,
+    "premium_guild_cache_misses": 12
   }
 }
 ```
@@ -250,6 +249,15 @@ The optional `premium_metrics` block provides observability for the Premium guar
 - `premium_cache_hits`: Number of cache hits when resolving premium status
 - `premium_transfers_count`: Number of premium transfers between guilds
 - `premium_cache_size`: Current in-memory cache size for premium status
+- `premium_guild_cache_size`: Current in-memory cache size for guild-level premium checks
+- `premium_guild_cache_hits`: Cache hits for `guild_has_premium(guild_id)`
+- `premium_guild_cache_misses`: Cache misses for `guild_has_premium(guild_id)`
+
+The optional `cache_metrics` block now also includes cache metrics for:
+
+- `automod_rules_cache_*`: active-rules and rule-list cache size/hit/miss counters from `RuleProcessor`
+- `engagement_feature_flag_cache_*`: cache size/hit/miss counters for engagement `*_enabled` checks
+- `engagement_food_channels_cache_*`: cache size/hit/miss counters for engagement food-channel resolution
 
 #### `GET /api/metrics`
 
@@ -763,14 +771,16 @@ Get operational logs (reconnect, disconnect, etc.) for the Mind dashboard. Requi
 
 ### Reminder Management
 
+Mind and other clients authenticate with a **Supabase JWT**. The `user_id` path field and reminder payload `user_id` must equal the JWT `sub` (Innersync user UUID). Alphapy resolves that UUID to a Discord snowflake via `alphapy_discord_links` (and Supabase `profiles` as a fallback) before reading or writing `reminders.created_by`. If the user is not linked, reminder endpoints return **403** with guidance to run `/link` in Discord.
+
 #### `GET /api/reminders/{user_id}`
 
 List reminders for a specific user.
 
-**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
+**Authentication:** Required (Supabase JWT; `user_id` must match authenticated JWT `sub`)
 
 **Path Parameters:**
-- `user_id` (required): Discord user ID whose reminders to fetch
+- `user_id` (required): Must equal the authenticated JWT `sub` (Innersync UUID). Reminders are loaded using the linked Discord id.
 
 **Response:**
 ```json
@@ -794,7 +804,7 @@ List reminders for a specific user.
 
 Create a new reminder.
 
-**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
+**Authentication:** Required (Supabase JWT; `user_id` in payload must match authenticated JWT `sub`)
 
 Supports optional `Idempotency-Key` header for safe retries (duplicate requests with the same key return the cached success response instead of creating duplicate writes).
 
@@ -814,23 +824,23 @@ Supports optional `Idempotency-Key` header for safe retries (duplicate requests 
 
 Update an existing reminder.
 
-**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
+**Authentication:** Required (Supabase JWT; `user_id` in payload must match authenticated JWT `sub`)
 
 Supports optional `Idempotency-Key` header for safe retries.
 
-**Request Body:** Same as POST, include `id` in payload. All fields optional except `id` and `user_id`.
+**Request Body:** Same as POST, include `id` in payload. The `user_id` field must equal the JWT `sub`; it is stored as Discord `created_by` after link resolution.
 
 #### `DELETE /api/reminders/{reminder_id}/{created_by}`
 
 Delete a reminder.
 
-**Authentication:** Required (Supabase JWT or API key, plus user match against authenticated JWT subject)
+**Authentication:** Required (Supabase JWT; `created_by` must match authenticated JWT `sub`)
 
 Supports optional `Idempotency-Key` header for safe retries.
 
 **Path Parameters:**
 - `reminder_id` (required): ID of the reminder to delete
-- `created_by` (required): Discord user ID who created the reminder
+- `created_by` (required): Must equal the authenticated JWT `sub` (Innersync UUID); must match the reminder owner after link resolution.
 
 ### Exports
 
@@ -838,7 +848,7 @@ Supports optional `Idempotency-Key` header for safe retries.
 
 ## Webhooks
 
-These endpoints receive payloads from Core-API. They do not use API key authentication; use `X-Webhook-Signature` (HMAC) with the configured secret (`APP_REFLECTIONS_WEBHOOK_SECRET` or fallback). See [Configuration](configuration.md) for environment variables.
+These endpoints receive payloads from Core-API. They do not use API key authentication; use `X-Webhook-Signature` (HMAC) with the configured secret (`DISCORD_LINK_WEBHOOK_SECRET`, `APP_REFLECTIONS_WEBHOOK_SECRET`, or other per-route fallbacks). See [Configuration](configuration.md) for environment variables.
 
 ### `POST /webhooks/app-reflections`
 
@@ -874,6 +884,33 @@ Deletes a previously stored reflection when the user revokes consent in the App.
 ```
 
 **Response:** `200` with `{"status": "deleted", "count": 1}` (or `count: 0` if no row matched).
+
+### `POST /webhooks/reflections`
+
+Receives `reflection.created` lifecycle events from App/Core integrations.
+
+**Headers:** `X-Webhook-Signature` (validated when a reflections webhook secret is configured)
+
+**Request body (example):**
+```json
+{
+  "event": "reflection.created",
+  "user_id": "uuid",
+  "reflection_id": "uuid",
+  "date": "YYYY-MM-DD",
+  "timestamp": "ISO8601"
+}
+```
+
+**Response:** `200` with `{"status": "ok"}` for accepted events.
+
+### `POST /webhooks/supabase/auth`
+
+Supabase Auth lifecycle webhook used for profile sync and GDPR-style cleanup workflows.
+
+**Headers:** `X-Webhook-Signature` (optional if no webhook secret configured)
+
+**Response:** `200` with acknowledgment status when processed.
 
 ### `POST /webhooks/legal-update`
 
@@ -914,6 +951,29 @@ Clears the premium cache for a user so the next check refetches from Core-API/DB
 - `guild_id` is optional — if omitted, cache is cleared for all guilds for that user.
 
 **Response:** `200` with `{"status": "ok"}`.
+
+---
+
+### `POST /webhooks/discord-link`
+
+Confirms a completed Discord ↔ Innersync link from Core after the user finishes the browser/App flow. Upserts into `alphapy_discord_links` and may send the user a confirmation DM.
+
+**Headers:** `X-Webhook-Signature` (HMAC-SHA256; secret: `DISCORD_LINK_WEBHOOK_SECRET`, falls back to `APP_REFLECTIONS_WEBHOOK_SECRET` / `WEBHOOK_SECRET` / `SUPABASE_WEBHOOK_SECRET`)
+
+**Request body:**
+```json
+{
+  "innersync_user_id": "550e8400-e29b-41d4-a716-446655440000",
+  "discord_user_id": 123456789012345678,
+  "link_source": "magic_link"
+}
+```
+
+- `link_source` is optional (stored for auditing).
+
+**Responses:**
+- `200` with `{"status": "ok"|"noop", "discord_user_id": "<snowflake>"}`
+- `409` if the Discord user or Innersync user is already linked to a different account
 
 ---
 

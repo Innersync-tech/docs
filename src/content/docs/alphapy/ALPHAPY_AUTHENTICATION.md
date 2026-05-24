@@ -1,7 +1,3 @@
----
-title: Alphapy API Authentication Guide
----
-
 # Alphapy API Authentication Guide
 
 ## Overview

@@ -1,7 +1,3 @@
----
-title: Google Cloud Credentials Setup Guide
----
-
 # Google Cloud Credentials Setup Guide
 
 Step-by-step guide for creating Google Cloud service account credentials for Alphapy.

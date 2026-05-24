@@ -1,5 +1,7 @@
 ---
-title: Innersync • Alphapy Documentation Hub
+layout: page
+title: Innersync • Alphapy Legal Hub
+permalink: /
 ---
 
 # Innersync • Alphapy Documentation Hub
@@ -17,10 +19,16 @@ Welcome! This documentation hub provides comprehensive guides for the Innersync 
 - [Database Schema](database-schema.md) - Complete database table reference
 - [Migrations Guide](migrations.md) - Database migration workflow with Alembic
 
-### Operations & Security
-- [Operational Playbook](OPERATIONAL_PLAYBOOK.md) - Post-deploy checklist and troubleshooting
-- [Security](SECURITY.md) - Security baseline and hardening checklist
-- [Google Credentials Setup](GOOGLE_CREDENTIALS_SETUP.md) - Drive API service account setup
-- [Railway Secret Manager Setup](RAILWAY_SECRET_MANAGER_SETUP.md) - Secret Manager on Railway
+### Legal
+- [Legal Information](legal.md) – Company details, enterprise number, registered office
+- [Terms of Service](terms-of-service.md)
+- [Privacy Policy](privacy-policy.md)
+
+## Quick Links
+
+- **Main README**: [../README.md](../README.md)
+- **Architecture**: [../ARCHITECTURE.md](../ARCHITECTURE.md)
+- **Changelog**: [../changelog.md](../changelog.md)
+- **Releases**: [../RELEASES.md](../RELEASES.md)
 
 Need help or have questions? Reach out via `support@innersync.tech` or open an issue on GitHub.

@@ -1,7 +1,3 @@
----
-title: Railway Secret Manager Setup Guide
----
-
 # Railway Secret Manager Setup Guide
 
 Step-by-step guide for configuring Google Cloud Secret Manager on Railway.
