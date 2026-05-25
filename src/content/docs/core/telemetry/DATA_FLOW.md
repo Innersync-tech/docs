@@ -34,9 +34,9 @@ Without regular writes, the public status page may show stale or empty history u
 
 ## Keeping data fresh
 
-1. Ensure each product's ingest path is enabled in production.
-2. Optionally schedule HTTP calls to each service's metrics endpoint (e.g. every 30–60s).
-3. Confirm Mind can read from the shared telemetry store (configured in each product's deploy environment).
+1. Ensure each product’s ingest path is enabled in production.
+2. Optionally schedule HTTP calls to each service’s metrics endpoint (e.g. every 30–60s).
+3. Confirm Mind can read from the shared telemetry store (configured in each product’s deploy environment).
 
 ## For maintainers
 

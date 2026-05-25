@@ -14,7 +14,7 @@ description: Shared user profile, Core API surface, and Discord link flow.
 
 ## Core API (public surface)
 
-Authenticated with the user's Supabase JWT unless noted.
+Authenticated with the user’s Supabase JWT unless noted.
 
 | Endpoint | Purpose |
 |----------|---------|
