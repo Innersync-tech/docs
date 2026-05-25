@@ -3,15 +3,16 @@ name: Sync Alphapy docs
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout innersync-tech/docs
+      - name: Checkout docs repo
         uses: actions/checkout@v4
         with:
-          repository: innersync-tech/docs
-          token: ${{ secrets.DOCS_SYNC_TOKEN || github.token }}
           path: central-docs
 
       - name: Checkout bryntje/alphapy
