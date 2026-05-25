@@ -24,6 +24,7 @@ jobs:
       - name: Sync alphapy docs
         run: |
           rsync -av --delete alphapy/docs/ central-docs/src/content/docs/alphapy/ \
+            --exclude=index.md \
             --exclude=terms-of-service.md \
             --exclude=privacy-policy.md \
             --exclude=pricing.md \

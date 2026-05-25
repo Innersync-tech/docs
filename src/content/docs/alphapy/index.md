@@ -1,34 +1,30 @@
 ---
-layout: page
-title: Innersync • Alphapy Legal Hub
-permalink: /
+title: Alphapy
+description: Discord bot documentation for the Innersync • Alphapips community.
 ---
 
-# Innersync • Alphapy Documentation Hub
+# Alphapy
 
-Welcome! This documentation hub provides comprehensive guides for the Innersync • Alphapy Discord Bot.
+Documentation for the **Innersync • Alphapy** Discord bot — multi-guild configuration, commands, API, and operations.
 
-## Documentation
+## Getting started
 
-### Getting Started
-- [Configuration Guide](configuration.md) - Multi-guild setup and configuration
-- [API Reference](api.md) - Complete API endpoint documentation
-- [Command Reference](commands.md) - All Discord slash commands
+- [Configuration](configuration.md) — multi-guild setup
+- [API reference](api.md) — HTTP endpoints
+- [Commands](commands.md) — slash commands
 
-### Technical Documentation
-- [Database Schema](database-schema.md) - Complete database table reference
-- [Migrations Guide](migrations.md) - Database migration workflow with Alembic
+## Technical
 
-### Legal
-- [Legal Information](legal.md) – Company details, enterprise number, registered office
-- [Terms of Service](terms-of-service.md)
-- [Privacy Policy](privacy-policy.md)
+- [Database schema](database-schema.md) — table reference (Railway Postgres)
+- [Migrations](migrations.md) — Alembic workflow
+- [Security](SECURITY.md) — practices and hardening
+- [Premium](premium.md) — tiers and webhooks
 
-## Quick Links
+## Integrations
 
-- **Main README**: [../README.md](../README.md)
-- **Architecture**: [../ARCHITECTURE.md](../ARCHITECTURE.md)
-- **Changelog**: [../changelog.md](../changelog.md)
-- **Releases**: [../RELEASES.md](../RELEASES.md)
+- [API authentication](ALPHAPY_AUTHENTICATION.md) — Mind and service-to-service auth
+- [Google credentials setup](GOOGLE_CREDENTIALS_SETUP.md)
+- [Railway Secret Manager](RAILWAY_SECRET_MANAGER_SETUP.md)
+- [Operational playbook](OPERATIONAL_PLAYBOOK.md)
 
-Need help or have questions? Reach out via `support@innersync.tech` or open an issue on GitHub.
+Legal documents live under [Legal](/legal/legal/) on this site.
