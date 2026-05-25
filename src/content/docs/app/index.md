@@ -12,4 +12,4 @@ Implementation docs live in the [innersync-dashboard](https://github.com/Innersy
 
 ## What we do not publish here
 
-Database schemas, `docs/sql/` migrations, and service-role configuration are **contributor-only** and are not copied to this site.
+Database schemas and SQL migrations are **not in git** (App `docs/sql/` is gitignored). Service-role configuration stays in deploy secrets only.

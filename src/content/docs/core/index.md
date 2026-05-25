@@ -14,4 +14,4 @@ Product overview and links: [Innersync Core on GitHub](https://github.com/Inners
 
 ## What we do not publish here
 
-Database schemas, SQL migrations, Railway env templates, and ingress payload examples stay in the **private Core repository** for contributors only.
+Database schemas and SQL migrations are **not in git** (Core `supabase/` is gitignored). Railway env and ingress details stay with the team/META workspace.
