@@ -5,6 +5,16 @@ Central documentation for all Innersync services.
 This repository is powered by **Astro** with **Starlight**.
 Documentation source files live in `src/content/docs/`.
 
+## Publication policy
+
+**docs.innersync.tech** publishes product-level documentation only. It intentionally **does not** include:
+
+- Database schemas, migration SQL, or table/column catalogs (except **Alphapy**, synced from the public [alphapy](https://github.com/Innersync-tech/alphapy) repo)
+- Connection strings, service keys, or full internal env matrices
+- Cross-repo data-store diagrams with internal table names
+
+Contributors: clone the relevant product repository for SQL (`docs/sql/`, `supabase/`) and `.env.example`.
+
 ## Local development
 
 ```bash
