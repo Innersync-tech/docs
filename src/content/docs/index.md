@@ -9,8 +9,8 @@ Central documentation for all Innersync services.
 ## Services
 
 - [Alphapy](alphapy/index.md) — Discord bot for the Innersync • Alphapips community
-- [App](app/index.md) — Dashboard and web interface *(coming soon)*
-- [Core](core/index.md) — Core API and backend services *(coming soon)*
+- [App](app/index.md) — Reflection dashboard (overview; full docs in private repo)
+- [Core](core/index.md) — Control plane, Core API, identity, and telemetry
 
 ## Legal
 

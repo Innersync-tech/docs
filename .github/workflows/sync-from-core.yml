@@ -1,0 +1,49 @@
+name: Sync Core docs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs repo
+        uses: actions/checkout@v4
+        with:
+          path: central-docs
+
+      - name: Checkout Innersync_Core
+        uses: actions/checkout@v4
+        with:
+          repository: Innersync-tech/Innersync_Core
+          path: core-repo
+
+      - name: Sync Core docs
+        run: |
+          DEST="central-docs/src/content/docs/core"
+          mkdir -p "${DEST}/telemetry"
+
+          rsync -av --delete \
+            --include='index.md' \
+            --include='innersync-id.md' \
+            --include='telemetry/' \
+            --include='telemetry/***' \
+            --exclude='*' \
+            core-repo/docs/ "${DEST}/"
+
+      - name: Verify publication safety
+        working-directory: central-docs
+        run: bash scripts/verify-publication-safe.sh src/content/docs/core
+
+      - name: Commit and push
+        working-directory: central-docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/docs/core/
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "chore: sync Core docs from Innersync_Core"
+          git push
