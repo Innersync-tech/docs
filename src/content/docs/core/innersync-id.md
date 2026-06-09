@@ -27,7 +27,12 @@ Discord link (service-to-service + user completion):
 |----------|------|---------|
 | `POST /integrations/discord/link-session` | Service API key | Start link; returns App completion URL |
 | `GET /integrations/discord/bot-profile` | Service API key | Resolve linked profile by Discord user id |
+| `GET /integrations/discord/me` | User JWT | Discord link status for the signed-in user |
 | `POST /integrations/discord/link-session/complete` | User JWT | Finish link after App OAuth |
+| `DELETE /integrations/discord/link` | User JWT | Unlink Discord (App settings) |
+| `POST /integrations/discord/unlink` | Service API key | Unlink by Discord snowflake (Alphapy `/unlink`) |
+
+After link complete or unlink, Core writes Supabase `innersync_discord_links` and notifies Alphapy via HMAC webhook (`event`: `link` or `unlink`) so Railway `alphapy_discord_links` stays in sync.
 
 App completion route: `/dashboard/settings/integrations/link?token=…` (proxies to Core).
 
