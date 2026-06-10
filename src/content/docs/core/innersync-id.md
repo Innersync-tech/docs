@@ -21,6 +21,18 @@ Authenticated with the user’s Supabase JWT unless noted.
 | `GET /users/me` | Read profile (row created on first access) |
 | `PATCH /users/me` | Update display name, avatar, preferences |
 
+### Platform preferences (`preferences` jsonb)
+
+Structured cross-product keys on `innersync_users.preferences` (not App-only settings):
+
+| Key | Type | Values / notes |
+|-----|------|----------------|
+| `locale` | string | `nl-BE` or `en` |
+| `timezone` | string | IANA timezone (validated server-side) |
+| `marketing_opt_in` | boolean | Platform marketing opt-in |
+
+On `PATCH /users/me`, Core **validates** known keys and **shallow-merges** into the existing JSON object (unknown keys are preserved). Invalid `locale` or `timezone` returns `422`.
+
 Discord link (service-to-service + user completion):
 
 | Endpoint | Auth | Purpose |
