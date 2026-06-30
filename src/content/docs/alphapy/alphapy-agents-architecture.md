@@ -206,13 +206,14 @@ Ephemeral multi-turn working memory. Rows cascade-delete when the parent session
 | Encrypted journals | Only `load_user_reflections` / opt-in plaintext paths — never decrypt in bot |
 | Prompt injection | `safe_prompt` on skill blocks; mark external context as untrusted (same as Hermit) |
 | GPT abuse | Existing `check_and_increment_gpt_quota` inside `ask_gpt` |
+| Agent session abuse | `check_and_increment_agent_session_quota` on `/agent start` (free: 10/day, monthly: 25/day) |
 | Guild blast radius | `agents.enabled` off by default per guild |
 | API (future) | `verify_api_key` + Core JWT user resolution; per-user rate limit table |
 | Premium | Higher GPT limits via existing tiers; optional `agents.premium_only` setting later |
-| PII retention | Session `summary` capped at 4k chars; GDPR purge hook on user delete (extend `webhooks/supabase.py`) |
+| PII retention | Session `summary` capped at 4k chars; GDPR purge via `purge_agent_user_data()` on Supabase user delete and `/delete_my_data` |
 | Transport | HTTPS + service role; no client-side Supabase keys in bot |
 
-**Rate limit sketch (post-MVP):** `agent_invocations` table or Redis counter: `max 10 sessions/user/day` on free tier.
+**Rate limit (shipped):** `agent_session_usage` table (Railway migration 024): free 10 starts/user/day, monthly 25, yearly/lifetime unlimited.
 
 ---
 
@@ -233,8 +234,9 @@ Ephemeral multi-turn working memory. Rows cascade-delete when the parent session
 - [ ] `inner_voice` skill (short prompts from `profiles` prefs)
 - [ ] `POST /api/agents/run` on `api.py` (Mind/App trigger)
 - [ ] Hermit job: iterate linked users with recent `gpt_command` events → batch context refresh
-- [ ] Premium-only agents or higher limits for `yearly`/`lifetime`
-- [x] GDPR: purge `agent_sessions` / `agent_memory` on user delete webhook
+- [x] Premium tier caps on `/agent start` (free 10/day, monthly 25/day, yearly/lifetime unlimited)
+- [x] Rate limits — `agent_session_usage` (migration 024), `check_and_increment_agent_session_quota()`
+- [x] GDPR — `purge_agent_user_data()` on user delete webhook + `/delete_my_data`
 - [ ] Observability: agent session metrics in telemetry ingest
 
 ### Explicit non-goals (MVP)
