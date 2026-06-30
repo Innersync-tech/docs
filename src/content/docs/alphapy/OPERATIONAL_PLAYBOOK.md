@@ -10,8 +10,8 @@ Quick checklist and verification steps after adding the bot to a new server.
 ## Related docs
 
 - **Multi-guild configuration** (required channels, feature config): [configuration.md](configuration.md)
-- **Reminders** (one-off vs recurring, embed watcher): [AGENTS.md](../AGENTS.md) (EmbedReminderWatcher, ReminderManager)
-- **Ticket system**: [AGENTS.md](../AGENTS.md) and [configuration.md](configuration.md)
+- **Reminders** (one-off vs recurring, embed watcher): [AGENTS.md (GitHub)](https://github.com/Innersync-tech/alphapy/blob/main/AGENTS.md) (EmbedReminderWatcher, ReminderManager)
+- **Ticket system**: [AGENTS.md (GitHub)](https://github.com/Innersync-tech/alphapy/blob/main/AGENTS.md) and [configuration.md](configuration.md)
 - **Alphapy Agents**: [alphapy-agents-architecture.md](alphapy-agents-architecture.md), [agents-safety-guidelines.md](agents-safety-guidelines.md)
 
 ## Pre-flight checklist

@@ -150,4 +150,4 @@ By installing or using Innersync • Alphapy, you acknowledge that you have read
 
 ---
 
-**Legal information:** For company details (enterprise number, registered office, contact), see [Legal Information](/legal/).
+**Legal information:** For company details (enterprise number, registered office, contact), see [Legal Information](/legal/legal/).

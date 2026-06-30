@@ -72,7 +72,7 @@ Separate from API IP rate limits. Enforced in `start_agent_session()` via `check
 - Fails open on DB error (same policy as GPT quota)
 - Counters purged on GDPR erasure (`webhooks/supabase.py`, `/delete_my_data`)
 
-Tier constants: `AGENT_DAILY_SESSION_LIMIT` in `utils/premium_tiers.py`. See `docs/alphapy-agents-architecture.md` §6.
+Tier constants: `AGENT_DAILY_SESSION_LIMIT` in `utils/premium_tiers.py`. See [alphapy-agents-architecture.md](alphapy-agents-architecture.md) §6.
 
 ### Request tracing and API observability (`api.py`)
 
