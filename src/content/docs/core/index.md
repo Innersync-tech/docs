@@ -15,8 +15,8 @@ See the [Innersync Core repository](https://github.com/Innersync-tech/Innersync_
 
 | Topic | Description |
 |-------|-------------|
-| [Innersync ID](./innersync-id.md) | Shared user profile and Discord link (API surface) |
-| [Telemetry data flow](./telemetry/DATA_FLOW.md) | How metrics reach Mind (no SQL) |
+| [Innersync ID](innersync-id/) | Shared user profile and Discord link (API surface) |
+| [Telemetry data flow](telemetry/data_flow/) | How metrics reach Mind (no SQL) |
 
 ## Publication policy
 

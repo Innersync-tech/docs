@@ -45,6 +45,14 @@ jobs:
         working-directory: central-docs
         run: bash scripts/verify-publication-safe.sh src/content/docs/alphapy
 
+      - name: Fix Starlight links
+        working-directory: central-docs
+        run: python3 scripts/fix-starlight-links.py
+
+      - name: Check markdown links
+        working-directory: central-docs
+        run: npm ci && npm run check:links
+
       - name: Commit and push
         working-directory: central-docs
         run: |

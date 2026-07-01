@@ -16,26 +16,32 @@ def resolve_link(source: Path, target: str) -> Path | None:
     target = unquote(target.strip())
     if not target or target.startswith(SKIP_SCHEMES):
         return None
+    anchor = ""
+    if "#" in target:
+        target, anchor = target.split("#", 1)
     if target.startswith("/"):
         path = ROOT / target.lstrip("/")
     else:
         path = (source.parent / target).resolve()
-    path = path.split("#")[0] if isinstance(path, str) else path
-    if "#" in target and not target.startswith("/"):
-        path = (source.parent / target.split("#", 1)[0]).resolve()
-    elif "#" in target and target.startswith("/"):
-        path = (ROOT / target.lstrip("/").split("#", 1)[0]).resolve()
     return path
 
 
 def candidate_paths(path: Path) -> list[Path]:
     if path.suffix == ".md":
         return [path]
-    return [
+    candidates = [
         path,
         path.with_suffix(".md"),
         path / "index.md",
     ]
+    if path.name and not path.suffix:
+        parent = path.parent
+        slug = path.name.lower()
+        if parent.exists():
+            for child in parent.iterdir():
+                if child.is_file() and child.suffix == ".md" and child.stem.lower() == slug:
+                    candidates.append(child)
+    return candidates
 
 
 def main() -> int:
@@ -46,6 +52,10 @@ def main() -> int:
             raw = match.group(1)
             parsed = urlparse(raw)
             if parsed.scheme in ("http", "https", "mailto") or raw.startswith("#"):
+                continue
+            path_part = raw.split("#", 1)[0]
+            if path_part.endswith(".md"):
+                broken.append((md, raw, Path("use Starlight URL without .md")))
                 continue
             target_path = resolve_link(md, raw)
             if target_path is None:
