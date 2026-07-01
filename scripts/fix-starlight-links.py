@@ -1,58 +1,15 @@
 #!/usr/bin/env python3
-"""Rewrite internal .md links to Starlight clean URLs (trailing slash, no .md)."""
+"""Rewrite internal markdown links to correct Starlight relative URLs."""
 from __future__ import annotations
 
 import re
 import sys
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import urlparse
 
-ROOT = Path(__file__).resolve().parent.parent / "src" / "content" / "docs"
+from starlight_links import ROOT, resolve_target_file, to_relative_link
+
 LINK_RE = re.compile(r"(\[[^\]]*\]\()([^)#]+)(\)?)")
-SKIP_SCHEMES = ("http://", "https://", "mailto:", "#")
-
-
-def file_to_url_parts(md_file: Path) -> list[str]:
-    rel = md_file.relative_to(ROOT)
-    parts = list(rel.parent.parts)
-    stem = rel.stem
-    if stem.lower() != "index":
-        parts.append(stem.lower())
-    return [part.lower() for part in parts]
-
-
-def to_relative_link(source: Path, target_file: Path, anchor: str = "") -> str:
-    source_parts = list(source.parent.relative_to(ROOT).parts)
-    target_parts = file_to_url_parts(target_file)
-
-    common = 0
-    for left, right in zip(source_parts, target_parts):
-        if left.lower() == right.lower():
-            common += 1
-        else:
-            break
-
-    rel_parts = [".."] * (len(source_parts) - common) + target_parts[common:]
-    if not rel_parts:
-        link = "./"
-    else:
-        link = "/".join(rel_parts) + "/"
-    if anchor:
-        link += f"#{anchor}"
-    return link
-
-
-def resolve_target(source: Path, raw: str) -> Path | None:
-    target = unquote(raw.strip())
-    if not target or target.startswith(SKIP_SCHEMES):
-        return None
-    if target.startswith("/"):
-        path = ROOT / target.lstrip("/")
-    else:
-        path = (source.parent / target.split("#", 1)[0]).resolve()
-    if "#" in target:
-        path = Path(str(path).split("#", 1)[0])
-    return path
 
 
 def fix_links(text: str, source: Path) -> tuple[str, int]:
@@ -64,8 +21,6 @@ def fix_links(text: str, source: Path) -> tuple[str, int]:
         parsed = urlparse(target)
         if parsed.scheme in ("http", "https", "mailto") or target.startswith("#"):
             return match.group(0)
-        if not target.endswith(".md"):
-            return match.group(0)
 
         anchor = ""
         if "#" in target:
@@ -73,8 +28,8 @@ def fix_links(text: str, source: Path) -> tuple[str, int]:
         else:
             target_path = target
 
-        resolved = resolve_target(source, target_path)
-        if resolved is None or not resolved.exists():
+        resolved = resolve_target_file(source, target_path)
+        if resolved is None:
             return match.group(0)
 
         new_target = to_relative_link(source, resolved, anchor)
@@ -98,9 +53,8 @@ def main() -> int:
 
     if total:
         print(f"Updated {total} internal link(s).")
-        return 0
-
-    print("No .md internal links to fix.")
+    else:
+        print("All internal links already use Starlight URL paths.")
     return 0
 
 

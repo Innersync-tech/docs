@@ -31,4 +31,4 @@ Documentation for the **Innersync • Alphapy** Discord bot — multi-guild conf
 - [Google credentials setup](google_credentials_setup/)
 - [Operational playbook](operational_playbook/)
 
-Legal documents live under [Legal](/legal/legal/) on this site.
+Legal documents live under [Legal](../legal/legal/) on this site.
