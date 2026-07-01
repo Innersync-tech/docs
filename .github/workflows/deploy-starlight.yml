@@ -9,7 +9,7 @@ on:
   # That job can overwrite the Starlight artifact; redeploy when it finishes.
   workflow_run:
     workflows:
-      - "pages build and deployment"
+      - "pages-build-deployment"
     types:
       - completed
     branches:
@@ -75,4 +75,20 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Legacy Pages still builds from main/README and can finish after deploy.
+  redeploy-after-legacy:
+    environment:
+      name: github-pages
+      url: ${{ steps.redeployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.event_name == 'push'
+    steps:
+      - name: Wait for legacy Pages build
+        run: sleep 90
+
+      - name: Redeploy Starlight
+        id: redeployment
         uses: actions/deploy-pages@v4
