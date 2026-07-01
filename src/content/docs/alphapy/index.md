@@ -5,30 +5,38 @@ description: Discord bot documentation for the Innersync • Alphapy community.
 
 # Alphapy
 
-Documentation for the **Innersync • Alphapy** Discord bot — multi-guild configuration, commands, API, personal agents, and operations.
+**Innersync • Alphapy** is a multi-guild Discord bot for community operations, AI-assisted growth check-ins, and personal reflection agents.
 
 ## Getting started
 
-- [Configuration](configuration/) — multi-guild setup and agent env vars
-- [API reference](api/) — HTTP endpoints
-- [Commands](commands/) — slash commands (including `/agent`)
+| Topic | Description |
+|-------|-------------|
+| [Configuration](configuration/) | Environment variables, per-guild settings, and agent toggles |
+| [Commands](commands/) | Slash commands, including `/agent` and `/growthcheckin` |
+| [API reference](api/) | HTTP endpoints for dashboards, webhooks, and integrations |
 
 ## Alphapy Agents
 
-- [Architecture & MVP plan](alphapy-agents-architecture/) — multi-user agents, memory tiers, roadmap
-- [Safety guidelines](agents-safety-guidelines/) — privacy boundaries, consent gates, jailbreak matrix
+| Topic | Description |
+|-------|-------------|
+| [Architecture](alphapy-agents-architecture/) | Runtime, memory tiers, skills, and platform integration |
+| [Safety guidelines](agents-safety-guidelines/) | Privacy boundaries, consent gates, and jailbreak test matrix |
 
-## Technical
+## Operations & reference
 
-- [Database schema](database-schema/) — table reference (Railway Postgres)
-- [Migrations](migrations/) — Alembic workflow
-- [Security](security/) — practices, hardening, and agent quotas
-- [Premium](premium/) — tiers and webhooks
+| Topic | Description |
+|-------|-------------|
+| [Security](security/) | Hardening, webhooks, quotas, and agent session limits |
+| [Premium](premium/) | Subscription tiers, guard behaviour, and webhooks |
+| [Operational playbook](operational_playbook/) | Post-setup checklist for a new server |
+| [Database schema](database-schema/) | Railway Postgres table reference |
+| [Migrations](migrations/) | Alembic workflow |
 
 ## Integrations
 
-- [API authentication](alphapy_authentication/) — Mind and service-to-service auth
-- [Google credentials setup](google_credentials_setup/)
-- [Operational playbook](operational_playbook/)
+| Topic | Description |
+|-------|-------------|
+| [API authentication](alphapy_authentication/) | Mind and service-to-service auth |
+| [Google credentials setup](google_credentials_setup/) | Service account for Drive PDF features |
 
-Legal documents live under [Legal](../legal/legal/) on this site.
+Legal policies are published under [Legal](../legal/legal/).

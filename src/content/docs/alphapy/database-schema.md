@@ -9,7 +9,7 @@ Complete reference for all database tables used by the Alphapy Discord Bot.
 
 ## Overview
 
-The bot uses PostgreSQL for persistent storage. Schema is primarily managed via [Alembic migrations](../migrations/), with some legacy cogs still running idempotent `CREATE TABLE IF NOT EXISTS` safeguards at startup for backward compatibility. All tables support multi-guild architecture via `guild_id` columns where applicable.
+The bot uses PostgreSQL for persistent storage. Schema is managed via [Alembic migrations](../migrations/). Some cogs still run idempotent `CREATE TABLE IF NOT EXISTS` safeguards at startup for tables not yet covered by migrations. All tables support multi-guild architecture via `guild_id` columns where applicable.
 
 ## Tables
 
@@ -171,7 +171,7 @@ Tracks user acceptance of the Terms of Service and Privacy Policy for GDPR compl
 - `accepted_at` (TIMESTAMPTZ, NOT NULL, DEFAULT NOW()): When the user accepted the terms
 - `version` (TEXT, NOT NULL, DEFAULT '2026-03-02'): Legal terms version the user accepted
 
-> **Note:** The `ip_address` column was dropped in migration 016. Discord gateway interactions carry no client IP, so the column was always NULL. Re-add it via a new migration only if a web-based consent flow is implemented.
+> **Note:** The `ip_address` column is not present (removed in migration 016). Discord gateway interactions carry no client IP. Re-add via a new migration only if a web-based consent flow is implemented.
 
 **Indexes:**
 - `idx_terms_acceptance_user` on `user_id`
@@ -475,7 +475,7 @@ Historical health check data for trend analysis.
 
 **Notes:**
 - Automatically populated on each `/api/health` call
-- Startup no longer mutates schema; table is managed via Alembic migration `022_api_observability_tables`
+- Startup does not mutate schema; the table is managed via Alembic migration `022_api_observability_tables`
 - Auto-cleanup: Records older than 30 days are automatically deleted
 
 ---

@@ -380,10 +380,11 @@ The following environment variables are required/optional for bot operation:
 ### Optional - GitHub
 - `GITHUB_TOKEN`: Optional token for GitHub API (e.g. `/release`, repo links when `GITHUB_REPO` is set) to avoid rate limits.
 
-## Migration Notes
+## Upgrading to multi-guild
 
-If upgrading from single-guild to multi-guild:
-1. All old config.py values are now deprecated
-2. Each server needs fresh `/config` setup
-3. No automatic migration of old settings
-4. Bot automatically detects all joined servers
+When moving from a single-guild deployment to multi-guild:
+
+1. Retire single-guild `config.py` values — use per-guild `/config` instead
+2. Run `/config` setup in each server
+3. Settings are not migrated automatically between guilds
+4. The bot detects all joined servers on startup
