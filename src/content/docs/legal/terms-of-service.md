@@ -96,7 +96,7 @@ We reserve the right to suspend or decline service for misuse, security concerns
 
 ## 5. Data and Privacy
 
-Your use of the Bot and the Pricing Site is also governed by the [Innersync • Alphapy Privacy Policy](./privacy-policy.md), which explains what data we collect, how we store it, and the choices available to you and your members. For the Pricing Site, our [Cookie Policy](https://pricing.alphapy.innersync.tech/cookie-policy) describes which cookies and similar technologies we use and how you can manage your preferences. Installing or using the Bot, or visiting the Pricing Site, signifies acceptance of the Privacy Policy and, where applicable, the Cookie Policy. The Privacy Policy incorporates Belgian data protection requirements under the Wet van 30 juli 2018.
+Your use of the Bot and the Pricing Site is also governed by the [Innersync • Alphapy Privacy Policy](privacy-policy/), which explains what data we collect, how we store it, and the choices available to you and your members. For the Pricing Site, our [Cookie Policy](https://pricing.alphapy.innersync.tech/cookie-policy) describes which cookies and similar technologies we use and how you can manage your preferences. Installing or using the Bot, or visiting the Pricing Site, signifies acceptance of the Privacy Policy and, where applicable, the Cookie Policy. The Privacy Policy incorporates Belgian data protection requirements under the Wet van 30 juli 2018.
 
 ## 6. Configuration Data and Member Content
 

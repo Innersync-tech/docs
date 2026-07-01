@@ -72,7 +72,7 @@ Separate from API IP rate limits. Enforced in `start_agent_session()` via `check
 - Fails open on DB error (same policy as GPT quota)
 - Counters purged on GDPR erasure (`webhooks/supabase.py`, `/delete_my_data`)
 
-Tier constants: `AGENT_DAILY_SESSION_LIMIT` in `utils/premium_tiers.py`. See [alphapy-agents-architecture.md](alphapy-agents-architecture.md) §6.
+Tier constants: `AGENT_DAILY_SESSION_LIMIT` in `utils/premium_tiers.py`. See [alphapy-agents-architecture.md](alphapy-agents-architecture/) §6.
 
 ### Request tracing and API observability (`api.py`)
 
@@ -142,7 +142,7 @@ Alphapy uses a **Google service account** for read-only Drive access (`/learn_to
 - **Runtime**: `GOOGLE_CREDENTIALS_JSON` — full service account JSON as one env var (local `.env` or Railway).
 - **Code**: `utils/drive_sync.py` parses `GOOGLE_CREDENTIALS_JSON` at startup; no GCP Secret Manager integration.
 
-See [GOOGLE_CREDENTIALS_SETUP.md](GOOGLE_CREDENTIALS_SETUP.md) for creating the service account and setting Railway variables.
+See [GOOGLE_CREDENTIALS_SETUP.md](google_credentials_setup/) for creating the service account and setting Railway variables.
 
 ### Disable dormant keys
 
