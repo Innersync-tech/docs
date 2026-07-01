@@ -4,88 +4,107 @@ title: Alphapy Premium Features & Pricing
 
 # Alphapy Premium Features & Pricing
 
-_Last updated: 2026-04-07_
+_Last updated: 2026-07-01_
 
-## Overview
+Alphapy Premium unlocks higher AI and agent limits, image reminders, Mockingbird spicy mode, and server-wide tools when a member activates on your guild. Subscriptions are billed via [pricing.alphapy.innersync.tech](https://pricing.alphapy.innersync.tech) (Mollie B.V.).
 
-Alphapy offers premium features to enhance your Discord community's experience with advanced AI coaching, professional support tools, and premium customization options. All premium features are managed through secure subscription billing via Mollie B.V.
+**One server per subscription.** Premium applies to one Discord server at a time. Move it with `/premium_transfer`.
 
-## Subscription Plans
+## Plans
 
-### Monthly Plan
-**€4.99/month** (billed monthly)
+| Plan | Price | Best for |
+|------|-------|----------|
+| **Monthly** | **€4.99/month** | Trying premium with no long-term commitment |
+| **Annual** | **€59.99/year** | Best value — unlimited AI and agent sessions |
+| **Lifetime** | **€99.99** one-time | Pay once, keep premium forever |
 
-- All premium features unlocked
-- Cancel anytime
-- No setup fees
+### Founder Early Bird
 
-### Annual Plan
-**€59.99/year** (€5.00/month equivalent)
+Code **`EARLYBIRD50`** (50 spots total, shared across Annual and Lifetime):
 
-- All premium features unlocked
-- Save vs monthly billing
-- Annual billing
-- Early bird: **€29** with code `EARLYBIRD50` (first 50 founders)
+| Plan | Regular | Early bird |
+|------|---------|------------|
+| Annual | €59.99/year | **€29/year** |
+| Lifetime | €99.99 | **€49** |
 
-### Lifetime Plan
-**€99.99 one-time payment**
+Monthly has no early-bird discount. Live availability is shown on the [pricing site](https://pricing.alphapy.innersync.tech).
 
-- All premium features unlocked forever
-- No recurring charges
-- Early bird: **€49** with code `EARLYBIRD50` (first 50 founders)
+## Feature comparison
 
-## Premium Features
+### AI & Grok
 
-### 🤖 AI-Powered Coaching
-- **Personal Growth Check-ins**: AI-powered reflection prompts and follow-up guidance
-- **Topic Learning**: `/learn_topic` command with Grok AI integration
-- **Content Generation**: `/create_caption` for engaging social media content
-- **Spicy Mode**: Direct, sharp Mockingbird replies in `/growthcheckin` (premium)
+| Feature | Free | Monthly | Annual / Lifetime |
+|---------|------|---------|-------------------|
+| Grok / AI calls | 5 / day | 25 / day | Unlimited |
+| Spicy mode (Mockingbird in `/growthcheckin`) | — | ✓ | ✓ |
+| Growth check-in history (`/growthhistory`) | ✓ | ✓ | ✓ |
+| Share check-ins to community channel | ✓ | ✓ | ✓ |
 
-### 🎫 Professional Support System
-- **AI Ticket Summaries**: Automatic summarization of support conversations
-- **FAQ Suggestions**: Intelligent FAQ recommendations during ticket creation
-- **Advanced Analytics**: Detailed insights into community support patterns
+### Personal agents
 
-### ⏰ Premium Automation
-- **Image Reminders**: Attach images to reminder notifications
-- **Live Session Presets**: Pre-configured recurring live session reminders
-- **Advanced Scheduling**: Enhanced reminder customization options
+Requires `/link` to connect your Innersync account.
 
-### 🎨 Customization & Branding
-- **Premium Embeds**: Enhanced visual styling for bot messages
-- **Priority Support**: Faster response times for premium communities
-- **Founder Recognition**: Special recognition for lifetime subscribers
+| Feature | Free | Monthly | Annual / Lifetime |
+|---------|------|---------|-------------------|
+| Agent sessions per day (`/agent start`) | 10 / day | 25 / day | Unlimited |
+| Multi-turn sessions (`/agent continue`, `/agent end`) | ✓ | ✓ | ✓ |
+| Personalized memory | ✓ | ✓ | ✓ |
+| Memory & preferences in Innersync App | ✓ | ✓ | ✓ |
 
-## How It Works
+### Reminders & automation
 
-1. **Subscribe**: Choose your plan on [pricing.alphapy.innersync.tech](https://pricing.alphapy.innersync.tech)
-2. **Activate**: Use `/premium` command in your Discord server
-3. **Link**: Associate your subscription with your Discord server
-4. **Enjoy**: All premium features automatically unlock
+| Feature | Free | Monthly | Annual / Lifetime |
+|---------|------|---------|-------------------|
+| Active reminders | Max 10 | Unlimited | Unlimited |
+| Image / banner reminders | — | ✓ | ✓ |
+| Live session presets (`/add_live_session`) | — | ✓ | ✓ |
+| Embed watcher with image | — | ✓ | ✓ |
 
-## Billing & Payments
+### Account & billing
 
-- **Payment Processor**: Mollie B.V. (licensed payment institution, GDPR compliant)
-- **Supported Payment Methods**: Credit cards, bank transfers, and more
-- **Currency**: Euro (€)
-- **Taxes**: VAT exempt
-- **Refunds**: 30-day money-back guarantee on first purchase (see [Terms of Service](../terms-of-service/))
+| Feature | Free | Monthly | Annual / Lifetime |
+|---------|------|---------|-------------------|
+| Expiry warning DM (7 days before renewal) | — | ✓ | — (n/a for lifetime) |
+| Premium on one server (`/premium_transfer`) | — | ✓ | ✓ |
+| Founder recognition (early bird) | — | Annual only | Lifetime |
 
-## Transfer Policy
+## Server-wide features
 
-Premium subscriptions can be transferred between Discord servers using the `/premium_transfer` command. Contact support for assistance with transfers.
+When any member activates Premium on a server, these unlock for the **whole guild**:
 
-## Support
+- **Innersync Link** — `/link` connects Discord to the Innersync App (required for agents and consent-gated reflection sharing)
+- **Ticket AI summaries** — Grok summarises tickets when they are closed
+- **Payment verification** — private ticket flow with AI-assisted proof checks
+- **Advanced automod** — AI message analysis with automated moderation actions
 
-For pricing questions or subscription issues:
-- Email: support@innersync.tech
-- Discord: Join our support server
+## Other premium perks
 
-## Terms & Conditions
+- **`/learn_topic`** — topic learning with Grok
+- **`/create_caption`** — social content captions
+- Onboarding completion shows Premium status; non-premium users see upgrade when checkout is configured
 
-Premium subscriptions are subject to our [Terms of Service](../terms-of-service/) and [Privacy Policy](../privacy-policy/). By subscribing, you agree to these terms.
+## Getting started
+
+1. Subscribe on [pricing.alphapy.innersync.tech](https://pricing.alphapy.innersync.tech)
+2. Run **`/premium`** in your Discord server to activate
+3. Run **`/link`** to connect the Innersync App (for agents and shared reflections)
+4. Configure the server with **`/config`**
+
+## Billing
+
+- **Processor:** Mollie B.V. (GDPR compliant)
+- **Currency:** Euro (€), VAT exempt
+- **Refunds:** 30-day money-back guarantee on first purchase (see [Terms of Service](../terms-of-service/))
+
+## Transfer & support
+
+- Move Premium between servers: **`/premium_transfer`**
+- Questions: [support@innersync.tech](mailto:support@innersync.tech)
+
+## Terms
+
+Premium subscriptions are subject to our [Terms of Service](../terms-of-service/) and [Privacy Policy](../privacy-policy/).
 
 ---
 
-*Alphapy is developed and maintained by Innersync. All prices are in EUR. VAT exempt.*
+*Alphapy is developed and maintained by Innersync. All prices in EUR.*
