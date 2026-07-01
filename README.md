@@ -2,7 +2,9 @@
 
 **Live site:** [docs.innersync.tech](https://docs.innersync.tech) — built with **Astro + Starlight** (dark theme, search, sidebar).
 
-This README is for **contributors on GitHub**. Source files live in `src/content/docs/`; public URLs omit that path (e.g. `/alphapy/`, not `/src/content/docs/alphapy/`).
+This README is for **contributors on GitHub**. The public site is built by the **Deploy Starlight** GitHub Action from `src/content/docs/` — not from this README.
+
+> **Maintainers:** In repo **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from branch main”). If both are active, the legacy main-branch build can overwrite the Starlight site with this README (white page, broken links).
 
 ## Publication policy
 
