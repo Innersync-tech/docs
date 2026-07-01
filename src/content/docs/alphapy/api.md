@@ -75,7 +75,7 @@ Enhanced health check endpoint with detailed metrics.
 
 #### `GET /status`
 
-Simple status check endpoint (legacy, no authentication required).
+Simple unauthenticated status check.
 
 **Response:**
 ```json
@@ -114,7 +114,7 @@ Returns rolling in-memory request metrics for API and webhook traffic:
 }
 ```
 
-All responses now include an `X-Request-ID` header for request correlation.
+All responses include an `X-Request-ID` header for request correlation.
 
 **Fields:**
 - `service`: Service name
@@ -258,7 +258,7 @@ The optional `premium_metrics` block provides observability for the Premium guar
 - `premium_guild_cache_hits`: Cache hits for `guild_has_premium(guild_id)`
 - `premium_guild_cache_misses`: Cache misses for `guild_has_premium(guild_id)`
 
-The optional `cache_metrics` block now also includes cache metrics for:
+The optional `cache_metrics` block includes cache metrics for:
 
 - `automod_rules_cache_*`: active-rules and rule-list cache size/hit/miss counters from `RuleProcessor`
 - `engagement_feature_flag_cache_*`: cache size/hit/miss counters for engagement `*_enabled` checks
@@ -853,7 +853,7 @@ Supports optional `Idempotency-Key` header for safe retries.
 
 ## Webhooks
 
-These endpoints receive payloads from Core-API. They do not use API key authentication; use `X-Webhook-Signature` (HMAC) with the configured secret (`DISCORD_LINK_WEBHOOK_SECRET`, `APP_REFLECTIONS_WEBHOOK_SECRET`, or other per-route fallbacks). See [Configuration](configuration/) for environment variables.
+These endpoints receive payloads from Core-API. They do not use API key authentication; use `X-Webhook-Signature` (HMAC) with the configured secret (`DISCORD_LINK_WEBHOOK_SECRET`, `APP_REFLECTIONS_WEBHOOK_SECRET`, or other per-route fallbacks). See [Configuration](../configuration/) for environment variables.
 
 ### `POST /webhooks/app-reflections`
 
@@ -876,7 +876,7 @@ Receives plaintext reflection content from the App via Core-API. Payload is stor
 
 ### `POST /webhooks/revoke-reflection`
 
-Deletes a previously stored reflection when the user revokes consent in the App. Core-API sends this after consent is revoked.
+Deletes a stored reflection when the user revokes consent in the App. Core-API sends this after consent is revoked.
 
 **Headers:** `X-Webhook-Signature` (optional if no secret configured)
 
@@ -984,7 +984,7 @@ Confirms a completed Discord ↔ Innersync link or unlink from Core. Upserts or 
 }
 ```
 
-- `event` defaults to link when omitted (legacy payloads).
+- `event` defaults to `link` when omitted.
 - `link_source` is optional on link (stored for auditing).
 
 **Responses:**

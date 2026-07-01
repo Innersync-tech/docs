@@ -1,15 +1,16 @@
 ---
 title: App Documentation
+description: Overview of the Innersync reflection dashboard.
 ---
 
-# App Documentation
+# App
 
-The Innersync App is the reflection dashboard: OAuth, encrypted journaling, Grok chat, and onboarding.
+The Innersync App is the reflection dashboard: OAuth sign-in, encrypted journaling, Grok chat, agent settings, and onboarding.
 
-## Status
+## Documentation location
 
 Implementation docs live in the [innersync-dashboard](https://github.com/Innersync-tech/innersync-dashboard) repository (private).
 
-## What we do not publish here
+## Publication scope
 
-Database schemas and SQL migrations are **not in git** (App `docs/sql/` is gitignored). Service-role configuration stays in deploy secrets only.
+This public site does not include App database schemas, SQL migrations, or service-role configuration. Those remain in the private repository and deploy secrets.

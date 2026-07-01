@@ -315,7 +315,7 @@ The following environment variables are required/optional for bot operation:
 - `USE_TEST_BOT`: Set to `1` (or any non-empty value) to run the bot with `BOT_TOKEN_TEST` instead of `BOT_TOKEN`. Use this for local testing without touching the production bot.
 
 ### Optional - Google Cloud (for Drive integration)
-- `GOOGLE_CREDENTIALS_JSON`: Google service account key as a JSON string (Railway env var or `.env`). Required for Drive PDF features (`/learn_topic`, etc.). See [GOOGLE_CREDENTIALS_SETUP.md](google_credentials_setup/).
+- `GOOGLE_CREDENTIALS_JSON`: Google service account key as a JSON string (Railway env var or `.env`). Required for Drive PDF features (`/learn_topic`, etc.). See [GOOGLE_CREDENTIALS_SETUP.md](../google_credentials_setup/).
 
 ### Optional - API & Authentication
 - `API_KEY`: Internal API key for API endpoints
@@ -352,7 +352,7 @@ The following environment variables are required/optional for bot operation:
 
 ### Optional - Premium tier
 - `PREMIUM_CHECKOUT_URL`: Checkout page URL for the "Get Premium" button in `/premium`. If unset, buttons are disabled.
-- `PREMIUM_CACHE_TTL_SECONDS`: TTL in seconds for the in-memory premium cache (default: 300). See [Premium](premium/) for guard behaviour and Core-API contract.
+- `PREMIUM_CACHE_TTL_SECONDS`: TTL in seconds for the in-memory premium cache (default: 300). See [Premium](../premium/) for guard behaviour and Core-API contract.
 - `CORE_API_PAYMENTS_TOKEN`: Value of `INNERSYNC_CORE_PAYMENTS_TOKEN` from Core-API. Required for early bird availability checks (`POST /billing/early-bird/validate`). If unset, the embed assumes early bird is available (fail-open).
 - `EARLY_BIRD_CODE`: Early bird redemption code to validate against (default: `EARLYBIRD50`).
 - `EARLY_BIRD_TOTAL_SPOTS`: Total early bird spots shown in the embed text (default: `50`).
@@ -380,10 +380,11 @@ The following environment variables are required/optional for bot operation:
 ### Optional - GitHub
 - `GITHUB_TOKEN`: Optional token for GitHub API (e.g. `/release`, repo links when `GITHUB_REPO` is set) to avoid rate limits.
 
-## Migration Notes
+## Upgrading to multi-guild
 
-If upgrading from single-guild to multi-guild:
-1. All old config.py values are now deprecated
-2. Each server needs fresh `/config` setup
-3. No automatic migration of old settings
-4. Bot automatically detects all joined servers
+When moving from a single-guild deployment to multi-guild:
+
+1. Retire single-guild `config.py` values — use per-guild `/config` instead
+2. Run `/config` setup in each server
+3. Settings are not migrated automatically between guilds
+4. The bot detects all joined servers on startup

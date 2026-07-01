@@ -40,7 +40,7 @@ Alphapy offers premium features to enhance your Discord community's experience w
 - **Personal Growth Check-ins**: AI-powered reflection prompts and follow-up guidance
 - **Topic Learning**: `/learn_topic` command with Grok AI integration
 - **Content Generation**: `/create_caption` for engaging social media content
-- **Spicy Mode**: Enhanced AI responses for premium users (coming soon)
+- **Spicy Mode**: Direct, sharp Mockingbird replies in `/growthcheckin` (premium)
 
 ### 🎫 Professional Support System
 - **AI Ticket Summaries**: Automatic summarization of support conversations
@@ -70,7 +70,7 @@ Alphapy offers premium features to enhance your Discord community's experience w
 - **Supported Payment Methods**: Credit cards, bank transfers, and more
 - **Currency**: Euro (€)
 - **Taxes**: VAT exempt
-- **Refunds**: 30-day money-back guarantee on first purchase (see [Terms of Service](terms-of-service/))
+- **Refunds**: 30-day money-back guarantee on first purchase (see [Terms of Service](../terms-of-service/))
 
 ## Transfer Policy
 
@@ -84,7 +84,7 @@ For pricing questions or subscription issues:
 
 ## Terms & Conditions
 
-Premium subscriptions are subject to our [Terms of Service](terms-of-service/) and [Privacy Policy](privacy-policy/). By subscribing, you agree to these terms.
+Premium subscriptions are subject to our [Terms of Service](../terms-of-service/) and [Privacy Policy](../privacy-policy/). By subscribing, you agree to these terms.
 
 ---
 

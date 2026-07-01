@@ -12,4 +12,4 @@ E-mail: support@innersync.tech
 
 ---
 
-This page provides the legally required company information for the Innersync • Alphapy Bot and related services. For policies, see [Terms of Service](terms-of-service/) and [Privacy Policy](privacy-policy/).
+This page provides the legally required company information for the Innersync • Alphapy Bot and related services. For policies, see [Terms of Service](../terms-of-service/) and [Privacy Policy](../privacy-policy/).

@@ -21,7 +21,7 @@ The Alphapy bot supports a Premium tier for mature users. Premium features are g
 - €29 / year (early bird)  
 - €49 lifetime (first 50 members)
 
-Payment and webhooks (Stripe/Lemon Squeezy) are out of scope for the initial release; the guard and `/premium` command are in place.
+Payment and webhooks (Stripe/Lemon Squeezy) integrate via Core; the guard and `/premium` command handle entitlement checks in the bot.
 
 ## Configuration
 
@@ -52,7 +52,7 @@ When Core (or your payment backend) needs to notify Alphapy of changes, it can c
 
 Base URL is your Alphapy API (e.g. `https://alphapy.innersync.tech`). If the API is mounted under a path prefix (e.g. `/api`), use `https://<host>/api/webhooks/premium-invalidate` and `https://<host>/api/webhooks/founder`.
 
-## Core-API contract (for later implementation)
+## Core-API contract
 
 - **Endpoint**: `POST {CORE_API_URL}/api/premium/verify`
 - **Headers**: `Content-Type: application/json`, `X-API-Key: ALPHAPY_SERVICE_KEY`
