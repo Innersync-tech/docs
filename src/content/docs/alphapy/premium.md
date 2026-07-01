@@ -11,9 +11,17 @@ The Alphapy bot supports a Premium tier for mature users. Premium features are g
 
 ## Features (Premium)
 
-- **Reminders with images** – Add an image or banner URL (or attachment) to reminders; sent reminders show the image.
-- **Live session presets** – Use `/add_live_session` to create a recurring reminder with fixed message "Live session starting now!" (optional image; premium required for images).
-- **Mockingbird spicy mode** – In `/growthcheckin`, premium users get direct, sharp, no-sugar-coating replies.
+Per-user benefits when Premium is active on a guild:
+
+| Area | What you get |
+|------|----------------|
+| **AI / Grok** | Higher daily call limits (25/day monthly; unlimited annual/lifetime). Free tier: 5/day. |
+| **Agents** | Higher `/agent start` caps (25/day monthly; unlimited annual/lifetime). Free tier: 10/day after `/link`. |
+| **Reminders** | Unlimited active reminders (free: max 10), image/banner attachments, live session presets |
+| **Growth** | Mockingbird spicy mode in `/growthcheckin` — direct, sharp replies |
+| **Billing** | Expiry warning DM (7 days before renewal; monthly/annual) |
+
+See the public [Premium Features & Pricing](../../legal/pricing/) page for the full tier comparison and guild-wide unlocks.
 
 ## Pricing (display only)
 
