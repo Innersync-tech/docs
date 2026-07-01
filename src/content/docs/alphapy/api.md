@@ -970,7 +970,7 @@ Confirms a completed Discord ↔ Innersync link or unlink from Core. Upserts or 
 {
   "event": "link",
   "innersync_user_id": "550e8400-e29b-41d4-a716-446655440000",
-  "discord_user_id": 123456789012345678,
+  "discord_user_id": "1234567890123456",
   "link_source": "app_link"
 }
 ```
@@ -980,7 +980,7 @@ Confirms a completed Discord ↔ Innersync link or unlink from Core. Upserts or 
 {
   "event": "unlink",
   "innersync_user_id": "550e8400-e29b-41d4-a716-446655440000",
-  "discord_user_id": 123456789012345678
+  "discord_user_id": "1234567890123456"
 }
 ```
 

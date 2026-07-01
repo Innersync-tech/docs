@@ -29,7 +29,7 @@ Alembic provides a way to version control database schema changes, making it eas
    
    Ensure your `.env` file contains:
    ```
-   DATABASE_URL=postgresql://user:password@host:port/database
+   DATABASE_URL=postgresql://user@host:port/database
    ```
 
 3. **Important for existing databases:**
@@ -158,7 +158,7 @@ alembic stamp head
 
 Ensure `DATABASE_URL` is set correctly:
 ```bash
-export DATABASE_URL="postgresql://user:pass@localhost/dbname"
+export DATABASE_URL="postgresql://user@localhost/dbname"
 ```
 
 ### Migration fails mid-way
