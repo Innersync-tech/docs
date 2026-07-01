@@ -8,16 +8,16 @@ Central documentation for all Innersync services.
 
 ## Services
 
-- [Alphapy](alphapy/index.md) — Discord bot for the Innersync • Alphapips community
-- [App](app/index.md) — Reflection dashboard (overview; full docs in private repo)
-- [Core](core/index.md) — Control plane, Core API, identity, and telemetry
+- [Alphapy](alphapy/) — Discord bot for the Innersync • Alphapips community
+- [App](app/) — Reflection dashboard (overview; full docs in private repo)
+- [Core](core/) — Control plane, Core API, identity, and telemetry
 
 ## Legal
 
-- [Legal Information](legal/legal.md) — Company details, enterprise number, registered office
-- [Pricing](legal/pricing.md)
-- [Terms of Service](legal/terms-of-service.md)
-- [Privacy Policy](legal/privacy-policy.md)
+- [Legal Information](legal/legal/) — Company details, enterprise number, registered office
+- [Pricing](legal/pricing/)
+- [Terms of Service](legal/terms-of-service/)
+- [Privacy Policy](legal/privacy-policy/)
 
 ---
 
