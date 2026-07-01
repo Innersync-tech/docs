@@ -60,12 +60,21 @@ complete_session + emit_hermit_event("gpt_command")
 Hermit daily job (optional) reads events → strategic context refresh
 ```
 
-Future API path (same runtime):
+Future API path (shipped Phase 4.0):
 
 ```
-POST /api/agents/{agent}/run  (API key + user JWT via Core)
-        └── run_agent_session(...)  # shared with Discord cog
+App /api/agents/*  →  Core /api/agents/*  →  Alphapy /api/agents/*
+        └── same runtime as Discord /agent start|continue|end
 ```
+
+| Method | Endpoint | Action |
+|--------|----------|--------|
+| `GET` | `/api/agents/sessions/active` | Active session + turn history |
+| `POST` | `/api/agents/sessions` | Start |
+| `POST` | `/api/agents/sessions/{id}/turns` | Continue |
+| `POST` | `/api/agents/sessions/{id}/complete` | End |
+
+Cross-platform: one session per user per agent; `metadata.origin_channel` / `last_channel` track Discord vs App. App surface: `app.innersync.tech/dashboard/agent`.
 
 ### Module layout
 
@@ -91,7 +100,7 @@ cogs/agents.py     /agent list|start|continue|end|status
 | `/agent start [message]` | First turn; session stays `active` |
 | `/agent continue <message>` | Append a turn using session message history |
 | `/agent end` | Distil Tier 2, patch Tier 3, complete session, delete ephemeral messages |
-| `/agent status` | Active session start time and turn count |
+| `/agent status` | Active session start time, turn count, and App continue link |
 
 **Requirements:**
 
@@ -187,7 +196,7 @@ ALPHAPY_AGENTS_MEMORY_BACKEND=memory   # no Supabase migration needed
 | GPT abuse | `check_and_increment_gpt_quota` inside `ask_gpt` |
 | Agent session abuse | `check_and_increment_agent_session_quota` on `/agent start` (free: 10/day, monthly: 25/day) |
 | Guild blast radius | `agents.enabled` off by default per guild |
-| API (planned) | `verify_api_key` + Core JWT user resolution; per-user rate limit table |
+| API | `verify_api_key` + Supabase JWT via Core proxy; per-user session caps |
 | Premium | Higher GPT limits via existing tiers; optional `agents.premium_only` setting later |
 | PII retention | Session `summary` capped at 4k chars; GDPR purge via `purge_agent_user_data()` |
 | Transport | HTTPS + service role; no client-side Supabase keys in bot |
@@ -212,11 +221,12 @@ See [Safety guidelines](../agents-safety-guidelines/) for the jailbreak matrix a
 
 ---
 
-## Planned work
+## Roadmap (remaining)
 
-- `POST /api/agents/run` on `api.py` (Mind/App trigger)
 - Hermit job: batch context refresh for users with recent `gpt_command` events
 - Agent session metrics in telemetry ingest
+
+**Shipped (Phase 4.0):** Cross-platform sessions (App + Discord), Core-orchestrated HTTP API, `/dashboard/agent`, policy v1.1 (health reflection vs medical advice).
 
 **Out of scope:** per-user Hermes deployment; decryption of App ciphertext; guild-admin visibility into agent outputs (ephemeral by default).
 
