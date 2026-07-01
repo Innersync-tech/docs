@@ -1,9 +1,8 @@
 # Innersync Documentation Hub
 
-Central documentation for all Innersync services.
+**Live site:** [docs.innersync.tech](https://docs.innersync.tech) — built with **Astro + Starlight** (dark theme, search, sidebar).
 
-This repository is powered by **Astro** with **Starlight**.
-Documentation source files live in `src/content/docs/`.
+This README is for **contributors on GitHub**. Source files live in `src/content/docs/`; public URLs omit that path (e.g. `/alphapy/`, not `/src/content/docs/alphapy/`).
 
 ## Publication policy
 
@@ -26,16 +25,16 @@ The site runs at `http://localhost:4321`.
 
 ## Services
 
-- [Alphapy](src/content/docs/alphapy/) — Discord bot for the Innersync • Alphapips community
-- [App](src/content/docs/app/) — Dashboard and web interface *(coming soon)*
-- [Core](src/content/docs/core/) — Core API and backend services *(coming soon)*
+- [Alphapy](https://docs.innersync.tech/alphapy/) — Discord bot for the Innersync • Alphapips community
+- [App](https://docs.innersync.tech/app/) — Dashboard and web interface *(coming soon)*
+- [Core](https://docs.innersync.tech/core/) — Core API and backend services *(coming soon)*
 
 ## Legal
 
-- [Legal Information](src/content/docs/legal/legal.md) — Company details, enterprise number, registered office
-- [Pricing](src/content/docs/legal/pricing.md)
-- [Terms of Service](src/content/docs/legal/terms-of-service.md)
-- [Privacy Policy](src/content/docs/legal/privacy-policy.md)
+- [Legal Information](https://docs.innersync.tech/legal/legal/) — Company details, enterprise number, registered office
+- [Pricing](https://docs.innersync.tech/legal/pricing/)
+- [Terms of Service](https://docs.innersync.tech/legal/terms-of-service/)
+- [Privacy Policy](https://docs.innersync.tech/legal/privacy-policy/)
 
 ---
 
