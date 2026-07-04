@@ -5,16 +5,14 @@ description: Post-setup verification checklist for Alphapy in a new Discord serv
 
 # Operational Playbook
 
-Checklist and verification steps after adding the bot to a new server.
+Quick checklist and verification steps after adding the bot to a new server.
 
 ## Related docs
 
-| Topic | Link |
-|-------|------|
-| Multi-guild configuration | [Configuration](../configuration/) |
-| Reminders (one-off, recurring, embed watcher) | [Alphapy AGENTS.md on GitHub](https://github.com/Innersync-tech/alphapy/blob/main/AGENTS.md) |
-| Ticket system | [Configuration](../configuration/) and [AGENTS.md](https://github.com/Innersync-tech/alphapy/blob/main/AGENTS.md) |
-| Alphapy Agents | [Architecture](../alphapy-agents-architecture/), [Safety guidelines](../agents-safety-guidelines/) |
+- **Multi-guild configuration** (required channels, feature config): [configuration.md](configuration.md)
+- **Reminders** (one-off vs recurring, embed watcher): [AGENTS.md](../AGENTS.md) (EmbedReminderWatcher, ReminderManager)
+- **Ticket system**: [AGENTS.md](../AGENTS.md) and [configuration.md](configuration.md)
+- **Alphapy Agents**: [alphapy-agents-architecture.md](alphapy-agents-architecture.md), [agents-safety-guidelines.md](agents-safety-guidelines.md)
 
 ## Pre-flight checklist
 
@@ -73,10 +71,15 @@ Requires `ALPHAPY_AGENTS_ENABLED=true` on the deployment and `/config agents tog
 - [ ] `/agent continue message:Follow up` returns second turn; footer shows turn count
 - [ ] `/agent end` completes session; row in `agent_sessions` has status `completed`
 - [ ] Core `0023` applied: `agent_session_messages` empty after end (ephemeral purge)
-- [ ] Optional: run Matrix A probes from [Safety guidelines](../agents-safety-guidelines/)
+- [ ] Optional: run Matrix A probes from [agents-safety-guidelines.md](agents-safety-guidelines.md)
 
 ## Troubleshooting reminders
 
 - **No sends?** Verify timezone is Brussels and system clock is correct.
 - Check that `time` in the DB equals the intended trigger minute (HH:MM).
 - Inspect `WATCHER_LOG_CHANNEL` for parsing or SQL errors.
+- **Optional indexes** for performance:
+  ```sql
+  CREATE INDEX IF NOT EXISTS idx_reminders_time ON reminders (time);
+  CREATE INDEX IF NOT EXISTS idx_reminders_reminder_date ON reminders ((event_time - interval '60 minutes')::date);
+  ```

@@ -11,17 +11,9 @@ The Alphapy bot supports a Premium tier for mature users. Premium features are g
 
 ## Features (Premium)
 
-Per-user benefits when Premium is active on a guild:
-
-| Area | What you get |
-|------|----------------|
-| **AI / Grok** | Higher daily call limits (25/day monthly; unlimited annual/lifetime). Free tier: 5/day. |
-| **Agents** | Higher `/agent start` caps (25/day monthly; unlimited annual/lifetime). Free tier: 10/day after `/link`. |
-| **Reminders** | Unlimited active reminders (free: max 10), image/banner attachments, live session presets |
-| **Growth** | Mockingbird spicy mode in `/growthcheckin` — direct, sharp replies |
-| **Billing** | Expiry warning DM (7 days before renewal; monthly/annual) |
-
-See the public [Premium Features & Pricing](../../legal/pricing/) page for the full tier comparison and guild-wide unlocks.
+- **Reminders with images** – Add an image or banner URL (or attachment) to reminders; sent reminders show the image.
+- **Live session presets** – Use `/add_live_session` to create a recurring reminder with fixed message "Live session starting now!" (optional image; premium required for images).
+- **Mockingbird spicy mode** – In `/growthcheckin`, premium users get direct, sharp, no-sugar-coating replies.
 
 ## Pricing (display only)
 
@@ -29,7 +21,7 @@ See the public [Premium Features & Pricing](../../legal/pricing/) page for the f
 - €29 / year (early bird)  
 - €49 lifetime (first 50 members)
 
-Payment and webhooks (Stripe/Lemon Squeezy) integrate via Core; the guard and `/premium` command handle entitlement checks in the bot.
+Payment and webhooks (Stripe/Lemon Squeezy) are out of scope for the initial release; the guard and `/premium` command are in place.
 
 ## Configuration
 
@@ -60,7 +52,7 @@ When Core (or your payment backend) needs to notify Alphapy of changes, it can c
 
 Base URL is your Alphapy API (e.g. `https://alphapy.innersync.tech`). If the API is mounted under a path prefix (e.g. `/api`), use `https://<host>/api/webhooks/premium-invalidate` and `https://<host>/api/webhooks/founder`.
 
-## Core-API contract
+## Core-API contract (for later implementation)
 
 - **Endpoint**: `POST {CORE_API_URL}/api/premium/verify`
 - **Headers**: `Content-Type: application/json`, `X-API-Key: ALPHAPY_SERVICE_KEY`

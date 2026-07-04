@@ -30,7 +30,7 @@ With strict mode enabled, API startup fails fast if critical auth/webhook secret
 
 All inbound webhooks (Supabase auth, premium invalidation, GDPR erasure, reflections, founder, legal-update, Discord link) are verified with `HMAC-SHA256`. The shared utility `validate_webhook_signature()` uses `hmac.compare_digest` to prevent timing attacks.
 
-**Fail-closed behaviour:** When `APP_ENV=production` or `STRICT_SECURITY_MODE=1` is set, any webhook whose `*_WEBHOOK_SECRET` env var is absent returns `HTTP 503 Service Unavailable` immediately — the endpoint does not execute. In non-production environments, missing secrets emit a debug log and skip validation (development convenience only).
+**Fail-closed behavior (2026-06-21):** When `APP_ENV=production` or `STRICT_SECURITY_MODE=1` is set, any webhook whose `*_WEBHOOK_SECRET` env var is absent returns `HTTP 503 Service Unavailable` immediately — the endpoint does not execute. Previously, missing secrets caused validation to be silently skipped. In non-production environments, missing secrets still emit a debug log and skip validation (development convenience only).
 
 All of the following secrets are **required in production**:
 
@@ -72,7 +72,7 @@ Separate from API IP rate limits. Enforced in `start_agent_session()` via `check
 - Fails open on DB error (same policy as GPT quota)
 - Counters purged on GDPR erasure (`webhooks/supabase.py`, `/delete_my_data`)
 
-Tier constants: `AGENT_DAILY_SESSION_LIMIT` in `utils/premium_tiers.py`. See [Architecture](../alphapy-agents-architecture/).
+Tier constants: `AGENT_DAILY_SESSION_LIMIT` in `utils/premium_tiers.py`. See `docs/alphapy-agents-architecture.md` §6.
 
 ### Request tracing and API observability (`api.py`)
 
@@ -81,13 +81,13 @@ Tier constants: `AGENT_DAILY_SESSION_LIMIT` in `utils/premium_tiers.py`. See [Ar
   - request counts
   - success rates
   - latency percentiles (`p50`, `p95`, `p99`)
-- `GET /api/observability` requires `X-Api-Key` (service key) and returns `503` when no service key is configured.
+- `GET /api/observability` now requires `X-Api-Key` (service key) and returns `503` when no service key is configured.
 
 This endpoint is intended for operational monitoring and troubleshooting.
 
 ### Input sanitization (`utils/sanitizer.py`)
 
-- `safe_embed_text(text, limit)` — strips mentions, filters dangerous URL protocols, escapes Discord markdown, and truncates to `limit` characters. **Required for all user-supplied content placed in embeds.** Limits by context:
+- `safe_embed_text(text, limit)` — strips mentions, filters dangerous URL protocols, escapes Discord markdown, and truncates to `limit` characters. **Must be used for all user-supplied content placed in embeds.** As of 2026-06-21 this is enforced across the codebase with the following limits:
 
   | Context | Limit |
   |---|---|
@@ -142,7 +142,7 @@ Alphapy uses a **Google service account** for read-only Drive access (`/learn_to
 - **Runtime**: `GOOGLE_CREDENTIALS_JSON` — full service account JSON as one env var (local `.env` or Railway).
 - **Code**: `utils/drive_sync.py` parses `GOOGLE_CREDENTIALS_JSON` at startup; no GCP Secret Manager integration.
 
-See [GOOGLE_CREDENTIALS_SETUP.md](../google_credentials_setup/) for creating the service account and setting Railway variables.
+See [GOOGLE_CREDENTIALS_SETUP.md](GOOGLE_CREDENTIALS_SETUP.md) for creating the service account and setting Railway variables.
 
 ### Disable dormant keys
 

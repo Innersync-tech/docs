@@ -125,7 +125,7 @@ GOOGLE_CREDENTIALS_JSON={"type":"service_account","project_id":"drive-integratio
 
 1. Open your Alphapy service on [Railway](https://railway.app/) → **Variables**.
 2. Add or update **`GOOGLE_CREDENTIALS_JSON`** with the full service account JSON on **one line** (same format as local `.env`).
-3. Remove unused variables if still set: `GOOGLE_PROJECT_ID`, `GOOGLE_SECRET_NAME`.
+3. Remove unused legacy variables if they are still set: `GOOGLE_PROJECT_ID`, `GOOGLE_SECRET_NAME`.
 4. Redeploy the service after changing variables.
 
 ## Step 8: Test the configuration
@@ -184,4 +184,4 @@ GOOGLE_CREDENTIALS_JSON={"type":"service_account","project_id":"drive-integratio
 
 - [Google Cloud Service Accounts Documentation](https://cloud.google.com/iam/docs/service-accounts)
 - [Google Drive API Documentation](https://developers.google.com/drive/api)
-- [Alphapy Security Guide](../security/)
+- [Alphapy Security Guide](SECURITY.md)
