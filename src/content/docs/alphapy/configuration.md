@@ -7,6 +7,18 @@ description: Multi-guild setup and settings for Alphapy.
 
 This document explains how to configure the Innersync • Alphapy bot for each Discord server (guild) where it's added.
 
+## Web control panel (recommended)
+
+Guild administrators can configure most modules in the **Alphapy Dashboard** at [dashboard.alphapy.innersync.tech](https://dashboard.alphapy.innersync.tech):
+
+- Sign in with Discord (Administrator or Manage Server required)
+- Select your server → navigate **Home**, **Moderation**, **Community**, or **Automation & AI**
+- Use the sticky save bar (Ctrl+S) for settings changes; channel/role pickers when the bot API is linked
+
+Dashboard docs: [Alphapy-Dashboard FEATURE_PARITY](https://github.com/Innersync-tech/Alphapy-Dashboard/blob/master/FEATURE_PARITY.md) · API reference in repo `API_ENDPOINTS.md`.
+
+Discord slash commands below remain available for power users and setup wizards.
+
 ## Important: Multi-Guild Architecture
 
 **The bot is completely multi-guild capable.** Each server must be configured independently - there are no automatic fallbacks to hardcoded values. Every channel, role, and setting must be explicitly configured per server.
