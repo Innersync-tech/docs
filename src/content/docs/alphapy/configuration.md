@@ -7,18 +7,6 @@ description: Multi-guild setup and settings for Alphapy.
 
 This document explains how to configure the Innersync • Alphapy bot for each Discord server (guild) where it's added.
 
-## Web control panel (recommended)
-
-Guild administrators can configure most modules in the **Alphapy Dashboard** at [dashboard.alphapy.innersync.tech](https://dashboard.alphapy.innersync.tech):
-
-- Sign in with Discord (Administrator or Manage Server required)
-- Select your server → navigate **Home**, **Moderation**, **Community**, or **Automation & AI**
-- Use the sticky save bar (Ctrl+S) for settings changes; channel/role pickers when the bot API is linked
-
-Dashboard docs: [Alphapy-Dashboard FEATURE_PARITY](https://github.com/Innersync-tech/Alphapy-Dashboard/blob/master/FEATURE_PARITY.md) · API reference in repo `API_ENDPOINTS.md`.
-
-Discord slash commands below remain available for power users and setup wizards.
-
 ## Important: Multi-Guild Architecture
 
 **The bot is completely multi-guild capable.** Each server must be configured independently - there are no automatic fallbacks to hardcoded values. Every channel, role, and setting must be explicitly configured per server.
@@ -233,7 +221,7 @@ Key chosen from a dropdown (e.g. `first_onboarding_done`, `first_guild_join`).
 /automod add_caps_rule <name> [min_length] [max_ratio] [action]
 /automod add_duplicate_rule <name> [max_duplicates] [action]
 /automod add_regex_rule <name> <patterns> [action]    — premium
-/automod add_ai_rule <name> [action]                  — premium
+/automod add_ai_rule <name> <policy> [action] [threshold]  — premium (policy required; threshold 0.5–1.0, default 0.7)
 /automod edit_rule <rule_id> [fields...]
 /automod delete_rule <rule_id>
 /automod set_rule_enabled <rule_id> <true|false>
