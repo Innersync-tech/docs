@@ -4,3 +4,8 @@ dist/
 node_modules/
 .astro/
 site/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
