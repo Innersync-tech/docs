@@ -4,6 +4,7 @@ dist/
 node_modules/
 .astro/
 site/
+.repoly/audit.jsonl
 
 # Python
 __pycache__/
