@@ -1,68 +1,20 @@
-# ARCHIVED Starlight fallback until Mintlify custom domain docs.innersync.tech is green.
-# After cutover: disable this workflow and/or archive the repo.
-name: Deploy Starlight (fallback until Mintlify domain)
+# DISABLED — Starlight Pages retired after Mintlify cutover (2026-07-31).
+# Canonical docs: https://docs.innersync.tech (mintlify-docs).
+# workflow_dispatch kept only so maintainers can rebuild a historical snapshot if needed.
+name: Deploy Starlight (DISABLED)
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
-  build:
+  disabled:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.12.0
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Verify publication safety
-        run: bash scripts/verify-publication-safe.sh src/content/docs
-
-      - name: Verify Starlight frontmatter
-        run: bash scripts/ensure-starlight-frontmatter.sh src/content/docs
-
-      - name: Check markdown links
-        run: npm run check:links
-
-      - name: Build site
-        run: npm run build
-
-      - name: Add custom domain
-        run: cp CNAME dist/CNAME
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Starlight Pages disabled
+        run: |
+          echo "docs.innersync.tech is served by Mintlify (Innersync-tech/mintlify-docs)."
+          echo "Do not re-enable this workflow without updating meta/docs-sot.md."
+          exit 0

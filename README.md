@@ -9,7 +9,8 @@ Historical Starlight content remains under `src/content/docs/` for reference.
 
 ## Why archived
 
-Sprint 3 cutover: Mintlify is the platform docs SoT (MDX + Mintlify hosting). Starlight Pages remain readable until the Mintlify custom domain for `docs.innersync.tech` is confirmed green, then GitHub archive / Pages disable can proceed.
+Sprint 3 cutover complete (2026-07-31): Mintlify serves [docs.innersync.tech](https://docs.innersync.tech). Starlight Pages deploy is **disabled**. Optional: GitHub-archive this repo in org settings when ready (history stays readable).
+
 
 ## Legal
 
