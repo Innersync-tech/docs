@@ -1,43 +1,16 @@
-# Innersync Documentation Hub
+# ARCHIVED — Innersync Starlight docs
 
-**Live site:** [docs.innersync.tech](https://docs.innersync.tech) — built with **Astro + Starlight** (dark theme, search, sidebar).
+> **This repository is archived as a documentation source of truth.**  
+> Canonical live docs: [`Innersync-tech/mintlify-docs`](https://github.com/Innersync-tech/mintlify-docs) → [docs.innersync.tech](https://docs.innersync.tech).
 
-This README is for **contributors on GitHub**. The public site is built by the **Deploy Starlight** GitHub Action from `src/content/docs/` — not from this README.
+Do **not** add new product documentation here. Alphapy sync to this repo is disabled; use the Mintlify sync workflow in `alphapy`.
 
-> **Maintainers:** In repo **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from branch main”). If both are active, the legacy main-branch build can overwrite the Starlight site with this README (white page, broken links).
+Historical Starlight content remains under `src/content/docs/` for reference.
 
-## Publication policy
+## Why archived
 
-**docs.innersync.tech** publishes product-level documentation only. It intentionally **does not** include:
-
-- Database schemas, migration SQL, or table/column catalogs (except **Alphapy**, synced from the public [alphapy](https://github.com/Innersync-tech/alphapy) repo)
-- Connection strings, service keys, or full internal env matrices
-- Cross-repo data-store diagrams with internal table names
-
-Contributors: clone the relevant product repository for SQL (`docs/sql/`, `supabase/`) and `.env.example`.
-
-## Local development
-
-```bash
-npm install
-npm run dev
-```
-
-The site runs at `http://localhost:4321`.
-
-## Services
-
-- [Alphapy](https://docs.innersync.tech/alphapy/) — Discord bot for the Innersync • Alphapips community
-- [App](https://docs.innersync.tech/app/) — Dashboard and web interface *(coming soon)*
-- [Core](https://docs.innersync.tech/core/) — Core API and backend services *(coming soon)*
+Sprint 3 cutover: Mintlify is the platform docs SoT (MDX + Mintlify hosting). Starlight Pages remain readable until the Mintlify custom domain for `docs.innersync.tech` is confirmed green, then GitHub archive / Pages disable can proceed.
 
 ## Legal
 
-- [Legal Information](https://docs.innersync.tech/legal/legal/) — Company details, enterprise number, registered office
-- [Pricing](https://docs.innersync.tech/legal/pricing/)
-- [Terms of Service](https://docs.innersync.tech/legal/terms-of-service/)
-- [Privacy Policy](https://docs.innersync.tech/legal/privacy-policy/)
-
----
-
-Questions? Reach out via `support@innersync.tech` or open an issue on GitHub.
+Legal pages were copied once into `mintlify-docs/legal/`. Edit legal only in Mintlify after cutover.
